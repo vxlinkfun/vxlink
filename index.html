@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VXLINK | Mini Sites Premium</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:#070b14;
+color:white;
+overflow-x:hidden;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+.container{
+width:90%;
+max-width:1300px;
+margin:auto;
+}
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+z-index:999;
+backdrop-filter:blur(20px);
+background:rgba(7,11,20,.75);
+border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.nav{
+height:80px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo{
+font-size:28px;
+font-weight:900;
+letter-spacing:2px;
+}
+
+.logo span{
+color:#2d8cff;
+}
+
+.nav-links{
+display:flex;
+gap:25px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:#d4d4d4;
+font-weight:500;
+transition:.3s;
+}
+
+.nav-links a:hover{
+color:white;
+}
+
+.btn{
+padding:14px 24px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-weight:700;
+text-decoration:none;
+display:inline-block;
+transition:.3s;
+}
+
+.btn-primary{
+background:#2d8cff;
+color:white;
+}
+
+.btn-primary:hover{
+transform:translateY(-3px);
+}
+
+.btn-outline{
+border:1px solid rgba(255,255,255,.15);
+color:white;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+position:relative;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+width:600px;
+height:600px;
+background:#2d8cff;
+filter:blur(220px);
+opacity:.15;
+top:-100px;
+right:-150px;
+}
+
+.hero-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:80px;
+align-items:center;
+}
+
+.hero h1{
+font-size:70px;
+font-weight:900;
+line-height:1.05;
+margin-bottom:25px;
+}
+
+.hero h1 span{
+color:#2d8cff;
+}
+
+.hero p{
+font-size:20px;
+line-height:1.8;
+color:#cfcfcf;
+margin-bottom:35px;
+}
+
+.hero-buttons{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.mockup{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+border-radius:30px;
+padding:35px;
+backdrop-filter:blur(15px);
+}
+
+.profile{
+text-align:center;
+}
+
+.avatar{
+width:110px;
+height:110px;
+border-radius:50%;
+background:#2d8cff;
+margin:auto;
+margin-bottom:20px;
+}
+
+.profile h3{
+font-size:28px;
+margin-bottom:10px;
+}
+
+.profile p{
+color:#aaa;
+font-size:15px;
+}
+
+.links{
+margin-top:30px;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.link-btn{
+padding:18px;
+background:#121a29;
+border-radius:14px;
+text-decoration:none;
+color:white;
+font-weight:700;
+transition:.3s;
+}
+
+.link-btn:hover{
+background:#2d8cff;
+}
+
+.section{
+padding:120px 0;
+}
+
+.section-title{
+font-size:48px;
+font-weight:900;
+margin-bottom:20px;
+text-align:center;
+}
+
+.section-sub{
+color:#aaa;
+text-align:center;
+max-width:700px;
+margin:auto;
+margin-bottom:60px;
+line-height:1.8;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+.card{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+border-radius:25px;
+padding:35px;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h3{
+margin-bottom:15px;
+font-size:22px;
+}
+
+.card p{
+color:#aaa;
+line-height:1.8;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+}
+
+.stat{
+background:#111827;
+border-radius:20px;
+padding:40px;
+text-align:center;
+}
+
+.stat h2{
+font-size:50px;
+color:#2d8cff;
+margin-bottom:10px;
+}
+
+.pricing{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+}
+
+.plan{
+background:#111827;
+padding:40px;
+border-radius:25px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.plan h3{
+font-size:28px;
+margin-bottom:10px;
+}
+
+.price{
+font-size:52px;
+font-weight:900;
+margin-bottom:20px;
+}
+
+.plan ul{
+list-style:none;
+margin-bottom:25px;
+}
+
+.plan li{
+padding:10px 0;
+color:#bbb;
+}
+
+footer{
+padding:60px 0;
+border-top:1px solid rgba(255,255,255,.08);
+text-align:center;
+color:#999;
+}
+
+@media(max-width:1000px){
+
+.hero-grid{
+grid-template-columns:1fr;
+}
+
+.cards,
+.pricing,
+.stats{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:48px;
+}
+
+.nav-links{
+display:none;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<header>
+<div class="container nav">
+
+<div class="logo">
+VX<span>LINK</span>
+</div>
+
+<div class="nav-links">
+<a href="#beneficios">Benefícios</a>
+<a href="#planos">Planos</a>
+<a href="#estatisticas">Estatísticas</a>
+<a href="login.html">Entrar</a>
+</div>
+
+</div>
+</header>
+
+<section class="hero">
+<div class="container hero-grid">
+
+<div>
+<h1>
+Mini Sites <span>Premium</span><br>
+para Empresas
+</h1>
+
+<p>
+Crie uma presença digital profissional com analytics,
+SEO, QR Code, links inteligentes e gerenciamento completo.
+</p>
+
+<div class="hero-buttons">
+<a href="#" class="btn btn-primary">
+Solicitar Mini Site
+</a>
+
+<a href="login.html" class="btn btn-outline">
+Entrar
+</a>
+</div>
+</div>
+
+<div class="mockup">
+
+<div class="profile">
+
+<div class="avatar"></div>
+
+<h3>Jonas Fit</h3>
+
+<p>Treinamento Personalizado</p>
+
+<div class="links">
+
+<a href="#" class="link-btn">WhatsApp</a>
+<a href="#" class="link-btn">Instagram</a>
+<a href="#" class="link-btn">Site Oficial</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section class="section" id="beneficios">
+
+<div class="container">
+
+<h2 class="section-title">
+Por que usar a VXLINK?
+</h2>
+
+<p class="section-sub">
+Uma plataforma criada para empresas, profissionais,
+prestadores de serviço e marcas que desejam crescer online.
+</p>
+
+<div class="cards">
+
+<div class="card">
+<h3>Analytics Completo</h3>
+<p>
+Acompanhe visitas, cliques, conversões e desempenho.
+</p>
+</div>
+
+<div class="card">
+<h3>SEO Otimizado</h3>
+<p>
+Mini sites preparados para mecanismos de busca.
+</p>
+</div>
+
+<div class="card">
+<h3>Painel Administrativo</h3>
+<p>
+Controle total sobre clientes, páginas e estatísticas.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section" id="estatisticas">
+
+<div class="container">
+
+<h2 class="section-title">
+Resultados
+</h2>
+
+<div class="stats">
+
+<div class="stat">
+<h2>10K+</h2>
+<p>Visitas</p>
+</div>
+
+<div class="stat">
+<h2>3K+</h2>
+<p>Cliques</p>
+</div>
+
+<div class="stat">
+<h2>500+</h2>
+<p>Leads</p>
+</div>
+
+<div class="stat">
+<h2>99%</h2>
+<p>Disponibilidade</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section" id="planos">
+
+<div class="container">
+
+<h2 class="section-title">
+Planos
+</h2>
+
+<div class="pricing">
+
+<div class="plan">
+<h3>Start</h3>
+<div class="price">R$29</div>
+
+<ul>
+<li>Mini Site</li>
+<li>Analytics</li>
+<li>QR Code</li>
+<li>Suporte</li>
+</ul>
+
+<a href="#" class="btn btn-primary">
+Contratar
+</a>
+</div>
+
+<div class="plan">
+<h3>Pro</h3>
+<div class="price">R$59</div>
+
+<ul>
+<li>SEO Avançado</li>
+<li>Analytics Premium</li>
+<li>Links Ilimitados</li>
+<li>Suporte Prioritário</li>
+</ul>
+
+<a href="#" class="btn btn-primary">
+Contratar
+</a>
+</div>
+
+<div class="plan">
+<h3>Business</h3>
+<div class="price">R$99</div>
+
+<ul>
+<li>Tudo do Pro</li>
+<li>Domínio Próprio</li>
+<li>API Integrações</li>
+<li>Painel Exclusivo</li>
+</ul>
+
+<a href="#" class="btn btn-primary">
+Contratar
+</a>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="container">
+© 2026 VXLINK — Plataforma de Mini Sites Premium
+</div>
+
+</footer>
+
+</body>
+</html>
