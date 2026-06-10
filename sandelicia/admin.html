@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Painel Sandelícia | VXLINK</title>
+
+<style>
+:root{
+  --azul:#38cfd0;
+  --azul2:#129da1;
+  --marrom:#4a2112;
+  --marrom2:#7b3f24;
+  --marrom3:#a77b6f;
+  --creme:#fff7ec;
+  --paper:#fffdf8;
+  --text:#34170c;
+  --muted:#7b5b4d;
+  --line:rgba(74,33,18,.12);
+  --shadow:0 24px 70px rgba(74,33,18,.14);
+  --radius:26px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Inter,Arial,sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(56,207,208,.18), transparent 30%),
+    linear-gradient(180deg,#fff7ec,#fffdf8);
+  color:var(--text);
+}
+a{text-decoration:none;color:inherit}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.app{
+  min-height:100dvh;
+  display:grid;
+  grid-template-columns:280px 1fr;
+}
+.sidebar{
+  position:sticky;
+  top:0;
+  height:100dvh;
+  background:linear-gradient(180deg,var(--marrom),#2a0f06);
+  color:white;
+  padding:24px;
+  overflow:auto;
+}
+.brand{
+  font-family:Georgia,serif;
+  font-size:28px;
+  margin-bottom:6px;
+}
+.brand span{color:var(--azul)}
+.side-sub{
+  color:#f7ded2;
+  font-size:13px;
+  line-height:1.5;
+  margin-bottom:26px;
+}
+.nav{
+  display:grid;
+  gap:8px;
+}
+.nav a{
+  padding:13px 14px;
+  border-radius:16px;
+  color:#fff6ef;
+  font-weight:850;
+  font-size:14px;
+}
+.nav a:hover,.nav a.active{
+  background:rgba(255,255,255,.12);
+}
+.side-box{
+  margin-top:24px;
+  padding:16px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:22px;
+  background:rgba(255,255,255,.08);
+}
+.side-box b{display:block;margin-bottom:7px}
+.side-box p{font-size:12px;color:#f7ded2;line-height:1.5}
+
+.main{
+  padding:24px;
+}
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(255,247,236,.82);
+  backdrop-filter:blur(16px);
+  border:1px solid var(--line);
+  border-radius:24px;
+  box-shadow:0 18px 50px rgba(74,33,18,.08);
+  padding:16px;
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  align-items:center;
+  margin-bottom:22px;
+}
+.topbar h1{
+  font-family:Georgia,serif;
+  color:var(--marrom);
+  font-size:28px;
+  font-weight:500;
+}
+.topbar p{font-size:13px;color:var(--muted);margin-top:3px}
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.btn{
+  border:0;
+  border-radius:999px;
+  padding:12px 18px;
+  font-weight:950;
+  background:linear-gradient(135deg,var(--marrom),#2a0f06);
+  color:white;
+  box-shadow:0 14px 28px rgba(74,33,18,.18);
+}
+.btn.azul{
+  background:linear-gradient(135deg,var(--azul),var(--azul2));
+  box-shadow:0 14px 28px rgba(18,157,161,.20);
+}
+.btn.light{
+  background:white;
+  color:var(--marrom);
+  border:1px solid var(--line);
+  box-shadow:none;
+}
+.grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:22px;
+  align-items:start;
+}
+.card{
+  background:rgba(255,253,248,.96);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:22px;
+  margin-bottom:22px;
+}
+.card h2{
+  font-family:Georgia,serif;
+  color:var(--marrom);
+  font-size:25px;
+  font-weight:500;
+  margin-bottom:5px;
+}
+.card > p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+  margin-bottom:18px;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.field{
+  display:grid;
+  gap:7px;
+}
+.field.full{grid-column:1/-1}
+label{
+  color:var(--marrom);
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.2px;
+}
+input,textarea,select{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:white;
+  color:var(--text);
+  padding:13px 14px;
+  outline:none;
+}
+textarea{min-height:92px;resize:vertical}
+input:focus,textarea:focus,select:focus{
+  border-color:var(--azul2);
+  box-shadow:0 0 0 4px rgba(56,207,208,.16);
+}
+.row-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:12px;
+}
+.item-list{
+  display:grid;
+  gap:12px;
+}
+.item{
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:14px;
+  background:white;
+}
+.item-head{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  margin-bottom:12px;
+}
+.item-head b{color:var(--marrom)}
+.remove{
+  border:0;
+  background:#fff0ee;
+  color:#9b2c2f;
+  border-radius:999px;
+  padding:8px 12px;
+  font-weight:900;
+}
+.preview{
+  position:sticky;
+  top:112px;
+}
+.phone{
+  background:#111;
+  border-radius:36px;
+  padding:12px;
+  box-shadow:0 30px 80px rgba(0,0,0,.22);
+}
+.screen{
+  overflow:hidden;
+  border-radius:28px;
+  background:var(--creme);
+  min-height:640px;
+}
+.preview-head{
+  height:58px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 18px;
+  background:var(--paper);
+}
+.preview-logo{
+  font-family:Georgia,serif;
+  color:var(--marrom);
+  font-size:22px;
+}
+.preview-logo span{color:var(--azul2)}
+.preview-menu{
+  width:34px;height:34px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  display:grid;
+  place-items:center;
+}
+.preview-hero{
+  background:var(--marrom3);
+  color:white;
+  padding:28px 18px 18px;
+}
+.preview-hero h3{
+  font-family:Georgia,serif;
+  font-size:34px;
+  line-height:1.04;
+  font-weight:500;
+}
+.preview-hero p{
+  font-size:13px;
+  line-height:1.55;
+  margin:12px 0 16px;
+  color:#fff7f0;
+}
+.preview-btn{
+  display:inline-block;
+  background:var(--marrom);
+  color:white;
+  border-radius:999px;
+  padding:11px 16px;
+  font-size:12px;
+  font-weight:950;
+}
+.preview-img{
+  height:210px;
+  margin:16px;
+  border-radius:22px;
+  background:center/cover no-repeat;
+  position:relative;
+}
+.preview-stock{
+  position:absolute;
+  left:10px;
+  bottom:10px;
+  background:var(--paper);
+  color:var(--azul2);
+  border-radius:50%;
+  width:72px;
+  height:72px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  font-size:12px;
+}
+.preview-stock b{display:block;color:var(--marrom);font-size:22px}
+.preview-card{
+  margin:0 16px 16px;
+  background:white;
+  border-radius:20px;
+  padding:14px;
+}
+.preview-card h4{color:var(--marrom);font-size:18px}
+.preview-card p{color:var(--muted);font-size:12px;margin:5px 0 10px}
+.bar{
+  height:10px;
+  background:#ecd6cb;
+  border-radius:999px;
+  overflow:hidden;
+}
+.bar span{
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg,var(--azul),var(--azul2));
+}
+.api-box{
+  background:#160804;
+  color:white;
+  border-radius:24px;
+  padding:18px;
+  overflow:auto;
+}
+.api-box pre{
+  white-space:pre-wrap;
+  font-size:12px;
+  line-height:1.55;
+  color:#eafafa;
+}
+.notice{
+  background:linear-gradient(135deg,#eaffff,#fff);
+  border:1px solid rgba(18,157,161,.18);
+  border-radius:20px;
+  padding:14px;
+  color:var(--marrom);
+  font-size:13px;
+  line-height:1.55;
+}
+.mobile-tabs{
+  display:none;
+}
+
+@media(max-width:980px){
+  .app{grid-template-columns:1fr}
+  .sidebar{
+    position:relative;
+    height:auto;
+    border-radius:0 0 28px 28px;
+  }
+  .nav{grid-template-columns:1fr 1fr}
+  .grid{grid-template-columns:1fr}
+  .preview{position:relative;top:0}
+}
+@media(max-width:560px){
+  .main{padding:14px}
+  .topbar{
+    align-items:flex-start;
+    flex-direction:column;
+    border-radius:20px;
+  }
+  .topbar h1{font-size:24px}
+  .actions{width:100%}
+  .actions .btn{flex:1;padding:11px 12px;font-size:12px}
+  .card{padding:16px;border-radius:22px}
+  .form-grid{grid-template-columns:1fr}
+  .nav{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">SANDE<span>LÍCIA</span></div>
+    <div class="side-sub">
+      Painel premium VXLINK para controlar o site, preparar API, banco de dados e futuro painel online.
+    </div>
+
+    <nav class="nav">
+      <a href="#geral" class="active">Geral</a>
+      <a href="#bolo">Bolo do dia</a>
+      <a href="#semana">Semana</a>
+      <a href="#proximo">Próximo</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#faq">FAQ</a>
+      <a href="#api">API</a>
+    </nav>
+
+    <div class="side-box">
+      <b>Status</b>
+      <p>Este painel já está preparado para salvar no navegador agora e depois conectar com a API da Sandelícia.</p>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1>Painel Sandelícia</h1>
+        <p>Controle logo, cores, WhatsApp, bolo do dia, estoque, semana, avaliações e FAQ.</p>
+      </div>
+      <div class="actions">
+        <button class="btn light" onclick="resetar()">Resetar</button>
+        <button class="btn light" onclick="baixarJSON()">Baixar JSON</button>
+        <button class="btn azul" onclick="salvar()">Salvar</button>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section>
+        <div class="card" id="geral">
+          <h2>Configuração geral</h2>
+          <p>Esses dados controlam identidade, contato, cores e textos principais do site.</p>
+
+          <div class="form-grid">
+            <div class="field">
+              <label>Nome da marca</label>
+              <input id="marca" />
+            </div>
+
+            <div class="field">
+              <label>Parte colorida da logo</label>
+              <input id="marcaDestaque" />
+            </div>
+
+            <div class="field full">
+              <label>Título principal</label>
+              <input id="heroTitulo" />
+            </div>
+
+            <div class="field full">
+              <label>Descrição principal</label>
+              <textarea id="heroDescricao"></textarea>
+            </div>
+
+            <div class="field">
+              <label>WhatsApp com DDI</label>
+              <input id="whatsapp" />
+            </div>
+
+            <div class="field">
+              <label>Texto do Instagram</label>
+              <input id="instagramUser" />
+            </div>
+
+            <div class="field full">
+              <label>Link do Instagram</label>
+              <input id="instagram" />
+            </div>
+
+            <div class="field">
+              <label>Cidade / atendimento</label>
+              <input id="cidade" />
+            </div>
+
+            <div class="field">
+              <label>Copyright</label>
+              <input id="copyright" />
+            </div>
+
+            <div class="field">
+              <label>Cor azul</label>
+              <input type="color" id="corAzul" />
+            </div>
+
+            <div class="field">
+              <label>Cor marrom</label>
+              <input type="color" id="corMarrom" />
+            </div>
+
+            <div class="field">
+              <label>Cor fundo hero</label>
+              <input type="color" id="corHero" />
+            </div>
+
+            <div class="field">
+              <label>Cor creme</label>
+              <input type="color" id="corCreme" />
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="bolo">
+          <h2>Bolo do dia</h2>
+          <p>Controle o sabor principal, preço, estoque e estado de disponível/esgotado.</p>
+
+          <div class="form-grid">
+            <div class="field">
+              <label>Nome</label>
+              <input id="boloNome" />
+            </div>
+
+            <div class="field">
+              <label>Preço</label>
+              <input id="boloPreco" type="number" step="0.01" />
+            </div>
+
+            <div class="field">
+              <label>Total de fatias</label>
+              <input id="boloTotal" type="number" />
+            </div>
+
+            <div class="field">
+              <label>Fatias restantes</label>
+              <input id="boloRestantes" type="number" />
+            </div>
+
+            <div class="field">
+              <label>Status</label>
+              <select id="boloStatus">
+                <option>Disponível</option>
+                <option>Esgotado</option>
+                <option>Reservas abertas</option>
+                <option>Últimas fatias</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Ativo?</label>
+              <select id="boloAtivo">
+                <option value="true">Sim</option>
+                <option value="false">Não</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label>Descrição</label>
+              <textarea id="boloSubtitulo"></textarea>
+            </div>
+
+            <div class="field full">
+              <label>Imagem</label>
+              <input id="boloImagem" />
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="semana">
+          <div class="row-title">
+            <div>
+              <h2>Cardápio da semana</h2>
+              <p>Adicione ou altere os sabores exibidos no site.</p>
+            </div>
+            <button class="btn light" onclick="addSemana()">Adicionar</button>
+          </div>
+          <div class="item-list" id="listaSemana"></div>
+        </div>
+
+        <div class="card" id="proximo">
+          <h2>Próximo lançamento</h2>
+          <p>Área “Amanhã tem...” do site.</p>
+
+          <div class="form-grid">
+            <div class="field full">
+              <label>Título</label>
+              <input id="proximoTitulo" />
+            </div>
+
+            <div class="field full">
+              <label>Descrição</label>
+              <textarea id="proximoDescricao"></textarea>
+            </div>
+
+            <div class="field full">
+              <label>Imagem</label>
+              <input id="proximoImagem" />
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="avaliacoes">
+          <div class="row-title">
+            <div>
+              <h2>Avaliações</h2>
+              <p>Depoimentos de clientes.</p>
+            </div>
+            <button class="btn light" onclick="addAvaliacao()">Adicionar</button>
+          </div>
+          <div class="item-list" id="listaAvaliacoes"></div>
+        </div>
+
+        <div class="card" id="faq">
+          <div class="row-title">
+            <div>
+              <h2>Dúvidas frequentes</h2>
+              <p>Perguntas e respostas do rodapé/site.</p>
+            </div>
+            <button class="btn light" onclick="addFaq()">Adicionar</button>
+          </div>
+          <div class="item-list" id="listaFaq"></div>
+        </div>
+
+        <div class="card" id="api">
+          <h2>Área da API</h2>
+          <p>Agora salva no navegador. Depois vamos trocar para salvar na VPS/API.</p>
+
+          <div class="form-grid">
+            <div class="field full">
+              <label>Endpoint GET dados do site</label>
+              <input id="apiGet" />
+            </div>
+
+            <div class="field full">
+              <label>Endpoint POST/PUT salvar dados</label>
+              <input id="apiSave" />
+            </div>
+
+            <div class="field full">
+              <label>Token futuro da API</label>
+              <input id="apiToken" />
+            </div>
+          </div>
+
+          <br>
+          <div class="notice">
+            Quando a API ficar pronta, o painel vai enviar este JSON para a VPS e o site da Sandelícia vai ler os dados atualizados automaticamente.
+          </div>
+        </div>
+      </section>
+
+      <aside class="preview">
+        <div class="card">
+          <h2>Prévia mobile</h2>
+          <p>Visual rápido do site no celular.</p>
+
+          <div class="phone">
+            <div class="screen">
+              <div class="preview-head">
+                <div class="preview-logo"><span id="pvMarca1">SANDE</span><span id="pvMarca2">LÍCIA</span></div>
+                <div class="preview-menu">☰</div>
+              </div>
+
+              <div class="preview-hero">
+                <h3 id="pvHeroTitulo">Doçura em cada pedaço.</h3>
+                <p id="pvHeroDesc">Hoje: Chocolate Cremoso.</p>
+                <span class="preview-btn">Reservar agora</span>
+              </div>
+
+              <div class="preview-img" id="pvImagem">
+                <div class="preview-stock"><div><b id="pvRestantes">8</b>fatias</div></div>
+              </div>
+
+              <div class="preview-card">
+                <h4 id="pvBoloNome">Chocolate Cremoso</h4>
+                <p id="pvBoloDesc">Cobertura intensa, massa fofinha e preparo fresquinho.</p>
+                <div class="bar"><span id="pvBarra" style="width:80%"></span></div>
+                <p><b id="pvPreco">R$ 8,00</b> · <span id="pvStatus">Disponível</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>JSON pronto</h2>
+          <p>Formato que a API da Sandelícia deve receber.</p>
+          <div class="api-box">
+            <pre id="jsonPreview">{}</pre>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+</div>
+
+<script>
+const STORAGE_KEY = "vxlink_sandelicia_painel";
+
+const padrao = {
+  site:{
+    marca:"SANDE",
+    marcaDestaque:"LÍCIA",
+    heroTitulo:"Doçura em cada pedaço.",
+    heroDescricao:"Todo dia um sabor especial da Sandelícia. Apenas 10 fatias disponíveis, feitas com carinho e cobertura caprichada.",
+    copyright:"© 2026 Sandelícia. Todos os direitos reservados.",
+    cores:{
+      azul:"#38cfd0",
+      marrom:"#4a2112",
+      hero:"#a77b6f",
+      creme:"#fff7ec"
+    }
+  },
+  config:{
+    whatsapp:"5598981030603",
+    instagram:"https://www.instagram.com/sandysousa.store?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+    instagramUser:"@sandysousa.store",
+    cidade:"Atendimento local",
+    moeda:"BRL"
+  },
+  boloDoDia:{
+    nome:"Chocolate Cremoso",
+    subtitulo:"Cobertura intensa, massa fofinha e preparo fresquinho.",
+    preco:8,
+    total:10,
+    restantes:8,
+    status:"Disponível",
+    imagem:"https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=1100&q=90",
+    ativo:true
+  },
+  semana:[
+    {
+      dia:"Segunda",
+      nome:"Chocolate Cremoso",
+      descricao:"Cobertura generosa de chocolate.",
+      preco:8,
+      destaque:true,
+      imagem:"https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=900&q=90"
+    },
+    {
+      dia:"Terça",
+      nome:"Cenoura Premium",
+      descricao:"Clássico com cobertura brilhante.",
+      preco:8,
+      destaque:false,
+      imagem:"https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=900&q=90"
+    }
+  ],
+  proximo:{
+    titulo:"Amanhã tem Cenoura Premium",
+    descricao:"Um clássico fofinho com cobertura de chocolate. Reserve cedo para não ficar sem.",
+    imagem:"https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=1100&q=90"
+  },
+  avaliacoes:[
+    {nome:"Juliana M.", texto:"O bolo veio lindo, fofinho e a cobertura estava perfeita.", estrelas:5},
+    {nome:"Marcos L.", texto:"Dá para sentir o capricho. Atendimento rápido e sabor excelente.", estrelas:5},
+    {nome:"Carla A.", texto:"A ideia de sabor do dia é ótima. Já quero acompanhar sempre.", estrelas:5}
+  ],
+  faq:[
+    {q:"Como funciona o bolo do dia?", a:"Todos os dias a Sandelícia lança um sabor especial em quantidade limitada."},
+    {q:"Quantas fatias ficam disponíveis?", a:"No começo serão apenas 10 fatias por dia. Quando acabar, só no próximo sabor."},
+    {q:"Como faço para reservar?", a:"Clique no botão de WhatsApp e envie sua mensagem. A reserva é confirmada no atendimento."},
+    {q:"Tem entrega?", a:"A entrega ou retirada pode ser combinada pelo WhatsApp, conforme a região."}
+  ],
+  api:{
+    get:"https://api.vxlink.fun/sandelicia/site",
+    save:"https://api.vxlink.fun/sandelicia/site",
+    token:""
+  }
+};
+
+let data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null") || structuredClone(padrao);
+
+function $(id){return document.getElementById(id)}
+function money(v){return Number(v || 0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}
+
+function carregar(){
+  $("marca").value = data.site.marca;
+  $("marcaDestaque").value = data.site.marcaDestaque;
+  $("heroTitulo").value = data.site.heroTitulo;
+  $("heroDescricao").value = data.site.heroDescricao;
+  $("whatsapp").value = data.config.whatsapp;
+  $("instagram").value = data.config.instagram;
+  $("instagramUser").value = data.config.instagramUser;
+  $("cidade").value = data.config.cidade;
+  $("copyright").value = data.site.copyright;
+
+  $("corAzul").value = data.site.cores.azul;
+  $("corMarrom").value = data.site.cores.marrom;
+  $("corHero").value = data.site.cores.hero;
+  $("corCreme").value = data.site.cores.creme;
+
+  $("boloNome").value = data.boloDoDia.nome;
+  $("boloSubtitulo").value = data.boloDoDia.subtitulo;
+  $("boloPreco").value = data.boloDoDia.preco;
+  $("boloTotal").value = data.boloDoDia.total;
+  $("boloRestantes").value = data.boloDoDia.restantes;
+  $("boloStatus").value = data.boloDoDia.status;
+  $("boloAtivo").value = String(data.boloDoDia.ativo);
+  $("boloImagem").value = data.boloDoDia.imagem;
+
+  $("proximoTitulo").value = data.proximo.titulo;
+  $("proximoDescricao").value = data.proximo.descricao;
+  $("proximoImagem").value = data.proximo.imagem;
+
+  $("apiGet").value = data.api.get;
+  $("apiSave").value = data.api.save;
+  $("apiToken").value = data.api.token;
+
+  renderSemana();
+  renderAvaliacoes();
+  renderFaq();
+  preview();
+}
+
+function coletar(){
+  data.site.marca = $("marca").value;
+  data.site.marcaDestaque = $("marcaDestaque").value;
+  data.site.heroTitulo = $("heroTitulo").value;
+  data.site.heroDescricao = $("heroDescricao").value;
+  data.site.copyright = $("copyright").value;
+
+  data.site.cores.azul = $("corAzul").value;
+  data.site.cores.marrom = $("corMarrom").value;
+  data.site.cores.hero = $("corHero").value;
+  data.site.cores.creme = $("corCreme").value;
+
+  data.config.whatsapp = $("whatsapp").value.replace(/\D/g,"");
+  data.config.instagram = $("instagram").value;
+  data.config.instagramUser = $("instagramUser").value;
+  data.config.cidade = $("cidade").value;
+
+  data.boloDoDia.nome = $("boloNome").value;
+  data.boloDoDia.subtitulo = $("boloSubtitulo").value;
+  data.boloDoDia.preco = Number($("boloPreco").value || 0);
+  data.boloDoDia.total = Number($("boloTotal").value || 0);
+  data.boloDoDia.restantes = Number($("boloRestantes").value || 0);
+  data.boloDoDia.status = data.boloDoDia.restantes <= 0 ? "Esgotado" : $("boloStatus").value;
+  data.boloDoDia.ativo = $("boloAtivo").value === "true";
+  data.boloDoDia.imagem = $("boloImagem").value;
+
+  data.proximo.titulo = $("proximoTitulo").value;
+  data.proximo.descricao = $("proximoDescricao").value;
+  data.proximo.imagem = $("proximoImagem").value;
+
+  data.api.get = $("apiGet").value;
+  data.api.save = $("apiSave").value;
+  data.api.token = $("apiToken").value;
+}
+
+function salvar(){
+  coletar();
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  preview();
+  alert("Salvo neste navegador. Depois vamos ligar isso na API da VPS.");
+}
+
+async function salvarNaAPI(){
+  coletar();
+  if(!data.api.save){
+    alert("Coloque o endpoint da API primeiro.");
+    return;
+  }
+
+  const res = await fetch(data.api.save,{
+    method:"PUT",
+    headers:{
+      "Content-Type":"application/json",
+      "Authorization":"Bearer " + data.api.token
+    },
+    body:JSON.stringify(data)
+  });
+
+  if(!res.ok){
+    alert("Erro ao salvar na API.");
+    return;
+  }
+
+  alert("Salvo na API.");
+}
+
+function resetar(){
+  if(!confirm("Resetar dados do painel?")) return;
+  data = structuredClone(padrao);
+  localStorage.removeItem(STORAGE_KEY);
+  carregar();
+}
+
+function baixarJSON(){
+  coletar();
+  const blob = new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "dados-sandelicia.json";
+  a.click();
+}
+
+function renderSemana(){
+  $("listaSemana").innerHTML = data.semana.map((item,i)=>`
+    <div class="item">
+      <div class="item-head">
+        <b>${item.dia || "Dia"} - ${item.nome || "Sabor"}</b>
+        <button class="remove" onclick="removeSemana(${i})">Remover</button>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>Dia</label><input value="${item.dia}" oninput="data.semana[${i}].dia=this.value;preview();renderSemana()"></div>
+        <div class="field"><label>Nome</label><input value="${item.nome}" oninput="data.semana[${i}].nome=this.value;preview();renderSemana()"></div>
+        <div class="field"><label>Preço</label><input type="number" step="0.01" value="${item.preco}" oninput="data.semana[${i}].preco=Number(this.value);preview()"></div>
+        <div class="field"><label>Destaque</label><select onchange="data.semana[${i}].destaque=this.value==='true';preview()"><option value="true" ${item.destaque?'selected':''}>Sim</option><option value="false" ${!item.destaque?'selected':''}>Não</option></select></div>
+        <div class="field full"><label>Descrição</label><textarea oninput="data.semana[${i}].descricao=this.value;preview()">${item.descricao}</textarea></div>
+        <div class="field full"><label>Imagem</label><input value="${item.imagem}" oninput="data.semana[${i}].imagem=this.value;preview()"></div>
+      </div>
+    </div>
+  `).join("");
+}
+
+function addSemana(){
+  data.semana.push({dia:"Novo dia",nome:"Novo sabor",descricao:"Descrição do sabor.",preco:8,destaque:false,imagem:""});
+  renderSemana();
+  preview();
+}
+
+function removeSemana(i){
+  data.semana.splice(i,1);
+  renderSemana();
+  preview();
+}
+
+function renderAvaliacoes(){
+  $("listaAvaliacoes").innerHTML = data.avaliacoes.map((item,i)=>`
+    <div class="item">
+      <div class="item-head">
+        <b>${item.nome}</b>
+        <button class="remove" onclick="removeAvaliacao(${i})">Remover</button>
+      </div>
+      <div class="form-grid">
+        <div class="field"><label>Nome</label><input value="${item.nome}" oninput="data.avaliacoes[${i}].nome=this.value;renderAvaliacoes();preview()"></div>
+        <div class="field"><label>Estrelas</label><input type="number" min="1" max="5" value="${item.estrelas}" oninput="data.avaliacoes[${i}].estrelas=Number(this.value);preview()"></div>
+        <div class="field full"><label>Texto</label><textarea oninput="data.avaliacoes[${i}].texto=this.value;preview()">${item.texto}</textarea></div>
+      </div>
+    </div>
+  `).join("");
+}
+
+function addAvaliacao(){
+  data.avaliacoes.push({nome:"Cliente",texto:"Depoimento da cliente.",estrelas:5});
+  renderAvaliacoes();
+  preview();
+}
+
+function removeAvaliacao(i){
+  data.avaliacoes.splice(i,1);
+  renderAvaliacoes();
+  preview();
+}
+
+function renderFaq(){
+  $("listaFaq").innerHTML = data.faq.map((item,i)=>`
+    <div class="item">
+      <div class="item-head">
+        <b>${item.q}</b>
+        <button class="remove" onclick="removeFaq(${i})">Remover</button>
+      </div>
+      <div class="form-grid">
+        <div class="field full"><label>Pergunta</label><input value="${item.q}" oninput="data.faq[${i}].q=this.value;renderFaq();preview()"></div>
+        <div class="field full"><label>Resposta</label><textarea oninput="data.faq[${i}].a=this.value;preview()">${item.a}</textarea></div>
+      </div>
+    </div>
+  `).join("");
+}
+
+function addFaq(){
+  data.faq.push({q:"Nova pergunta?",a:"Resposta da pergunta."});
+  renderFaq();
+  preview();
+}
+
+function removeFaq(i){
+  data.faq.splice(i,1);
+  renderFaq();
+  preview();
+}
+
+function preview(){
+  coletar();
+
+  document.documentElement.style.setProperty("--azul",data.site.cores.azul);
+  document.documentElement.style.setProperty("--azul2",data.site.cores.azul);
+  document.documentElement.style.setProperty("--marrom",data.site.cores.marrom);
+  document.documentElement.style.setProperty("--marrom3",data.site.cores.hero);
+  document.documentElement.style.setProperty("--creme",data.site.cores.creme);
+
+  $("pvMarca1").textContent = data.site.marca;
+  $("pvMarca2").textContent = data.site.marcaDestaque;
+  $("pvHeroTitulo").textContent = data.site.heroTitulo;
+  $("pvHeroDesc").textContent = `Hoje: ${data.boloDoDia.nome}. ${data.boloDoDia.subtitulo}`;
+  $("pvImagem").style.backgroundImage = `url("${data.boloDoDia.imagem}")`;
+  $("pvRestantes").textContent = data.boloDoDia.restantes;
+  $("pvBoloNome").textContent = data.boloDoDia.nome;
+  $("pvBoloDesc").textContent = data.boloDoDia.subtitulo;
+  $("pvPreco").textContent = money(data.boloDoDia.preco);
+  $("pvStatus").textContent = data.boloDoDia.restantes <= 0 ? "Esgotado" : data.boloDoDia.status;
+
+  const pct = data.boloDoDia.total > 0 ? Math.max(0,Math.min(100,(data.boloDoDia.restantes / data.boloDoDia.total) * 100)) : 0;
+  $("pvBarra").style.width = pct + "%";
+
+  $("jsonPreview").textContent = JSON.stringify(data,null,2);
+}
+
+document.querySelectorAll("input,textarea,select").forEach(el=>{
+  el.addEventListener("input",preview);
+  el.addEventListener("change",preview);
+});
+
+carregar();
+</script>
+</body>
+</html>
