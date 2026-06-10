@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta ="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SANDELÍCIA | Bolo do Dia</title>
+<meta name="description" content="SANDELÍCIA: todos os dias um bolo especial em quantidade limitada. Reserve sua fatia pelo WhatsApp.">
+
+<style>
+:root{
+  --azul:#38cfd0;
+  --azul2:#129da1;
+  --azul3:#eaffff;
+  --marrom:#4a2112;
+  --marrom2:#7b3f24;
+  --marrom3:#a77b6f;
+  --creme:#fff7ec;
+  --paper:#fffdf8;
+  --white:#fff;
+  --text:#34170c;
+  --muted:#7b5b4d;
+  --danger:#9b2c2f;
+  --ok:#22a06b;
+  --shadow:0 22px 65px rgba(74,33,18,.15);
+  --radius:28px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,Arial,sans-serif;
+  background:var(--creme);
+  color:var(--text);
+  overflow-x:hidden;
+}
+body.menu-open{overflow:hidden}
+a{text-decoration:none;color:inherit}
+button,input{font:inherit}
+img{max-width:100%;display:block}
+.wrap{width:min(1160px,100%);margin:auto;padding:0 22px}
+
+/* HEADER */
+.header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(255,247,236,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(74,33,18,.10);
+}
+.nav{
+  height:78px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+.logo{
+  font-family:Georgia,serif;
+  font-size:31px;
+  color:var(--marrom);
+  font-weight:500;
+  letter-spacing:.3px;
+}
+.logo span{color:var(--azul2)}
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:30px;
+}
+.nav-links a{
+  color:var(--marrom);
+  font-size:14px;
+  font-weight:900;
+  position:relative;
+  padding:9px 0;
+}
+.nav-links a.active::after,
+.nav-links a:hover::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:0;
+  transform:translateX(-50%);
+  width:24px;
+  height:3px;
+  border-radius:99px;
+  background:var(--azul);
+}
+.header-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+.icon-btn{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:1px solid rgba(74,33,18,.22);
+  background:transparent;
+  color:var(--marrom);
+  display:grid;
+  place-items:center;
+  font-size:20px;
+  cursor:pointer;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  border:0;
+  border-radius:999px;
+  padding:14px 26px;
+  background:linear-gradient(135deg,var(--marrom),#2a0f06);
+  color:white;
+  font-weight:950;
+  box-shadow:0 16px 34px rgba(74,33,18,.24);
+  cursor:pointer;
+  transition:.2s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn.azul{background:linear-gradient(135deg,var(--azul),var(--azul2));box-shadow:0 16px 34px rgba(18,157,161,.22)}
+.hamb{display:none}
+
+/* MOBILE MENU */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(20,8,3,.36);
+  z-index:1090;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+}
+.overlay.open{opacity:1;pointer-events:auto}
+.drawer{
+  position:fixed;
+  top:0;
+  right:0;
+  height:100dvh;
+  width:min(390px,88vw);
+  background:var(--paper);
+  z-index:1100;
+  box-shadow:-30px 0 70px rgba(0,0,0,.24);
+  transform:translateX(105%);
+  transition:.28s;
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+}
+.drawer.open{transform:translateX(0)}
+.drawer-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+.drawer .logo{font-size:27px}
+.drawer-close{
+  border:0;
+  background:var(--azul3);
+  color:var(--marrom);
+  width:42px;height:42px;border-radius:50%;
+  font-size:26px;
+}
+.drawer-today{
+  background:linear-gradient(135deg,var(--azul3),#fff);
+  border:1px solid rgba(74,33,18,.08);
+  border-radius:24px;
+  padding:16px;
+  box-shadow:0 12px 28px rgba(74,33,18,.08);
+  margin-bottom:14px;
+}
+.drawer-today b{color:var(--marrom);display:block;margin-bottom:5px}
+.drawer-today span{color:var(--azul2);font-weight:950}
+.drawer-links a{
+  display:block;
+  padding:16px;
+  margin:5px 0;
+  border-radius:16px;
+  color:var(--marrom);
+  font-weight:900;
+}
+.drawer-links a:hover{background:var(--azul3)}
+.drawer .btn{width:100%;margin-top:auto}
+
+/* HERO MOBILE-FIRST */
+.hero{
+  position:relative;
+  background:var(--paper);
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto;
+  height:62%;
+  min-height:390px;
+  background:var(--marrom3);
+  clip-path:polygon(0 0,100% 0,100% 88%,92% 86%,83% 94%,74% 88%,63% 96%,50% 87%,38% 96%,27% 89%,15% 95%,5% 88%,0 92%);
+}
+.hero-grid{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:42px;
+  align-items:center;
+  min-height:620px;
+  padding:54px 0 80px;
+}
+.hero-copy h1{
+  font-family:Georgia,serif;
+  color:white;
+  font-size:clamp(52px,7vw,86px);
+  line-height:.98;
+  font-weight:500;
+  letter-spacing:-2px;
+}
+.hero-copy p{
+  color:#fff8f2;
+  max-width:470px;
+  font-size:17px;
+  line-height:1.75;
+  margin:22px 0 26px;
+}
+.hero-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.btn.light{
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.45);
+  box-shadow:none;
+}
+.hero-visual{position:relative}
+.bolo-img{
+  width:100%;
+  min-height:430px;
+  border-radius:46% 54% 44% 56%;
+  background:center/cover no-repeat;
+  box-shadow:var(--shadow);
+  border:10px solid rgba(255,255,255,.58);
+}
+.stock-badge{
+  position:absolute;
+  left:-18px;
+  bottom:22px;
+  width:142px;
+  height:142px;
+  border-radius:50%;
+  background:var(--paper);
+  display:grid;
+  place-items:center;
+  text-align:center;
+  color:var(--azul2);
+  font-family:Georgia,serif;
+  font-size:25px;
+  box-shadow:var(--shadow);
+  border:2px solid rgba(74,33,18,.15);
+}
+.stock-badge strong{display:block;font-size:42px;line-height:1;color:var(--marrom)}
+.quick-card{
+  position:relative;
+  z-index:3;
+  margin-top:-42px;
+}
+.quick-inner{
+  background:rgba(255,253,248,.96);
+  border-radius:28px;
+  box-shadow:0 18px 48px rgba(74,33,18,.11);
+  border:1px solid rgba(74,33,18,.08);
+  padding:18px;
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  gap:18px;
+  align-items:center;
+}
+.quick-inner h2{
+  font-family:Georgia,serif;
+  color:var(--marrom);
+  font-size:28px;
+}
+.quick-inner p{color:var(--muted);font-size:14px;margin-top:3px}
+.price{
+  color:var(--azul2);
+  font-size:28px;
+  font-weight:950;
+}
+.stock-mini{
+  min-width:210px;
+}
+.stock-text{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  font-size:13px;
+  font-weight:900;
+  color:var(--marrom);
+  margin-bottom:8px;
+}
+.stock-bar{
+  height:12px;
+  border-radius:99px;
+  background:#ecd6cb;
+  overflow:hidden;
+}
+.stock-fill{
+  height:100%;
+  width:80%;
+  border-radius:99px;
+  background:linear-gradient(90deg,var(--azul),var(--azul2));
+}
+
+/* SECTIONS */
+.section{padding:74px 0}
+.title{
+  text-align:center;
+  margin-bottom:34px;
+}
+.title small{
+  color:var(--azul2);
+  font-weight:950;
+  letter-spacing:1px;
+}
+.title h2{
+  font-family:Georgia,serif;
+  color:var(--marrom);
+  font-size:clamp(34px,4vw,48px);
+  font-weight:500;
+  margin-top:8px;
+}
+.title h2 span{color:var(--azul2)}
+.week-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:16px;
+}
+.day-card{
+  border-radius:28px;
+  padding:16px;
+  background:white;
+  box-shadow:0 16px 38px rgba(74,33,18,.08);
+  border:1px solid rgba(74,33,18,.07);
+  transition:.2s;
+}
+.day-card:hover{transform:translateY(-5px)}
+.day-card.emphasis{
+  outline:3px solid rgba(56,207,208,.35);
+}
+.day-img{
+  height:140px;
+  border-radius:20px;
+  background:center/cover no-repeat;
+  margin-bottom:12px;
+}
+.day-card small{
+  color:var(--azul2);
+  font-weight:950;
+}
+.day-card h3{
+  color:var(--marrom);
+  font-size:18px;
+  margin:6px 0;
+}
+.day-card p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.45;
+  min-height:38px;
+}
+.day-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:12px;
+}
+.day-bottom b{color:var(--marrom)}
+.mini-btn{
+  width:34px;height:34px;border-radius:50%;
+  background:var(--marrom);color:white;display:grid;place-items:center;font-weight:900;
+}
+
+/* NEXT LAUNCH */
+.launch{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+  align-items:center;
+  background:linear-gradient(135deg,var(--azul3),#fff);
+  border-radius:34px;
+  padding:28px;
+  box-shadow:0 16px 42px rgba(74,33,18,.08);
+  border:1px solid rgba(74,33,18,.07);
+}
+.launch-img{
+  min-height:300px;
+  border-radius:26px;
+  background:center/cover no-repeat;
+}
+.launch h2{
+  font-family:Georgia,serif;
+  font-size:40px;
+  color:var(--marrom);
+}
+.launch h2 span{color:var(--azul2)}
+.launch p{color:var(--muted);line-height:1.7;margin:12px 0 18px}
+
+/* REVIEWS */
+.reviews{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.review{
+  background:white;
+  border-radius:26px;
+  padding:25px;
+  box-shadow:0 16px 38px rgba(74,33,18,.08);
+}
+.stars{color:#b7732b;margin-bottom:10px}
+.review p{color:var(--muted);line-height:1.65;margin-bottom:14px}
+.review b{color:var(--marrom)}
+
+/* FAQ */
+.faq-area{
+  background:linear-gradient(180deg,var(--azul3),var(--paper));
+  padding:70px 0;
+}
+.faq{
+  max-width:860px;
+  margin:auto;
+  display:grid;
+  gap:13px;
+}
+details{
+  background:white;
+  border-radius:18px;
+  padding:19px 22px;
+  box-shadow:0 12px 30px rgba(74,33,18,.07);
+}
+summary{
+  cursor:pointer;
+  color:var(--marrom);
+  font-weight:950;
+}
+details p{
+  color:var(--muted);
+  line-height:1.65;
+  margin-top:12px;
+}
+
+/* FOOTER MOBILE-FIRST */
+.footer{
+  position:relative;
+  background:var(--marrom3);
+  color:white;
+  overflow:hidden;
+}
+.footer::before{
+  content:"";
+  position:absolute;
+  left:-5%;
+  right:-5%;
+  top:-32px;
+  height:78px;
+  background:var(--paper);
+  clip-path:polygon(0 45%,8% 60%,18% 42%,30% 64%,42% 45%,55% 62%,68% 40%,80% 61%,91% 43%,100% 56%,100% 0,0 0);
+}
+.footer-inner{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:1.25fr 1fr 1fr 1fr;
+  gap:28px;
+  padding:72px 22px 32px;
+}
+.footer h2{
+  font-family:Georgia,serif;
+  font-size:31px;
+  font-weight:500;
+}
+.footer h2 span{color:var(--azul)}
+.footer h4{
+  font-family:Georgia,serif;
+  font-size:19px;
+  margin-bottom:12px;
+}
+.footer p,.footer a{
+  display:block;
+  color:#fff6ef;
+  font-size:14px;
+  margin-bottom:8px;
+  line-height:1.55;
+}
+.footer-actions{
+  display:flex;
+  gap:9px;
+  margin-top:16px;
+}
+.footer-ico{
+  width:40px;height:40px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.38);
+  display:grid;place-items:center;
+}
+.footer-bottom{
+  position:relative;
+  z-index:2;
+  border-top:1px solid rgba(255,255,255,.16);
+  padding:15px 22px;
+  color:#fff2ec;
+  font-size:12px;
+}
+
+/* STICKY MOBILE ORDER */
+.mobile-order{
+  display:none;
+  position:fixed;
+  left:12px;
+  right:12px;
+  bottom:12px;
+  z-index:1200;
+  background:rgba(255,253,248,.96);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(74,33,18,.10);
+  box-shadow:0 18px 45px rgba(74,33,18,.24);
+  border-radius:20px;
+  padding:10px;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  align-items:center;
+}
+.mobile-order b{display:block;color:var(--marrom);font-size:14px}
+.mobile-order span{font-size:12px;color:var(--muted)}
+.mobile-order .btn{padding:12px 16px;font-size:13px}
+
+/* API/LOADING */
+.skeleton{opacity:.55;filter:saturate(.8)}
+
+/* RESPONSIVE */
+@media(max-width:980px){
+  .nav-links,.header-actions{display:none}
+  .hamb{display:grid}
+  .nav{height:74px}
+  .hero::before{height:520px}
+  .hero-grid{
+    grid-template-columns:1fr;
+    min-height:auto;
+    padding:36px 0 80px;
+    gap:26px;
+  }
+  .hero-copy h1{font-size:48px;letter-spacing:-1px}
+  .hero-copy p{font-size:16px;margin:16px 0 20px}
+  .hero-actions .light{display:none}
+  .bolo-img{
+    min-height:320px;
+    border-radius:30px;
+    border-width:7px;
+  }
+  .stock-badge{
+    width:104px;height:104px;
+    left:14px;bottom:14px;
+    font-size:19px;
+  }
+  .stock-badge strong{font-size:31px}
+  .quick-card{margin-top:-48px}
+  .quick-inner{
+    grid-template-columns:1fr;
+    gap:12px;
+    padding:16px;
+  }
+  .quick-inner h2{font-size:24px}
+  .price{font-size:25px}
+  .stock-mini{min-width:0}
+  .week-grid{grid-template-columns:1fr 1fr}
+  .launch{grid-template-columns:1fr;padding:20px}
+  .launch-img{min-height:220px;order:-1}
+  .reviews{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .mobile-order{display:grid}
+  .footer{padding-bottom:82px}
+}
+@media(max-width:560px){
+  .wrap{padding:0 16px}
+  .logo{font-size:26px}
+  .section{padding:56px 0}
+  .hero-copy h1{font-size:42px}
+  .hero::before{height:500px}
+  .week-grid{grid-template-columns:1fr}
+  .day-img{height:175px}
+  .footer-inner{grid-template-columns:1fr;padding-inline:16px}
+  .footer-bottom{padding-inline:16px}
+}
+</style>
+</head>
+
+<body>
+<header class="header">
+  <div class="wrap nav">
+    <a class="logo" href="#inicio">SANDE<span>LÍCIA</span></a>
+
+    <nav class="nav-links">
+      <a class="active" href="#inicio">Início</a>
+      <a href="#semana">Semana</a>
+      <a href="#amanha">Amanhã</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#faq">Dúvidas</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Buscar">⌕</button>
+      <a class="icon-btn" id="topWhats" href="#">☏</a>
+      <a class="btn azul" id="topOrder" href="#">Reservar</a>
+    </div>
+
+    <button class="icon-btn hamb" id="openMenu" aria-label="Abrir menu">☰</button>
+  </div>
+</header>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <a class="logo" href="#inicio">SANDE<span>LÍCIA</span></a>
+    <button class="drawer-close" id="closeMenu">×</button>
+  </div>
+
+  <div class="drawer-today">
+    <b id="drawerCakeName">Bolo do dia</b>
+    <span id="drawerStock">Carregando...</span>
+  </div>
+
+  <nav class="drawer-links">
+    <a href="#inicio">Início</a>
+    <a href="#semana">Cardápio da semana</a>
+    <a href="#amanha">Próximo lançamento</a>
+    <a href="#avaliacoes">Avaliações</a>
+    <a href="#faq">Dúvidas frequentes</a>
+  </nav>
+
+  <a class="btn azul" id="drawerOrder" href="#">Reservar pelo WhatsApp</a>
+</aside>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1 id="heroTitle">Doçura em cada pedaço.</h1>
+        <p id="heroDesc">Todo dia um sabor especial da Sandelícia. Apenas 10 fatias disponíveis, feitas com carinho e cobertura caprichada.</p>
+        <div class="hero-actions">
+          <a class="btn" id="heroOrder" href="#">Reservar agora</a>
+          <a class="btn light" href="#semana">Ver semana</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="bolo-img" id="heroImage"></div>
+        <div class="stock-badge">
+          <div><strong id="badgeRest">10</strong>fatias</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quick-card">
+    <div class="wrap">
+      <div class="quick-inner">
+        <div>
+          <h2 id="todayName">Bolo do Dia</h2>
+          <p id="todaySubtitle">Disponível até acabar. Quando acaba, só amanhã.</p>
+        </div>
+
+        <div class="stock-mini">
+          <div class="stock-text">
+            <span id="stockLabel">0 de 10 restantes</span>
+            <span id="stockStatus">Disponível</span>
+          </div>
+          <div class="stock-bar"><div class="stock-fill" id="stockFill"></div></div>
+        </div>
+
+        <div class="price" id="todayPrice">R$ 0,00</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="semana">
+    <div class="wrap">
+      <div class="title">
+        <small>CARDÁPIO DA SEMANA</small>
+        <h2>Próximos <span>sabores</span></h2>
+      </div>
+      <div class="week-grid" id="weekGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="amanha">
+    <div class="wrap">
+      <div class="launch">
+        <div>
+          <small style="color:var(--azul2);font-weight:950;">PRÓXIMO LANÇAMENTO</small>
+          <h2 id="nextTitle">Amanhã tem <span>sabor novo</span></h2>
+          <p id="nextDesc">Acompanhe o cardápio e reserve antes de acabar.</p>
+          <a class="btn azul" id="nextOrder" href="#">Quero ser avisado</a>
+        </div>
+        <div class="launch-img" id="nextImage"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="avaliacoes">
+    <div class="wrap">
+      <div class="title">
+        <small>QUEM PROVOU</small>
+        <h2>Aprovou e <span>amou</span></h2>
+      </div>
+      <div class="reviews" id="reviewsGrid"></div>
+    </div>
+  </section>
+
+  <section class="faq-area" id="faq">
+    <div class="wrap">
+      <div class="title">
+        <small>DÚVIDAS FREQUENTES</small>
+        <h2>Perguntas <span>rápidas</span></h2>
+      </div>
+      <div class="faq" id="faqGrid"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div>
+      <h2>SANDE<span>LÍCIA</span></h2>
+      <p>Todos os dias, um novo sabor para adoçar seu dia.</p>
+      <div class="footer-actions">
+        <a class="footer-ico" href="#" id="footerInstagram">◎</a>
+        <a class="footer-ico" href="#" id="footerWhats">☏</a>
+      </div>
+    </div>
+
+    <div>
+      <h4>Menu</h4>
+      <a href="#inicio">Início</a>
+      <a href="#semana">Semana</a>
+      <a href="#amanha">Amanhã</a>
+    </div>
+
+    <div>
+      <h4>Pedidos</h4>
+      <a href="#" id="footerOrder">Reservar fatia</a>
+      <a href="#faq">Dúvidas</a>
+      <a href="#avaliacoes">Avaliações</a>
+    </div>
+
+    <div>
+      <h4>Contato</h4>
+      <p id="footerPhone">WhatsApp: (99) 99999-9999</p>
+      <p id="footerInstaText">Instagram: @sandelicia</p>
+      <p id="footerCity">Atendimento local</p>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">© 2026 Sandelícia. Todos os direitos reservados.</div>
+</footer>
+
+<div class="mobile-order">
+  <div>
+    <b id="mobileCake">Bolo do dia</b>
+    <span id="mobileStock">Restam fatias hoje</span>
+  </div>
+  <a class="btn azul" id="mobileOrderBtn" href="#">Reservar</a>
+</div>
+
+<script>
+/*
+  PRONTO PARA API:
+  1) Quando tiver backend, crie um endpoint, ex:
+     https://sua-api.com/sandelicia/site
+  2) Troque API_URL abaixo por esse link.
+  3) A API deve devolver JSON no mesmo formato do objeto fallbackData.
+*/
+const API_URL = ""; // ex: "https://api.sandelicia.com/site"
+
+const fallbackData = {
+  config:{
+    whatsapp:"5599999999999",
+    instagram:"https://instagram.com/sandelicia",
+    instagramUser:"@sandelicia",
+    cidade:"Atendimento local",
+    moeda:"BRL"
+  },
+  boloDoDia:{
+    nome:"Chocolate Cremoso",
+    subtitulo:"Cobertura intensa, massa fofinha e preparo fresquinho.",
+    preco:8,
+    total:10,
+    restantes:8,
+    status:"Disponível",
+    imagem:"https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=1100&q=90",
+    ativo:true
+  },
+  semana:[
+    {
+      dia:"Segunda",
+      nome:"Chocolate Cremoso",
+      descricao:"Cobertura generosa de chocolate.",
+      preco:8,
+      destaque:true,
+      imagem:"https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=900&q=90"
+    },
+    {
+      dia:"Terça",
+      nome:"Cenoura Premium",
+      descricao:"Clássico com cobertura brilhante.",
+      preco:8,
+      imagem:"https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=900&q=90"
+    },
+    {
+      dia:"Quarta",
+      nome:"Frutas Vermelhas",
+      descricao:"Fatia leve com toque especial.",
+      preco:8,
+      imagem:"https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=90"
+    },
+    {
+      dia:"Quinta",
+      nome:"Prestígio",
+      descricao:"Chocolate com coco caprichado.",
+      preco:8,
+      imagem:"https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=900&q=90"
+    },
+    {
+      dia:"Sexta",
+      nome:"Doce de Leite",
+      descricao:"Cobertura cremosa e sabor marcante.",
+      preco:8,
+      imagem:"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=90"
+    }
+  ],
+  proximo:{
+    titulo:"Amanhã tem Cenoura Premium",
+    descricao:"Um clássico fofinho com cobertura de chocolate. Reserve cedo para não ficar sem.",
+    imagem:"https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=1100&q=90"
+  },
+  avaliacoes:[
+    {nome:"Juliana M.", texto:"O bolo veio lindo, fofinho e a cobertura estava perfeita.", estrelas:5},
+    {nome:"Marcos L.", texto:"Dá para sentir o capricho. Atendimento rápido e sabor excelente.", estrelas:5},
+    {nome:"Carla A.", texto:"A ideia de sabor do dia é ótima. Já quero acompanhar sempre.", estrelas:5}
+  ],
+  faq:[
+    {q:"Como funciona o bolo do dia?", a:"Todos os dias a Sandelícia lança um sabor especial em quantidade limitada."},
+    {q:"Quantas fatias ficam disponíveis?", a:"No começo serão apenas 10 fatias por dia. Quando acabar, só no próximo sabor."},
+    {q:"Como faço para reservar?", a:"Clique no botão de WhatsApp e envie sua mensagem. A reserva é confirmada no atendimento."},
+    {q:"Tem entrega?", a:"A entrega ou retirada pode ser combinada pelo WhatsApp, conforme a região."}
+  ]
+};
+
+const money = (v) => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const waLink = (phone, text) => `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+
+async function loadData(){
+  if(!API_URL) return fallbackData;
+
+  try{
+    const res = await fetch(API_URL, {cache:"no-store"});
+    if(!res.ok) throw new Error("API offline");
+    return await res.json();
+  }catch(e){
+    console.warn("Usando dados locais:", e);
+    return fallbackData;
+  }
+}
+
+function render(data){
+  const {config, boloDoDia, semana, proximo, avaliacoes, faq} = data;
+  const phone = config.whatsapp;
+  const orderText = `Oi, quero reservar uma fatia do ${boloDoDia.nome} da Sandelícia.`;
+
+  document.getElementById("heroTitle").textContent = "Doçura em cada pedaço.";
+  document.getElementById("heroDesc").textContent = `Hoje: ${boloDoDia.nome}. ${boloDoDia.subtitulo} Apenas ${boloDoDia.total} fatias por dia.`;
+  document.getElementById("heroImage").style.backgroundImage = `url("${boloDoDia.imagem}")`;
+  document.getElementById("badgeRest").textContent = boloDoDia.restantes;
+
+  document.getElementById("todayName").textContent = boloDoDia.nome;
+  document.getElementById("todaySubtitle").textContent = boloDoDia.subtitulo;
+  document.getElementById("todayPrice").textContent = money(boloDoDia.preco);
+
+  const pct = Math.max(0, Math.min(100, (boloDoDia.restantes / boloDoDia.total) * 100));
+  document.getElementById("stockFill").style.width = pct + "%";
+  document.getElementById("stockLabel").textContent = `${boloDoDia.restantes} de ${boloDoDia.total} restantes`;
+  document.getElementById("stockStatus").textContent = boloDoDia.restantes > 0 ? boloDoDia.status : "Esgotado";
+
+  ["heroOrder","topOrder","topWhats","drawerOrder","mobileOrderBtn","footerOrder","footerWhats"].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.href = waLink(phone, orderText);
+  });
+
+  document.getElementById("drawerCakeName").textContent = boloDoDia.nome;
+  document.getElementById("drawerStock").textContent = `${boloDoDia.restantes} de ${boloDoDia.total} fatias restantes`;
+  document.getElementById("mobileCake").textContent = boloDoDia.nome;
+  document.getElementById("mobileStock").textContent = `${boloDoDia.restantes} de ${boloDoDia.total} fatias restantes`;
+
+  const weekGrid = document.getElementById("weekGrid");
+  weekGrid.innerHTML = semana.map(item => `
+    <article class="day-card ${item.destaque ? "emphasis" : ""}">
+      <div class="day-img" style="background-image:url('${item.imagem}')"></div>
+      <small>${item.dia}</small>
+      <h3>${item.nome}</h3>
+      <p>${item.descricao}</p>
+      <div class="day-bottom">
+        <b>${money(item.preco)}</b>
+        <a class="mini-btn" href="${waLink(phone, `Oi, quero reservar o sabor ${item.nome} da Sandelícia.`)}">+</a>
+      </div>
+    </article>
+  `).join("");
+
+  document.getElementById("nextTitle").innerHTML = proximo.titulo.replace(/(tem|sabor|Premium|novo)/i, '<span>$&</span>');
+  document.getElementById("nextDesc").textContent = proximo.descricao;
+  document.getElementById("nextImage").style.backgroundImage = `url("${proximo.imagem}")`;
+  document.getElementById("nextOrder").href = waLink(phone, `Oi, quero ser avisado sobre: ${proximo.titulo}`);
+
+  document.getElementById("reviewsGrid").innerHTML = avaliacoes.map(r => `
+    <article class="review">
+      <div class="stars">${"★".repeat(r.estrelas || 5)}</div>
+      <p>“${r.texto}”</p>
+      <b>${r.nome}</b>
+    </article>
+  `).join("");
+
+  document.getElementById("faqGrid").innerHTML = faq.map(f => `
+    <details>
+      <summary>${f.q}</summary>
+      <p>${f.a}</p>
+    </details>
+  `).join("");
+
+  document.getElementById("footerPhone").textContent = "WhatsApp: " + phone;
+  document.getElementById("footerInstagram").href = config.instagram;
+  document.getElementById("footerInstaText").textContent = "Instagram: " + config.instagramUser;
+  document.getElementById("footerCity").textContent = config.cidade;
+}
+
+function setupMenu(){
+  const open = document.getElementById("openMenu");
+  const close = document.getElementById("closeMenu");
+  const drawer = document.getElementById("drawer");
+  const overlay = document.getElementById("overlay");
+  const links = drawer.querySelectorAll("a");
+
+  const show = () => {
+    drawer.classList.add("open");
+    overlay.classList.add("open");
+    document.body.classList.add("menu-open");
+  };
+  const hide = () => {
+    drawer.classList.remove("open");
+    overlay.classList.remove("open");
+    document.body.classList.remove("menu-open");
+  };
+
+  open.addEventListener("click", show);
+  close.addEventListener("click", hide);
+  overlay.addEventListener("click", hide);
+  links.forEach(a => a.addEventListener("click", hide));
+}
+
+function setupActiveLinks(){
+  const links = document.querySelectorAll(".nav-links a");
+  window.addEventListener("scroll", () => {
+    let current = "inicio";
+    document.querySelectorAll("main section[id]").forEach(sec => {
+      if(scrollY >= sec.offsetTop - 120) current = sec.id;
+    });
+    links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + current));
+  });
+}
+
+setupMenu();
+setupActiveLinks();
+loadData().then(render);
+</script>
+</body>
+</html>
