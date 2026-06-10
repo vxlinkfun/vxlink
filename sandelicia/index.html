@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
-<meta ="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>SANDELÍCIA | Bolo do Dia</title>
 <meta name="description" content="SANDELÍCIA: todos os dias um bolo especial em quantidade limitada. Reserve sua fatia pelo WhatsApp.">
 
@@ -19,10 +19,7 @@
   --white:#fff;
   --text:#34170c;
   --muted:#7b5b4d;
-  --danger:#9b2c2f;
-  --ok:#22a06b;
   --shadow:0 22px 65px rgba(74,33,18,.15);
-  --radius:28px;
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -35,21 +32,19 @@ body{
 }
 body.menu-open{overflow:hidden}
 a{text-decoration:none;color:inherit}
-button,input{font:inherit}
 img{max-width:100%;display:block}
 .wrap{width:min(1160px,100%);margin:auto;padding:0 22px}
 
-/* HEADER */
 .header{
   position:sticky;
   top:0;
   z-index:1000;
-  background:rgba(255,247,236,.92);
+  background:rgba(255,247,236,.94);
   backdrop-filter:blur(16px);
   border-bottom:1px solid rgba(74,33,18,.10);
 }
 .nav{
-  height:78px;
+  height:76px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -120,10 +115,12 @@ img{max-width:100%;display:block}
   transition:.2s;
 }
 .btn:hover{transform:translateY(-2px)}
-.btn.azul{background:linear-gradient(135deg,var(--azul),var(--azul2));box-shadow:0 16px 34px rgba(18,157,161,.22)}
+.btn.azul{
+  background:linear-gradient(135deg,var(--azul),var(--azul2));
+  box-shadow:0 16px 34px rgba(18,157,161,.22);
+}
 .hamb{display:none}
 
-/* MOBILE MENU */
 .overlay{
   position:fixed;
   inset:0;
@@ -161,7 +158,9 @@ img{max-width:100%;display:block}
   border:0;
   background:var(--azul3);
   color:var(--marrom);
-  width:42px;height:42px;border-radius:50%;
+  width:42px;
+  height:42px;
+  border-radius:50%;
   font-size:26px;
 }
 .drawer-today{
@@ -185,7 +184,6 @@ img{max-width:100%;display:block}
 .drawer-links a:hover{background:var(--azul3)}
 .drawer .btn{width:100%;margin-top:auto}
 
-/* HERO MOBILE-FIRST */
 .hero{
   position:relative;
   background:var(--paper);
@@ -213,7 +211,7 @@ img{max-width:100%;display:block}
 .hero-copy h1{
   font-family:Georgia,serif;
   color:white;
-  font-size:clamp(52px,7vw,86px);
+  font-size:clamp(46px,7vw,86px);
   line-height:.98;
   font-weight:500;
   letter-spacing:-2px;
@@ -229,7 +227,6 @@ img{max-width:100%;display:block}
   display:flex;
   gap:12px;
   flex-wrap:wrap;
-  align-items:center;
 }
 .btn.light{
   background:rgba(255,255,255,.15);
@@ -263,6 +260,7 @@ img{max-width:100%;display:block}
   border:2px solid rgba(74,33,18,.15);
 }
 .stock-badge strong{display:block;font-size:42px;line-height:1;color:var(--marrom)}
+
 .quick-card{
   position:relative;
   z-index:3;
@@ -290,9 +288,7 @@ img{max-width:100%;display:block}
   font-size:28px;
   font-weight:950;
 }
-.stock-mini{
-  min-width:210px;
-}
+.stock-mini{min-width:210px}
 .stock-text{
   display:flex;
   justify-content:space-between;
@@ -315,7 +311,6 @@ img{max-width:100%;display:block}
   background:linear-gradient(90deg,var(--azul),var(--azul2));
 }
 
-/* SECTIONS */
 .section{padding:74px 0}
 .title{
   text-align:center;
@@ -348,9 +343,7 @@ img{max-width:100%;display:block}
   transition:.2s;
 }
 .day-card:hover{transform:translateY(-5px)}
-.day-card.emphasis{
-  outline:3px solid rgba(56,207,208,.35);
-}
+.day-card.emphasis{outline:3px solid rgba(56,207,208,.35)}
 .day-img{
   height:140px;
   border-radius:20px;
@@ -380,11 +373,16 @@ img{max-width:100%;display:block}
 }
 .day-bottom b{color:var(--marrom)}
 .mini-btn{
-  width:34px;height:34px;border-radius:50%;
-  background:var(--marrom);color:white;display:grid;place-items:center;font-weight:900;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:var(--marrom);
+  color:white;
+  display:grid;
+  place-items:center;
+  font-weight:900;
 }
 
-/* NEXT LAUNCH */
 .launch{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -409,7 +407,6 @@ img{max-width:100%;display:block}
 .launch h2 span{color:var(--azul2)}
 .launch p{color:var(--muted);line-height:1.7;margin:12px 0 18px}
 
-/* REVIEWS */
 .reviews{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -425,7 +422,6 @@ img{max-width:100%;display:block}
 .review p{color:var(--muted);line-height:1.65;margin-bottom:14px}
 .review b{color:var(--marrom)}
 
-/* FAQ */
 .faq-area{
   background:linear-gradient(180deg,var(--azul3),var(--paper));
   padding:70px 0;
@@ -453,7 +449,6 @@ details p{
   margin-top:12px;
 }
 
-/* FOOTER MOBILE-FIRST */
 .footer{
   position:relative;
   background:var(--marrom3);
@@ -502,9 +497,12 @@ details p{
   margin-top:16px;
 }
 .footer-ico{
-  width:40px;height:40px;border-radius:50%;
+  width:40px;
+  height:40px;
+  border-radius:50%;
   border:1px solid rgba(255,255,255,.38);
-  display:grid;place-items:center;
+  display:grid;
+  place-items:center;
 }
 .footer-bottom{
   position:relative;
@@ -515,7 +513,6 @@ details p{
   font-size:12px;
 }
 
-/* STICKY MOBILE ORDER */
 .mobile-order{
   display:none;
   position:fixed;
@@ -537,32 +534,37 @@ details p{
 .mobile-order span{font-size:12px;color:var(--muted)}
 .mobile-order .btn{padding:12px 16px;font-size:13px}
 
-/* API/LOADING */
-.skeleton{opacity:.55;filter:saturate(.8)}
-
-/* RESPONSIVE */
+/* TABLET */
 @media(max-width:980px){
   .nav-links,.header-actions{display:none}
   .hamb{display:grid}
-  .nav{height:74px}
+  .nav{height:70px}
   .hero::before{height:520px}
   .hero-grid{
     grid-template-columns:1fr;
     min-height:auto;
-    padding:36px 0 80px;
-    gap:26px;
+    padding:32px 0 78px;
+    gap:24px;
   }
-  .hero-copy h1{font-size:48px;letter-spacing:-1px}
-  .hero-copy p{font-size:16px;margin:16px 0 20px}
-  .hero-actions .light{display:none}
+  .hero-copy h1{
+    font-size:48px;
+    letter-spacing:-1px;
+  }
+  .hero-copy p{
+    font-size:16px;
+    margin:16px 0 20px;
+  }
+  .btn.light{display:none}
   .bolo-img{
     min-height:320px;
     border-radius:30px;
     border-width:7px;
   }
   .stock-badge{
-    width:104px;height:104px;
-    left:14px;bottom:14px;
+    width:104px;
+    height:104px;
+    left:14px;
+    bottom:14px;
     font-size:19px;
   }
   .stock-badge strong{font-size:31px}
@@ -572,8 +574,6 @@ details p{
     gap:12px;
     padding:16px;
   }
-  .quick-inner h2{font-size:24px}
-  .price{font-size:25px}
   .stock-mini{min-width:0}
   .week-grid{grid-template-columns:1fr 1fr}
   .launch{grid-template-columns:1fr;padding:20px}
@@ -583,15 +583,64 @@ details p{
   .mobile-order{display:grid}
   .footer{padding-bottom:82px}
 }
+
+/* CELULAR */
 @media(max-width:560px){
   .wrap{padding:0 16px}
-  .logo{font-size:26px}
-  .section{padding:56px 0}
-  .hero-copy h1{font-size:42px}
-  .hero::before{height:500px}
+  .logo{font-size:25px}
+  .section{padding:52px 0}
+  .hero::before{
+    height:430px;
+    min-height:430px;
+  }
+  .hero-grid{
+    padding:26px 0 62px;
+    gap:22px;
+  }
+  .hero-copy h1{
+    font-size:39px;
+    line-height:1.05;
+    max-width:330px;
+  }
+  .hero-copy p{
+    font-size:14px;
+    line-height:1.6;
+    max-width:330px;
+  }
+  .hero-actions .btn{
+    padding:13px 19px;
+    font-size:13px;
+  }
+  .bolo-img{
+    min-height:230px;
+    max-height:260px;
+    border-radius:24px;
+    border-width:5px;
+  }
+  .stock-badge{
+    width:82px;
+    height:82px;
+    font-size:15px;
+    left:10px;
+    bottom:10px;
+  }
+  .stock-badge strong{font-size:25px}
+  .quick-card{margin-top:-32px}
+  .quick-inner{
+    border-radius:22px;
+  }
+  .quick-inner h2{font-size:22px}
+  .price{font-size:23px}
+  .title{margin-bottom:24px}
+  .title h2{font-size:33px}
   .week-grid{grid-template-columns:1fr}
-  .day-img{height:175px}
-  .footer-inner{grid-template-columns:1fr;padding-inline:16px}
+  .day-card{border-radius:24px}
+  .day-img{height:205px}
+  .launch h2{font-size:32px}
+  .footer-inner{
+    grid-template-columns:1fr;
+    padding-inline:16px;
+  }
   .footer-bottom{padding-inline:16px}
 }
 </style>
@@ -775,14 +824,7 @@ details p{
 </div>
 
 <script>
-/*
-  PRONTO PARA API:
-  1) Quando tiver backend, crie um endpoint, ex:
-     https://sua-api.com/sandelicia/site
-  2) Troque API_URL abaixo por esse link.
-  3) A API deve devolver JSON no mesmo formato do objeto fallbackData.
-*/
-const API_URL = ""; // ex: "https://api.sandelicia.com/site"
+const API_URL = "";
 
 const fallbackData = {
   config:{
@@ -903,8 +945,7 @@ function render(data){
   document.getElementById("mobileCake").textContent = boloDoDia.nome;
   document.getElementById("mobileStock").textContent = `${boloDoDia.restantes} de ${boloDoDia.total} fatias restantes`;
 
-  const weekGrid = document.getElementById("weekGrid");
-  weekGrid.innerHTML = semana.map(item => `
+  document.getElementById("weekGrid").innerHTML = semana.map(item => `
     <article class="day-card ${item.destaque ? "emphasis" : ""}">
       <div class="day-img" style="background-image:url('${item.imagem}')"></div>
       <small>${item.dia}</small>
@@ -917,7 +958,7 @@ function render(data){
     </article>
   `).join("");
 
-  document.getElementById("nextTitle").innerHTML = proximo.titulo.replace(/(tem|sabor|Premium|novo)/i, '<span>$&</span>');
+  document.getElementById("nextTitle").innerHTML = proximo.titulo;
   document.getElementById("nextDesc").textContent = proximo.descricao;
   document.getElementById("nextImage").style.backgroundImage = `url("${proximo.imagem}")`;
   document.getElementById("nextOrder").href = waLink(phone, `Oi, quero ser avisado sobre: ${proximo.titulo}`);
@@ -955,6 +996,7 @@ function setupMenu(){
     overlay.classList.add("open");
     document.body.classList.add("menu-open");
   };
+
   const hide = () => {
     drawer.classList.remove("open");
     overlay.classList.remove("open");
