@@ -1,0 +1,119 @@
+{
+  "site": {
+    "marca": "SANDE",
+    "marcaDestaque": "LÍCIA",
+    "heroTitulo": "Doçura em cada pedaço.",
+    "heroDescricao": "Todo dia um sabor especial da Sandelícia. Apenas 10 fatias disponíveis, feitas com carinho e cobertura caprichada.",
+    "copyright": "© 2026 Sandelícia. Todos os direitos reservados.",
+    "cores": {
+      "azul": "#38cfd0",
+      "marrom": "#4a2112",
+      "hero": "#a77b6f",
+      "creme": "#fff7ec"
+    }
+  },
+  "config": {
+    "whatsapp": "5598981030603",
+    "instagram": "https://www.instagram.com/sandysousa.store?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
+    "instagramUser": "@sandysousa.store",
+    "cidade": "Atendimento local",
+    "moeda": "BRL"
+  },
+  "boloDoDia": {
+    "nome": "Chocolate Cremoso",
+    "subtitulo": "Cobertura intensa, massa fofinha e preparo fresquinho.",
+    "preco": 8,
+    "total": 10,
+    "restantes": 8,
+    "status": "Disponível",
+    "imagem": "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=1100&q=90",
+    "ativo": true
+  },
+  "semana": [
+    {
+      "dia": "Segunda",
+      "nome": "Chocolate Cremoso",
+      "descricao": "Cobertura generosa de chocolate.",
+      "preco": 8,
+      "destaque": true,
+      "imagem": "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=900&q=90"
+    },
+    {
+      "dia": "Terça",
+      "nome": "Cenoura Premium",
+      "descricao": "Clássico com cobertura brilhante.",
+      "preco": 8,
+      "destaque": false,
+      "imagem": "https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=900&q=90"
+    },
+    {
+      "dia": "Quarta",
+      "nome": "Frutas Vermelhas",
+      "descricao": "Fatia leve com toque especial.",
+      "preco": 8,
+      "destaque": false,
+      "imagem": "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=90"
+    },
+    {
+      "dia": "Quinta",
+      "nome": "Prestígio",
+      "descricao": "Chocolate com coco caprichado.",
+      "preco": 8,
+      "destaque": false,
+      "imagem": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=900&q=90"
+    },
+    {
+      "dia": "Sexta",
+      "nome": "Doce de Leite",
+      "descricao": "Cobertura cremosa e sabor marcante.",
+      "preco": 8,
+      "destaque": false,
+      "imagem": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=90"
+    }
+  ],
+  "proximo": {
+    "titulo": "Amanhã tem Cenoura Premium",
+    "descricao": "Um clássico fofinho com cobertura de chocolate. Reserve cedo para não ficar sem.",
+    "imagem": "https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&w=1100&q=90"
+  },
+  "avaliacoes": [
+    {
+      "nome": "Juliana M.",
+      "texto": "O bolo veio lindo, fofinho e a cobertura estava perfeita.",
+      "estrelas": 5
+    },
+    {
+      "nome": "Marcos L.",
+      "texto": "Dá para sentir o capricho. Atendimento rápido e sabor excelente.",
+      "estrelas": 5
+    },
+    {
+      "nome": "Carla A.",
+      "texto": "A ideia de sabor do dia é ótima. Já quero acompanhar sempre.",
+      "estrelas": 5
+    }
+  ],
+  "faq": [
+    {
+      "q": "Como funciona o bolo do dia?",
+      "a": "Todos os dias a Sandelícia lança um sabor especial em quantidade limitada."
+    },
+    {
+      "q": "Quantas fatias ficam disponíveis?",
+      "a": "No começo serão apenas 10 fatias por dia. Quando acabar, só no próximo sabor."
+    },
+    {
+      "q": "Como faço para reservar?",
+      "a": "Clique no botão de WhatsApp e envie sua mensagem. A reserva é confirmada no atendimento."
+    },
+    {
+      "q": "Tem entrega?",
+      "a": "A entrega ou retirada pode ser combinada pelo WhatsApp, conforme a região."
+    }
+  ],
+  "api": {
+    "get": "https://api.vxlink.fun/sandelicia/site",
+    "save": "https://api.vxlink.fun/sandelicia/site",
+    "token": ""
+  }
+}
