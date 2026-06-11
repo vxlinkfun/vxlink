@@ -370,6 +370,26 @@ input[type="color"]{
   line-height:1.55;
 }
 
+.upload-row{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:10px;
+  align-items:center;
+  margin-top:8px;
+}
+.upload-row input[type="file"]{
+  padding:10px;
+  background:#fff;
+}
+.upload-hint{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.45;
+}
+@media(max-width:560px){
+  .upload-row{grid-template-columns:1fr}
+}
+
 @media(max-width:980px){
   .app{grid-template-columns:1fr}
   .sidebar{
@@ -494,7 +514,15 @@ input[type="color"]{
               </select>
             </div>
             <div class="field full"><label>Descrição</label><textarea id="boloSubtitulo"></textarea></div>
-            <div class="field full"><label>Imagem</label><input id="boloImagem"></div>
+            <div class="field full">
+              <label>Imagem</label>
+              <input id="boloImagem" placeholder="Cole uma URL ou envie uma imagem abaixo">
+              <div class="upload-row">
+                <input id="uploadBoloImagem" type="file" accept="image/*">
+                <button class="btn azul" type="button" onclick="uploadImagemCampo('uploadBoloImagem','boloImagem', this)">Enviar imagem</button>
+              </div>
+              <div class="upload-hint">A imagem sobe para a VPS e o link entra automaticamente no campo.</div>
+            </div>
           </div>
         </div>
 
@@ -515,7 +543,15 @@ input[type="color"]{
           <div class="form-grid">
             <div class="field full"><label>Título</label><input id="proximoTitulo"></div>
             <div class="field full"><label>Descrição</label><textarea id="proximoDescricao"></textarea></div>
-            <div class="field full"><label>Imagem</label><input id="proximoImagem"></div>
+            <div class="field full">
+              <label>Imagem</label>
+              <input id="proximoImagem" placeholder="Cole uma URL ou envie uma imagem abaixo">
+              <div class="upload-row">
+                <input id="uploadProximoImagem" type="file" accept="image/*">
+                <button class="btn azul" type="button" onclick="uploadImagemCampo('uploadProximoImagem','proximoImagem', this)">Enviar imagem</button>
+              </div>
+              <div class="upload-hint">Use para o banner do próximo lançamento.</div>
+            </div>
           </div>
         </div>
 
@@ -760,6 +796,91 @@ function coletar(){
   data.api = {get:API_URL, save:API_URL, token:API_TOKEN};
 }
 
+
+async function uploadArquivo(fileInputId, botao){
+  const input = $(fileInputId);
+  const arquivo = input?.files?.[0];
+
+  if(!arquivo){
+    alert("Escolha uma imagem primeiro.");
+    return null;
+  }
+
+  if(!arquivo.type.startsWith("image/")){
+    alert("Escolha apenas arquivo de imagem.");
+    return null;
+  }
+
+  if(arquivo.size > 20 * 1024 * 1024){
+    alert("Imagem muito grande. Limite atual: 20MB.");
+    return null;
+  }
+
+  const textoOriginal = botao ? botao.textContent : "";
+  if(botao){
+    botao.disabled = true;
+    botao.textContent = "Enviando...";
+  }
+
+  try{
+    setStatus("Enviando imagem para a VPS...");
+
+    const form = new FormData();
+    form.append("imagem", arquivo);
+
+    const res = await fetch("https://api.vxlink.fun/upload/sandelicia", {
+      method:"POST",
+      headers:{
+        "Authorization":"Bearer " + API_TOKEN
+      },
+      body:form
+    });
+
+    const json = await res.json().catch(()=>null);
+
+    if(!res.ok || !json || !json.ok){
+      const detalhe = json?.erro || json?.detalhe || "Erro desconhecido no upload.";
+      setStatus("Erro ao enviar imagem.", "err");
+      alert("Erro ao enviar imagem:\n\n" + detalhe);
+      return null;
+    }
+
+    setStatus("Imagem enviada com sucesso. Clique em Salvar na VPS para publicar.", "ok");
+    return json.url;
+  }catch(err){
+    console.error(err);
+    setStatus("Erro de conexão no upload.", "err");
+    alert("Erro de conexão ao enviar imagem.");
+    return null;
+  }finally{
+    if(botao){
+      botao.disabled = false;
+      botao.textContent = textoOriginal;
+    }
+  }
+}
+
+async function uploadImagemCampo(fileInputId, campoId, botao){
+  const url = await uploadArquivo(fileInputId, botao);
+  if(!url) return;
+
+  $(campoId).value = url;
+  preview();
+
+  alert("Imagem enviada. Agora clique em Salvar na VPS.");
+}
+
+async function uploadImagemSemana(i, botao){
+  const url = await uploadArquivo("uploadSemana" + i, botao);
+  if(!url) return;
+
+  data.semana[i].imagem = url;
+  renderSemana();
+  preview();
+
+  alert("Imagem enviada para este sabor. Agora clique em Salvar na VPS.");
+}
+
 async function salvarNaAPI(){
   coletar();
   try{
@@ -830,7 +951,15 @@ function renderSemana(){
         <div class="field"><label>Preço</label><input type="number" step="0.01" data-week="${i}" data-key="preco" value="${escAttr(item.preco)}"></div>
         <div class="field"><label>Destaque</label><select data-week="${i}" data-key="destaque"><option value="true" ${item.destaque?'selected':''}>Sim</option><option value="false" ${!item.destaque?'selected':''}>Não</option></select></div>
         <div class="field full"><label>Descrição</label><textarea data-week="${i}" data-key="descricao">${escAttr(item.descricao)}</textarea></div>
-        <div class="field full"><label>Imagem</label><input data-week="${i}" data-key="imagem" value="${escAttr(item.imagem)}"></div>
+        <div class="field full">
+          <label>Imagem</label>
+          <input data-week="${i}" data-key="imagem" value="${escAttr(item.imagem)}" placeholder="Cole uma URL ou envie uma imagem abaixo">
+          <div class="upload-row">
+            <input id="uploadSemana${i}" type="file" accept="image/*">
+            <button class="btn azul" type="button" onclick="uploadImagemSemana(${i}, this)">Enviar imagem</button>
+          </div>
+          <div class="upload-hint">Imagem deste sabor no cardápio da semana.</div>
+        </div>
       </div>
     </div>
   `).join("");
