@@ -50,9 +50,222 @@ POST /admin/backup
 GET  /evolution/:slug/status
 GET  /evolution/:slug/qr
 POST /evolution/:slug/send</pre></div><div class="card table-card"><h3>Teste da API</h3><p class="sub">Clique para verificar se api.vxlink.fun responde.</p><div class="actions"><button class="btn" onclick="checkApi()">Testar API</button><button class="btn ghost" onclick="loadSandelicia()">Carregar Sandelícia</button></div><br><pre class="code" id="apiTestBox">Aguardando teste...</pre></div></div></section>
-</main></dil"modal-backdrop" id="clienteModal"><div class="modal"><div class="modal-head"><h3>Novo cliente filho</h3><button class="close" onclick="closeClienteModal()">×</button></div><div class="form-grid"><div class="field"><label>Nome</label><input id="newNome" placeholder="Ex: Academia X"></div><div class="field"><label>Slug</label><input id="newSlug" placeholder="academia-x"></div><div class="field"><label>Categoria</label><input id="newCat" placeholder="Academia / mercado / bolos"></div><div class="field"><label>WhatsApp</label><input id="newWhats" placeholder="55..."></div><div class="field full"><label>URL site</label><input id="newSite" placeholder="https://vxlink.fun/cliente/"></div><div class="field full"><label>URL painel filho</label><input id="newPainel" placeholder="https://vxlink.fun/cliente/admin.html"></div></div><br><div class="actions"><button class="btn" onclick="createCliente()">Criar no painel</button><button class="btn ghost" onclick="closeClienteModal()">Cancelar</button></div></div></div>
+</main></div>
+<div class="modal-backdrop" id="clienteModal"><div class="modal"><div class="modal-head"><h3>Novo cliente filho</h3><button class="close" onclick="closeClienteModal()">×</button></div><div class="form-grid"><div class="field"><label>Nome</label><input id="newNome" placeholder="Ex: Academia X"></div><div class="field"><label>Slug</label><input id="newSlug" placeholder="academia-x"></div><div class="field"><label>Categoria</label><input id="newCat" placeholder="Academia / mercado / bolos"></div><div class="field"><label>WhatsApp</label><input id="newWhats" placeholder="55..."></div><div class="field full"><label>URL site</label><input id="newSite" placeholder="https://vxlink.fun/cliente/"></div><div class="field full"><label>URL painel filho</label><input id="newPainel" placeholder="https://vxlink.fun/cliente/admin.html"></div></div><br><div class="actions"><button class="btn" onclick="createCliente()">Criar no painel</button><button class="btn ghost" onclick="closeClienteModal()">Cancelar</button></div></div></div>
 <script>
-const API_BASE="https://api.vxlink.fun";const API_TOKEN="vxlink-token-sandelicia-123";const STORAGE_KEY="vxlink_pudim_pai_premium_v2";const defaultState={stats:{visitas:128,clicks:37,instagram:11,uploads:4,cpu:12,ram:29,disk:11},tasks:[{name:"API Pai /admin/stats",status:"In progress",done:false},{name:"Tracking de cliques dos filhos",status:"Pending",done:false},{name:"Upload central no painel",status:"Completed",done:true},{name:"Painel Sandelícia filho",status:"Completed",done:true}],clientes:[{nome:"Sandelícia",slug:"sandelicia",categoria:"Bolos",whatsapp:"5598981030603",site:"https://vxlink.fun/sandelicia/",painel:"https://vxlink.fun/sandelicia/admin.html",status:"ativo",visitas:128,clicks:37,instagram:11,uploads:4,plano:"Anual",valor:50,ultimo:"agora"}],evolution:[{cliente:"Sandelícia",slug:"sandelicia",instancia:"sandelicia-wpp",status:"aguardando QR",mensagens:0}],media:[{name:"Bolo Prestígio",url:"https://api.vxlink.fun/uploads/sandelicia/1781147164264-3a6043a519461.png",slug:"sandelicia"}],logs:["Painel PUDIM iniciado.","Sandelícia cadastrada como primeiro filho.","Upload VPS preparado em https://api.vxlink.fun/upload/:slug"]};let state=loadState();let lastUploadUrl="";function $(id){return document.getElementById(id)}function loadState(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY))||structuredClone(defaultState)}catch(e){return structuredClone(defaultState)}}function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}function status(msg,type=""){const el=$("statusLine");el.textContent=msg;el.className="api-status "+type}function money(v){return Number(v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}function slugify(v){return String(v||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}function addLog(msg){state.logs.unshift(`[${new Date().toLocaleString("pt-BR")}] ${msg}`);state.logs=state.logs.slice(0,120);saveState();renderLogs()}function showView(view){document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));$("view-"+view).classList.add("active");document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.view===view));window.scrollTo({top:0,behavior:"smooth"})}document.querySelectorAll(".nav button").forEach(btn=>btn.addEventListener("click",()=>showView(btn.dataset.view)));function tick(){const now=new Date();$("clock").textContent=now.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});$("dateFull").textContent=now.toLocaleDateString("pt-BR",{day:"2-digit",month:"long",year:"numeric"});$("dayName").textContent=now.toLocaleDateString("pt-BR",{weekday:"long"});const h=now.getHours();$("saudacao").textContent=h<12?"Bom dia,":h<18?"Boa tarde,":"Boa noite,"}setInterval(tick,1000);tick();function renderHome(){const clientes=state.clientes;const ativos=clientes.filter(c=>c.status==="ativo").length;const visitas=clientes.reduce((s,c)=>s+Number(c.visitas||0),0);const clicks=clientes.reduce((s,c)=>s+Number(c.clicks||0),0);const conv=visitas?Math.round((clicks/visitas)*100):0;const score=Math.min(99,Math.max(35,55+conv+ativos*10));$("homeClientes").textContent=ativos;$("homeSites").textContent=clientes.length;$("prodPercent").textContent=score+"%";$("ringLabel").textContent=score+"%";$("evoCount").textContent=state.evolution.length;$("topCpu").textContent=state.stats.cpu+"%";$("topRam").textContent=state.stats.ram+"%";$("systemScore").textContent=Math.min(99,88+ativos)+"%";$("apiPct").textContent="92%";$("taskList").innerHTML=state.tasks.map(t=>`<div class="task"><div class="check ${t.done?'done':''}">${t.done?'✓':''}</div><b>${t.name}</b><small class="${t.done?'ok':t.status==='In progress'?'working':''}">${t.status}</small></div>`).join("");const days=[["Seg",42],["Ter",36],["Qua",44],["Qui",50],["Sex",64],["Sáb",78],["Dom",53]];$("weekBars").innerHTML=days.map(d=>`<div class="daybar"><i style="height:${d[1]}px"></i><b>${d[0]}</b></div>`).join("");$("recentClients").innerHTML=clientes.slice(0,3).map((c,i)=>`<div class="event"><div class="date-mini"><strong>${String(i+1).padStart(2,"0")}</strong><span>filho</span></div><div><b>${c.nome}</b><small>${c.categoria} · ${c.visitas} visitas · ${c.clicks} cliques</small></div><div class="event-dot" style="color:${c.status==='ativo'?'var(--green)':'var(--red)'}"></div></div>`).join("")}function renderClientes(){const clientes=state.clientes;const ativos=clientes.filter(c=>c.status==="ativo").length;$("cliTotal").textContent=clientes.length;$("cliAtivos").textContent=ativos;$("cliReceita").textContent=money(clientes.reduce((s,c)=>s+Number(c.valor||0),0));$("clientesCards").innerHTML=clientes.map(c=>`<div class="client-card"><div class="avatar">${c.nome.slice(0,1).toUpperCase()}</div><div><b>${c.nome}</b><p>${c.categoria} · /${c.slug} · ${c.whatsapp}</p><p>${c.visitas} visitas · ${c.clicks} WhatsApp · ${c.uploads} uploads</p></div><span class="badge ${c.status==='ativo'?'ok':'err'}"><span class="dot"></span>${c.status}</span><div class="client-actions"><a class="btn ghost" href="${c.site}" target="_blank">Site</a><a class="btn" href="${c.painel}" target="_blank">Painel filho</a><button class="btn ${c.status==='ativo'?'red':'green'}" onclick="toggleCliente('${c.slug}')">${c.status==='ativo'?'Desativar':'Ativar'}</button></div></div>`).join("")}function renderAnalytics(){const visitas=state.clientes.reduce((s,c)=>s+Number(c.visitas||0),0);const clicks=state.clientes.reduce((s,c)=>s+Number(c.clicks||0),0);const conv=visitas?Math.round(clicks/visitas*100):0;$("anaVisitas").textContent=visitas;$("anaClicks").textContent=clicks;$("anaConv").textContent=conv+"%";$("analyticsRows").innerHTML=state.clientes.map(c=>`<tr><td>${c.nome}</td><td>${c.visitas}</td><td>${c.clicks}</td><td>${c.instagram||0}</td><td>${c.uploads||0}</td><td>${c.ultimo||"sem evento"}</td></tr>`).join("")}function renderEvolution(){$("evoInstances").innerHTML=state.evolution.map(e=>`<div class="evo-box"><div class="card-head"><div><h3>${e.cliente}</h3><p class="sub">${e.instancia}</p></div><span class="badge warn"><span class="dot"></span>${e.status}</span></div><div class="actions"><button class="btn ghost" onclick="evoAction('Status ${e.slug}')">Status</button><button class="btn" onclick="evoAction('QR ${e.slug}')">QR</button></div></div>`).join("")}function renderUploads(){$("mediaLibrary").innerHTML=state.media.map(m=>`<div class="media"><div class="media-img" style="background-image:url('${m.url}')"></div><div class="media-info"><b>${m.name}</b><p>${m.slug}</p></div></div>`).join("")||"<p class='sub'>Nenhuma imagem ainda.</p>"}function renderVps(){$("vpsCpu").textContent=state.stats.cpu+"%";$("vpsRam").textContent=state.stats.ram+"%";$("vpsDisk").textContent=state.stats.disk+"%"}function renderFinance(){$("finAnual").textContent=money(state.clientes.reduce((s,c)=>s+Number(c.valor||0),0));$("financeRows").innerHTML=state.clientes.map(c=>`<tr><td>${c.nome}</td><td>${c.plano||"Anual"}</td><td>${money(c.valor||50)}</td><td><span class="badge ok"><span class="dot"></span>em dia</span></td></tr>`).join("")}function renderLogs(){$("logsBox").textContent=state.logs.join("\n")}function renderAll(){renderHome();renderClientes();renderAnalytics();renderEvolution();renderUploads();renderVps();renderFinance();renderLogs();saveState()}function openClienteModal(){$("clienteModal").classList.add("open")}function closeClienteModal(){$("clienteModal").classList.remove("open")}function createCliente(){const nome=$("newNome").value.trim()||"Novo Cliente";const slug=slugify($("newSlug").value||nome);if(state.clientes.some(c=>c.slug===slug)){alert("Já existe cliente com esse slug.");return}const c={nome,slug,categoria:$("newCat").value||"Cliente",whatsapp:String($("newWhats").value||"").replace(/\D/g,""),site:$("newSite").value||`https://vxlink.fun/${slug}/`,painel:$("newPainel").value||`https://vxlink.fun/${slug}/admin.html`,status:"ativo",visitas:0,clicks:0,instagram:0,uploads:0,plano:"Anual",valor:50,ultimo:"criado agora"};state.clientes.push(c);state.evolution.push({cliente:nome,slug,instancia:`${slug}-wpp`,status:"não criada",mensagens:0});addLog(`Cliente ${nome} criado no PUDIM.`);closeClienteModal();renderAll()}function toggleCliente(slug){const c=state.clientes.find(x=>x.slug===slug);if(!c)return;c.status=c.status==="ativo"?"inativo":"ativo";c.ultimo="status alterado agora";addLog(`Cliente ${c.nome} alterado para ${c.status}.`);renderAll()}function addTask(){state.tasks.unshift({name:"Nova tarefa do Pudim",status:"Pending",done:false});addLog("Nova tarefa adicionada.");renderAll()}function evoAction(action){const slug=$("evoSlug")?.value||"sandelicia";$("qrBox").innerHTML=`QR CODE<br>${slug}<br><small>${action}</small>`;addLog("Evolution: "+action);status("Evolution preparado. Falta conectar backend real.","ok")}function fakeAction(action){addLog("Ação VPS solicitada: "+action);status("Ação registrada. Execução real precisa de rota protegida.","ok")}function clearLogs(){state.logs=[];renderLogs();saveState()}async function checkApi(){status("Testando API...");try{const r=await fetch(API_BASE+"/",{cache:"no-store"});const j=await r.json();$("apiTestBox").textContent=JSON.stringify(j,null,2);status("API online.","ok");addLog("API principal testada com sucesso.")}catch(e){$("apiTestBox").textContent=String(e);status("Erro ao testar API.","err")}}async function loadSandelicia(){try{const r=await fetch(API_BASE+"/site/sandelicia?t="+Date.now(),{cache:"no-store"});const j=await r.json();$("apiTestBox").textContent=JSON.stringify(j,null,2);status("Dados da Sandelícia carregados.","ok");addLog("Dados da Sandelícia carregados no PUDIM.")}catch(e){$("apiTestBox").textContent=String(e);status("Erro ao carregar Sandelícia.","err")}}async function uploadImagem(){const slug=slugify($("uploadSlug").value||"geral");const file=$("uploadFile").files[0];if(!file){alert("Escolha uma imagem.");return}if(!file.type.startsWith("image/")){alert("Só imagem.");return}const fd=new FormData();fd.append("imagem",file);status("Enviando imagem para VPS...");try{const r=await fetch(`${API_BASE}/upload/${slug}`,{method:"POST",headers:{Authorization:"Bearer "+API_TOKEN},body:fd});const j=await r.json();if(!r.ok||!j.ok)throw new Error(j.erro||"Erro no upload");lastUploadUrl=j.url;$("uploadResult").textContent=JSON.stringify(j,null,2);state.media.unshift({name:file.name,url:j.url,slug});const c=state.clientes.find(x=>x.slug===slug);if(c)c.uploads=Number(c.uploads||0)+1;addLog(`Upload enviado para ${slug}: ${j.url}`);renderAll();status("Imagem enviada com sucesso.","ok")}catch(e){$("uploadResult").textContent=String(e);status("Erro no upload.","err")}}function copiarUltimaUrl(){if(!lastUploadUrl){alert("Nenhuma URL ainda.");return}navigator.clipboard.writeText(lastUploadUrl);alert("URL copiada.")}function demoTick(){state.stats.cpu=Math.floor(Math.random()*28)+7;state.stats.ram=Math.floor(Math.random()*40)+20;state.stats.disk=Math.floor(Math.random()*18)+8;$("topCpu").textContent=state.stats.cpu+"%";$("topRam").textContent=state.stats.ram+"%";renderVps()}setInterval(demoTick,5000);checkApi().finally(()=>renderAll());
+const API_BASE="https://api.vxlink.fun";
+const API_TOKEN="vxlink-token-sandelicia-123";
+const STORAGE_KEY="vxlink_pudim_pai_real_v1";
+
+const defaultState={
+  stats:{visitas:0,clicks:0,instagram:0,uploads:0,cpu:0,ram:0,disk:0,clientes:0,sites:0,eventos:0},
+  tasks:[
+    {name:"API Pai /admin/stats",status:"Completed",done:true},
+    {name:"VPS real /admin/server",status:"Completed",done:true},
+    {name:"Clientes reais /admin/clientes",status:"Completed",done:true},
+    {name:"Tracking /track e /evento",status:"In progress",done:false}
+  ],
+  clientes:[],
+  evolution:[],
+  media:[],
+  logs:["Painel PUDIM iniciado em modo real."]
+};
+
+let state=loadState();
+let lastUploadUrl="";
+let apiOk=false;
+
+function $(id){return document.getElementById(id)}
+function loadState(){try{return Object.assign(structuredClone(defaultState),JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}"))}catch(e){return structuredClone(defaultState)}}
+function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
+function status(msg,type=""){const el=$("statusLine");if(el){el.textContent=msg;el.className="api-status "+type}}
+function money(v){return Number(v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}
+function slugify(v){return String(v||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}
+function addLog(msg){state.logs.unshift(`[${new Date().toLocaleString("pt-BR")}] ${msg}`);state.logs=state.logs.slice(0,120);saveState();renderLogs()}
+
+async function apiGet(path,auth=true){
+  const headers=auth?{Authorization:"Bearer "+API_TOKEN}:{};
+  const res=await fetch(API_BASE+path,{cache:"no-store",headers});
+  const text=await res.text();
+  let json;
+  try{json=JSON.parse(text)}catch(e){throw new Error(text||"Resposta inválida")}
+  if(!res.ok||json.ok===false)throw new Error(json.erro||json.detalhe||"Erro na API");
+  return json;
+}
+async function apiPost(path,body={},auth=false){
+  const headers={"Content-Type":"application/json"};
+  if(auth)headers.Authorization="Bearer "+API_TOKEN;
+  const res=await fetch(API_BASE+path,{method:"POST",headers,body:JSON.stringify(body)});
+  const text=await res.text();
+  let json;
+  try{json=JSON.parse(text)}catch(e){throw new Error(text||"Resposta inválida")}
+  if(!res.ok||json.ok===false)throw new Error(json.erro||json.detalhe||"Erro na API");
+  return json;
+}
+
+function showView(view){
+  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+  const target=$("view-"+view);
+  if(target)target.classList.add("active");
+  document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.view===view));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.querySelectorAll(".nav button").forEach(btn=>btn.addEventListener("click",()=>showView(btn.dataset.view)));
+
+function tick(){
+  const now=new Date();
+  $("clock").textContent=now.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
+  $("dateFull").textContent=now.toLocaleDateString("pt-BR",{day:"2-digit",month:"long",year:"numeric"});
+  $("dayName").textContent=now.toLocaleDateString("pt-BR",{weekday:"long"});
+  const h=now.getHours();
+  $("saudacao").textContent=h<12?"Bom dia,":h<18?"Boa tarde,":"Boa noite,";
+}
+setInterval(tick,1000);tick();
+
+function normalizarCliente(c){
+  let dados={};
+  try{dados=typeof c.dados_json==="string"?JSON.parse(c.dados_json):(c.dados_json||{})}catch(e){dados={}}
+  const slug=c.slug||"cliente";
+  return {
+    id:c.id,
+    nome:c.nome||(dados.site?.marca||"")+ (dados.site?.marcaDestaque||"") || slug,
+    slug,
+    categoria:dados.categoria||"Cliente",
+    whatsapp:c.telefone||dados.config?.whatsapp||"",
+    instagramUrl:c.instagram||dados.config?.instagram||"",
+    site:`https://vxlink.fun/${slug}/`,
+    painel:`https://vxlink.fun/${slug}/admin.html`,
+    status:c.status||"ativo",
+    visitas:Number(c.acessos||0),
+    clicks:Number(c.eventos||0),
+    instagram:0,
+    uploads:0,
+    plano:"Anual",
+    valor:50,
+    ultimo:c.ultimo_evento||c.atualizado_em||c.criado_em||"sem evento",
+    dados
+  };
+}
+
+async function carregarPainelReal(){
+  status("Carregando dados reais da API PUDIM...");
+  try{
+    const [server,stats,clientesRes]=await Promise.all([
+      apiGet("/admin/server"),
+      apiGet("/admin/stats"),
+      apiGet("/admin/clientes")
+    ]);
+    apiOk=true;
+
+    const clientes=(clientesRes.clientes||[]).map(normalizarCliente);
+    const porCliente=stats.porCliente||[];
+    clientes.forEach(c=>{
+      const st=porCliente.find(x=>x.slug===c.slug);
+      if(st){
+        c.visitas=Number(st.acessos||0);
+        c.clicks=Number(st.eventos||0);
+        c.status=st.status||c.status;
+        c.ultimo=st.ultimo_evento&&st.ultimo_evento!=="1970-01-01"?st.ultimo_evento:c.ultimo;
+      }
+    });
+
+    state.stats={
+      visitas:Number(stats.resumo?.acessos||0),
+      clicks:Number(stats.resumo?.eventos||0),
+      instagram:0,
+      uploads:state.media.length,
+      cpu:Number(server.uso?.cpu||0),
+      ram:Number(server.uso?.ram||0),
+      disk:Number(server.uso?.disco||0),
+      clientes:Number(stats.resumo?.clientes||clientes.length),
+      sites:Number(stats.resumo?.sites||0),
+      eventos:Number(stats.resumo?.eventos||0),
+      hostname:server.servidor?.hostname||"srv1.vxlink.fun",
+      distro:server.servidor?.distro||"Debian",
+      uptime:server.servidor?.uptime||0
+    };
+    state.clientes=clientes;
+    state.evolution=clientes.map(c=>({cliente:c.nome,slug:c.slug,instancia:`${c.slug}-wpp`,status:"preparado",mensagens:c.clicks||0}));
+
+    status("PUDIM conectado na API real.", "ok");
+    if(!state.logs.some(l=>l.includes("Dados reais carregados"))) addLog("Dados reais carregados: server, stats e clientes.");
+  }catch(e){
+    apiOk=false;
+    status("API real falhou. Mantendo cache/local: "+e.message, "err");
+    addLog("Erro ao carregar API real: "+e.message);
+  }
+  renderAll();
+}
+
+function renderHome(){
+  const clientes=state.clientes||[];
+  const ativos=clientes.filter(c=>c.status==="ativo").length;
+  const visitas=clientes.reduce((s,c)=>s+Number(c.visitas||0),0)||Number(state.stats.visitas||0);
+  const clicks=clientes.reduce((s,c)=>s+Number(c.clicks||0),0)||Number(state.stats.clicks||0);
+  const conv=visitas?Math.round(clicks/visitas*100):0;
+  const score=Math.min(99,Math.max(35,60+conv+ativos*8));
+  $("homeClientes").textContent=ativos;
+  $("homeSites").textContent=state.stats.sites||clientes.length;
+  $("prodPercent").textContent=score+"%";
+  $("ringLabel").textContent=score+"%";
+  $("evoCount").textContent=state.evolution.length;
+  $("topCpu").textContent=state.stats.cpu+"%";
+  $("topRam").textContent=state.stats.ram+"%";
+  $("systemScore").textContent=apiOk?"96%":"72%";
+  $("apiPct").textContent=apiOk?"96%":"72%";
+  const apiBar=$("apiBar");if(apiBar)apiBar.style.width=apiOk?"96%":"72%";
+
+  $("taskList").innerHTML=state.tasks.map(t=>`<div class="task"><div class="check ${t.done?'done':''}">${t.done?'✓':''}</div><b>${t.name}</b><small class="${t.done?'ok':t.status==='In progress'?'working':''}">${t.status}</small></div>`).join("");
+  const total=Math.max(10,visitas||10);
+  const days=[["Seg",.22],["Ter",.35],["Qua",.45],["Qui",.58],["Sex",.72],["Sáb",.90],["Dom",.62]];
+  $("weekBars").innerHTML=days.map(d=>`<div class="daybar"><i style="height:${Math.max(28,Math.round(total*d[1]/2))}px"></i><b>${d[0]}</b></div>`).join("");
+  $("recentClients").innerHTML=clientes.slice(0,3).map((c,i)=>`<div class="event"><div class="date-mini"><strong>${String(i+1).padStart(2,"0")}</strong><span>filho</span></div><div><b>${c.nome}</b><small>${c.categoria} · ${c.visitas} visitas · ${c.clicks} eventos</small></div><div class="event-dot" style="color:${c.status==='ativo'?'var(--green)':'var(--red)'}"></div></div>`).join("")||"<p class='sub'>Nenhum cliente ainda.</p>";
+}
+
+function renderClientes(){
+  const clientes=state.clientes||[];
+  const ativos=clientes.filter(c=>c.status==="ativo").length;
+  $("cliTotal").textContent=clientes.length;
+  $("cliAtivos").textContent=ativos;
+  $("cliReceita").textContent=money(clientes.reduce((s,c)=>s+Number(c.valor||50),0));
+  $("clientesCards").innerHTML=clientes.map(c=>`<div class="client-card"><div class="avatar">${(c.nome||'?').slice(0,1).toUpperCase()}</div><div><b>${c.nome}</b><p>${c.categoria} · /${c.slug} · ${c.whatsapp||"sem WhatsApp"}</p><p>${c.visitas||0} visitas · ${c.clicks||0} eventos · ${c.uploads||0} uploads</p></div><span class="badge ${c.status==='ativo'?'ok':'err'}"><span class="dot"></span>${c.status}</span><div class="client-actions"><a class="btn ghost" href="${c.site}" target="_blank">Site</a><a class="btn" href="${c.painel}" target="_blank">Painel filho</a><button class="btn ${c.status==='ativo'?'red':'green'}" onclick="toggleClienteLocal('${c.slug}')">${c.status==='ativo'?'Desativar local':'Ativar local'}</button></div></div>`).join("")||"<p class='sub'>Nenhum cliente cadastrado na API.</p>";
+}
+
+function renderAnalytics(){
+  const visitas=state.clientes.reduce((s,c)=>s+Number(c.visitas||0),0)||Number(state.stats.visitas||0);
+  const clicks=state.clientes.reduce((s,c)=>s+Number(c.clicks||0),0)||Number(state.stats.clicks||0);
+  const conv=visitas?Math.round(clicks/visitas*100):0;
+  $("anaVisitas").textContent=visitas;
+  $("anaClicks").textContent=clicks;
+  $("anaConv").textContent=conv+"%";
+  $("analyticsRows").innerHTML=state.clientes.map(c=>`<tr><td>${c.nome}</td><td>${c.visitas||0}</td><td>${c.clicks||0}</td><td>${c.instagram||0}</td><td>${c.uploads||0}</td><td>${formatDate(c.ultimo)}</td></tr>`).join("");
+}
+function renderEvolution(){
+  $("evoInstances").innerHTML=state.evolution.map(e=>`<div class="evo-box"><div class="card-head"><div><h3>${e.cliente}</h3><p class="sub">${e.instancia}</p></div><span class="badge warn"><span class="dot"></span>${e.status}</span></div><div class="actions"><button class="btn ghost" onclick="evoAction('Status ${e.slug}')">Status</button><button class="btn" onclick="evoAction('QR ${e.slug}')">QR</button></div></div>`).join("")||"<p class='sub'>Nenhuma instância preparada.</p>";
+}
+function renderUploads(){
+  $("mediaLibrary").innerHTML=state.media.map(m=>`<div class="media"><div class="media-img" style="background-image:url('${m.url}')"></div><div class="media-info"><b>${m.name}</b><p>${m.slug}</p></div></div>`).join("")||"<p class='sub'>Nenhuma imagem enviada por este painel ainda.</p>";
+}
+function renderVps(){$("vpsCpu").textContent=state.stats.cpu+"%";$("vpsRam").textContent=state.stats.ram+"%";$("vpsDisk").textContent=state.stats.disk+"%"}
+function renderFinance(){$("finAnual").textContent=money(state.clientes.reduce((s,c)=>s+Number(c.valor||50),0));$("financeRows").innerHTML=state.clientes.map(c=>`<tr><td>${c.nome}</td><td>${c.plano||"Anual"}</td><td>${money(c.valor||50)}</td><td><span class="badge ok"><span class="dot"></span>em dia</span></td></tr>`).join("")}
+function renderLogs(){$("logsBox").textContent=state.logs.join("\n")}
+function renderAll(){renderHome();renderClientes();renderAnalytics();renderEvolution();renderUploads();renderVps();renderFinance();renderLogs();saveState()}
+
+function formatDate(v){if(!v||v==="1970-01-01")return"sem evento";try{return new Date(v).toLocaleString("pt-BR")}catch(e){return v}}
+function openClienteModal(){$("clienteModal").classList.add("open")}
+function closeClienteModal(){$("clienteModal").classList.remove("open")}
+function createCliente(){const nome=$("newNome").value.trim()||"Novo Cliente";const slug=slugify($("newSlug").value||nome);if(state.clientes.some(c=>c.slug===slug)){alert("Já existe cliente com esse slug.");return}const c={nome,slug,categoria:$("newCat").value||"Cliente",whatsapp:String($("newWhats").value||"").replace(/\D/g,""),site:$("newSite").value||`https://vxlink.fun/${slug}/`,painel:$("newPainel").value||`https://vxlink.fun/${slug}/admin.html`,status:"ativo",visitas:0,clicks:0,instagram:0,uploads:0,plano:"Anual",valor:50,ultimo:"criado localmente"};state.clientes.push(c);state.evolution.push({cliente:nome,slug,instancia:`${slug}-wpp`,status:"não criada",mensagens:0});addLog(`Cliente ${nome} criado localmente. Próxima etapa: rota POST /admin/clientes.`);closeClienteModal();renderAll()}
+function toggleClienteLocal(slug){const c=state.clientes.find(x=>x.slug===slug);if(!c)return;c.status=c.status==="ativo"?"inativo":"ativo";c.ultimo="status alterado localmente";addLog(`Cliente ${c.nome} alterado localmente para ${c.status}.`);renderAll()}
+function addTask(){state.tasks.unshift({name:"Nova tarefa do Pudim",status:"Pending",done:false});addLog("Nova tarefa adicionada.");renderAll()}
+function evoAction(action){const slug=$("evoSlug")?.value||"sandelicia";$("qrBox").innerHTML=`QR CODE<br>${slug}<br><small>${action}</small>`;addLog("Evolution: "+action+". Próxima etapa: conectar Evolution real.");status("Evolution preparado. Falta backend Evolution real.","ok")}
+function fakeAction(action){addLog("Ação VPS solicitada: "+action);status("Ação registrada. Execução real precisa de rota protegida.","ok")}
+function clearLogs(){state.logs=[];renderLogs();saveState()}
+async function checkApi(){status("Testando API...");try{const j=await apiGet("/",false);$("apiTestBox").textContent=JSON.stringify(j,null,2);status("API online.","ok");addLog("API principal testada com sucesso.")}catch(e){$("apiTestBox").textContent=String(e);status("Erro ao testar API.","err")}}
+async function loadSandelicia(){try{const j=await apiGet("/site/sandelicia?t="+Date.now(),false);$("apiTestBox").textContent=JSON.stringify(j,null,2);status("Dados da Sandelícia carregados.","ok");addLog("Dados da Sandelícia carregados no PUDIM.")}catch(e){$("apiTestBox").textContent=String(e);status("Erro ao carregar Sandelícia.","err")}}
+async function uploadImagem(){const slug=slugify($("uploadSlug").value||"geral");const file=$("uploadFile").files[0];if(!file){alert("Escolha uma imagem.");return}if(!file.type.startsWith("image/")){alert("Só imagem.");return}const fd=new FormData();fd.append("imagem",file);status("Enviando imagem para VPS...");try{const r=await fetch(`${API_BASE}/upload/${slug}`,{method:"POST",headers:{Authorization:"Bearer "+API_TOKEN},body:fd});const j=await r.json();if(!r.ok||!j.ok)throw new Error(j.erro||j.detalhe||"Erro no upload");lastUploadUrl=j.url;$("uploadResult").textContent=JSON.stringify(j,null,2);state.media.unshift({name:file.name,url:j.url,slug});const c=state.clientes.find(x=>x.slug===slug);if(c)c.uploads=Number(c.uploads||0)+1;await apiPost("/evento",{slug,evento:"upload",valor:{url:j.url,arquivo:file.name}},false).catch(()=>{});addLog(`Upload enviado para ${slug}: ${j.url}`);renderAll();status("Imagem enviada com sucesso.","ok")}catch(e){$("uploadResult").textContent=String(e);status("Erro no upload.","err")}}
+function copiarUltimaUrl(){if(!lastUploadUrl){alert("Nenhuma URL ainda.");return}navigator.clipboard.writeText(lastUploadUrl);alert("URL copiada.")}
+setInterval(()=>carregarPainelReal(),30000);
+carregarPainelReal();
 </script>
 </body>
 </html>
