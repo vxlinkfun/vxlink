@@ -254,7 +254,74 @@ function renderAll(){renderHome();renderClientes();renderAnalytics();renderEvolu
 function formatDate(v){if(!v||v==="1970-01-01")return"sem evento";try{return new Date(v).toLocaleString("pt-BR")}catch(e){return v}}
 function openClienteModal(){$("clienteModal").classList.add("open")}
 function closeClienteModal(){$("clienteModal").classList.remove("open")}
-function createCliente(){const nome=$("newNome").value.trim()||"Novo Cliente";const slug=slugify($("newSlug").value||nome);if(state.clientes.some(c=>c.slug===slug)){alert("Já existe cliente com esse slug.");return}const c={nome,slug,categoria:$("newCat").value||"Cliente",whatsapp:String($("newWhats").value||"").replace(/\D/g,""),site:$("newSite").value||`https://vxlink.fun/${slug}/`,painel:$("newPainel").value||`https://vxlink.fun/${slug}/admin.html`,status:"ativo",visitas:0,clicks:0,instagram:0,uploads:0,plano:"Anual",valor:50,ultimo:"criado localmente"};state.clientes.push(c);state.evolution.push({cliente:nome,slug,instancia:`${slug}-wpp`,status:"não criada",mensagens:0});addLog(`Cliente ${nome} criado localmente. Próxima etapa: rota POST /admin/clientes.`);closeClienteModal();renderAll()}
+async function createCliente(){
+  const btn = event?.target;
+  const original = btn ? btn.textContent : "";
+
+  const nome = $("newNome").value.trim();
+  const slug = slugify($("newSlug").value || nome);
+  const categoria = $("newCat").value.trim() || "Cliente";
+  const telefone = String($("newWhats").value || "").replace(/\D/g,"");
+  const site = $("newSite").value || `https://vxlink.fun/${slug}/`;
+  const painel = $("newPainel").value || `https://vxlink.fun/${slug}/admin.html`;
+
+  if(!nome || !slug){
+    alert("Preencha pelo menos Nome e Slug.");
+    return;
+  }
+
+  try{
+    if(btn){
+      btn.disabled = true;
+      btn.textContent = "Criando...";
+    }
+
+    status("Criando cliente real no MariaDB...");
+
+    const res = await fetch(API_BASE + "/admin/clientes", {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "Authorization":"Bearer " + API_TOKEN
+      },
+      body:JSON.stringify({
+        nome,
+        slug,
+        telefone,
+        whatsapp:telefone,
+        instagram:"",
+        categoria
+      })
+    });
+
+    const json = await res.json().catch(()=>null);
+
+    if(!res.ok || !json || !json.ok){
+      throw new Error(json?.erro || json?.detalhe || "Erro ao criar cliente.");
+    }
+
+    addLog(`Cliente ${nome} criado no MariaDB pelo PUDIM.`);
+    closeClienteModal();
+
+    ["newNome","newSlug","newCat","newWhats","newSite","newPainel"].forEach(id=>{
+      const el = $(id);
+      if(el) el.value = "";
+    });
+
+    await carregarPainelReal();
+
+    alert("Cliente criado de verdade no banco.");
+  }catch(e){
+    console.error(e);
+    status("Erro ao criar cliente: " + e.message, "err");
+    alert("Erro ao criar cliente:\n\n" + e.message);
+  }finally{
+    if(btn){
+      btn.disabled = false;
+      btn.textContent = original;
+    }
+  }
+}
 function toggleClienteLocal(slug){const c=state.clientes.find(x=>x.slug===slug);if(!c)return;c.status=c.status==="ativo"?"inativo":"ativo";c.ultimo="status alterado localmente";addLog(`Cliente ${c.nome} alterado localmente para ${c.status}.`);renderAll()}
 function addTask(){state.tasks.unshift({name:"Nova tarefa do Pudim",status:"Pending",done:false});addLog("Nova tarefa adicionada.");renderAll()}
 function evoAction(action){const slug=$("evoSlug")?.value||"sandelicia";$("qrBox").innerHTML=`QR CODE<br>${slug}<br><small>${action}</small>`;addLog("Evolution: "+action+". Próxima etapa: conectar Evolution real.");status("Evolution preparado. Falta backend Evolution real.","ok")}
