@@ -1,362 +1,434 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Personalize Moment | São Luís-MA</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Personalize Moment | Bio Link</title>
 
 <style>
 :root{
-  --rosa:#cf4f80;
-  --rosa2:#b83d6c;
-  --rosaClaro:#fff1f6;
-  --rosaCard:#ffe6ef;
-  --vinho:#4b1629;
-  --texto:#33242b;
-  --cinza:#766872;
-  --verde:#31b765;
-  --branco:#fff;
-  --sombra:0 12px 30px rgba(207,79,128,.16);
-  --radius:22px;
+  --rose:#c94f7c;
+  --rose-dark:#6d1838;
+  --rose-soft:#fff1f6;
+  --gold:#d9a84f;
+  --text:#2f2229;
+  --muted:#7b6d74;
+  --white:#fff;
+  --shadow:0 18px 45px rgba(130,35,72,.14);
+  --radius:26px;
 }
-*{box-sizing:border-box;margin:0;padding:0}
+*{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:linear-gradient(180deg,#fff6fa,#fff);
-  color:var(--texto);
+  font-family:Inter,Arial,sans-serif;
+  background:linear-gradient(180deg,#fff7fa,#fff);
+  color:var(--text);
 }
 a{text-decoration:none;color:inherit}
-img{max-width:100%;display:block}
-.top{
-  background:var(--vinho);
-  color:#fff;
-  padding:8px 14px;
+img{display:block;width:100%;height:100%;object-fit:cover}
+.topbar{
+  background:linear-gradient(90deg,var(--rose-dark),#8e2450);
+  color:white;
   text-align:center;
-  font-size:13px;
+  padding:9px 16px;
+  font-size:14px;
+  font-weight:700;
 }
 .header{
   position:sticky;
   top:0;
-  z-index:50;
+  z-index:99;
   background:rgba(255,255,255,.94);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid #f4d4df;
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid #f3d4df;
 }
 .nav{
-  max-width:1120px;
+  max-width:1100px;
   margin:auto;
-  padding:12px 18px;
+  padding:14px 18px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:20px;
 }
-.logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
+.logo-wrap{display:flex;align-items:center;gap:12px}
 .logo-box{
   width:62px;
   height:62px;
   border-radius:50%;
-  background:#ffe6ef;
-  border:2px dashed var(--rosa);
+  border:2px dashed var(--rose);
+  background:#ffe5ef;
   overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:var(--rosa);
-  font-size:11px;
+  display:grid;
+  place-items:center;
+  color:var(--rose);
+  font-size:12px;
   text-align:center;
-}
-.logo-box img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
 }
 .brand strong{
   display:block;
-  color:var(--rosa);
   font-family:Georgia,serif;
   font-style:italic;
-  font-size:28px;
+  font-size:32px;
+  color:var(--rose);
   line-height:1;
 }
 .brand span{
   display:block;
-  letter-spacing:5px;
-  color:var(--rosa2);
+  margin-top:5px;
+  letter-spacing:7px;
   font-size:11px;
-  margin-top:4px;
+  color:var(--rose-dark);
 }
 .menu{
   display:flex;
-  align-items:center;
   gap:22px;
+  font-weight:800;
   font-size:14px;
-  font-weight:700;
 }
-.menu a:hover{color:var(--rosa)}
+.menu a:hover{color:var(--rose)}
 .menu-btn{
   display:none;
+  width:54px;
+  height:54px;
   border:0;
-  background:var(--rosa);
-  color:#fff;
-  border-radius:12px;
-  padding:9px 13px;
-  font-size:22px;
+  border-radius:18px;
+  background:var(--rose);
+  color:white;
+  font-size:30px;
 }
 .hero{
-  max-width:1120px;
-  margin:18px auto 0;
-  padding:40px 28px;
+  max-width:1100px;
+  margin:22px auto;
+  padding:24px;
+}
+.hero-card{
+  background:
+    radial-gradient(circle at 85% 20%,rgba(201,79,124,.20),transparent 34%),
+    linear-gradient(135deg,#fff1f6,#fff);
+  border-radius:34px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:30px;
-  align-items:center;
-  background:
-    radial-gradient(circle at top right,#ffe4ee,transparent 42%),
-    linear-gradient(135deg,#fff0f5,#fff);
-  border-radius:0 0 30px 30px;
+  min-height:430px;
 }
-.local{
-  color:var(--rosa2);
-  font-weight:800;
-  margin:12px 0 18px;
+.hero-text{
+  padding:42px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
-.hero h1{
-  font-size:clamp(30px,5vw,48px);
-  line-height:1.1;
+.location{
+  color:var(--rose);
+  font-weight:900;
   margin-bottom:18px;
 }
-.hero h1 span{color:var(--rosa)}
+.hero h1{
+  font-size:clamp(35px,5vw,58px);
+  line-height:1.04;
+  margin-bottom:18px;
+}
+.hero h1 span{color:var(--rose)}
 .hero p{
-  color:var(--cinza);
-  font-size:17px;
-  margin-bottom:22px;
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.55;
+  margin-bottom:24px;
 }
 .badges{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
-  margin-bottom:24px;
+  margin-bottom:25px;
 }
 .badge{
-  background:#fff;
+  background:white;
+  padding:10px 14px;
   border-radius:999px;
-  padding:9px 12px;
-  font-size:12px;
-  font-weight:700;
-  color:var(--rosa2);
-  box-shadow:var(--sombra);
+  box-shadow:0 8px 20px rgba(201,79,124,.10);
+  color:var(--rose-dark);
+  font-weight:800;
+  font-size:13px;
+  display:flex;
+  align-items:center;
+  gap:7px;
 }
+svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2}
 .btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
-  border:0;
-  border-radius:14px;
-  padding:16px 24px;
-  font-weight:900;
+  gap:12px;
+  border-radius:18px;
+  padding:17px 24px;
+  background:linear-gradient(135deg,#28bf66,#099544);
+  color:white;
+  font-weight:1000;
   text-transform:uppercase;
-  color:#fff;
-  cursor:pointer;
-  background:linear-gradient(135deg,var(--rosa),var(--rosa2));
-  box-shadow:var(--sombra);
+  box-shadow:0 14px 32px rgba(18,160,77,.25);
+  transition:.25s;
 }
-.btn:hover{transform:translateY(-2px)}
-.btn.whats{background:linear-gradient(135deg,#35bd6b,#159b4a)}
-.hero-art{
-  background:#fff7fa;
-  border-radius:26px;
-  padding:16px;
-  box-shadow:var(--sombra);
+.btn:hover{transform:translateY(-3px)}
+.btn.rose{
+  background:linear-gradient(135deg,var(--rose),#a83161);
+  box-shadow:0 14px 32px rgba(201,79,124,.24);
+}
+.hero-image{
+  min-height:430px;
+  position:relative;
+  background:#ffe8f0;
+}
+.hero-image img{filter:saturate(1.02)}
+.hero-image::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(255,241,246,.75),transparent 35%);
 }
 section{
-  max-width:1120px;
-  margin:52px auto;
+  max-width:1100px;
+  margin:58px auto;
   padding:0 18px;
 }
-.title{text-align:center;margin-bottom:28px}
-.title small{color:var(--rosa);font-size:24px}
-.title h2{font-size:30px;margin-top:4px}
-.title p{color:var(--cinza);margin-top:6px}
-.grid{
+.title{text-align:center;margin-bottom:30px}
+.title .heart{color:var(--rose);font-size:25px}
+.title h2{font-size:34px;margin-top:5px}
+.title p{color:var(--muted);font-size:17px;margin-top:8px}
+.products{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:22px;
+  gap:24px;
 }
 .card{
-  background:#fff;
+  background:white;
   border-radius:var(--radius);
   overflow:hidden;
-  box-shadow:var(--sombra);
+  box-shadow:var(--shadow);
+  transition:.28s;
 }
-.card:hover{transform:translateY(-4px)}
-.art{
-  height:180px;
-  background:linear-gradient(135deg,#ffe6ef,#fff);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:10px;
+.card:hover{transform:translateY(-6px)}
+.card-img{
+  height:215px;
+  background:#fff0f5;
+  position:relative;
+}
+.card-icon{
+  position:absolute;
+  left:16px;
+  top:16px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--rose),#a83161);
+  color:white;
+  display:grid;
+  place-items:center;
+  z-index:2;
+  box-shadow:0 10px 25px rgba(201,79,124,.25);
 }
 .card-body{
+  padding:20px;
   text-align:center;
-  padding:18px;
 }
-.card-body h3{font-size:19px;margin-bottom:12px}
-.mini{
-  display:inline-block;
-  background:#ffe1eb;
-  color:var(--rosa2);
-  padding:10px 16px;
+.card h3{
+  font-size:20px;
+  margin-bottom:14px;
+}
+.mini-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:11px 18px;
   border-radius:999px;
-  font-size:14px;
+  background:#ffe1eb;
+  color:var(--rose);
   font-weight:900;
+  transition:.25s;
+}
+.mini-btn:hover{
+  background:var(--rose);
+  color:white;
 }
 .steps{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:16px;
+  gap:18px;
 }
 .step{
-  background:#fff;
+  background:white;
   border-radius:var(--radius);
-  padding:22px 14px;
+  padding:24px 18px;
   text-align:center;
-  box-shadow:var(--sombra);
+  box-shadow:var(--shadow);
 }
-.icon{
-  width:58px;
-  height:58px;
-  background:var(--rosa);
-  color:#fff;
+.step-icon{
+  width:62px;
+  height:62px;
+  margin:0 auto 14px;
   border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--rose),#a83161);
+  color:white;
+}
+.step h3{font-size:20px;margin-bottom:6px}
+.step p{color:var(--muted)}
+.trust{
+  background:#fff0f5;
+  border-radius:var(--radius);
+  padding:25px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  box-shadow:var(--shadow);
+}
+.trust-item{
   display:flex;
   align-items:center;
   justify-content:center;
-  margin:0 auto 12px;
-  font-size:25px;
+  gap:10px;
+  text-align:center;
+  font-weight:900;
+  color:var(--rose-dark);
 }
-.trust{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-  background:#fff0f5;
-  border-radius:var(--radius);
-  box-shadow:var(--sombra);
-  padding:22px;
-}
-.trust div{text-align:center;font-weight:800;color:var(--rosa2)}
 .reviews{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:20px;
+  gap:22px;
 }
 .review{
-  background:#fff;
+  background:white;
   border-radius:var(--radius);
-  padding:20px;
-  box-shadow:var(--sombra);
+  padding:24px;
+  box-shadow:var(--shadow);
 }
-.stars{color:#d9a84f;margin:7px 0}
+.review h3{font-size:20px}
+.stars{color:var(--gold);margin:10px 0;font-size:18px}
+.review p{color:#4c3c44;line-height:1.5}
 .cta{
-  background:linear-gradient(135deg,#ffe4ed,#fff);
-  border-radius:28px;
+  background:linear-gradient(135deg,#ffe1eb,#fff);
+  border-radius:34px;
+  padding:40px 24px;
+  box-shadow:var(--shadow);
   text-align:center;
-  padding:36px 20px;
-  box-shadow:var(--sombra);
 }
-.cta h2{font-size:30px;margin-bottom:8px}
-.cta p{color:var(--cinza);margin-bottom:22px}
-.cta-btns{
+.cta h2{font-size:34px;margin-bottom:8px}
+.cta p{color:var(--muted);margin-bottom:24px;font-size:17px}
+.cta-buttons{
   display:flex;
   justify-content:center;
-  gap:14px;
+  gap:16px;
   flex-wrap:wrap;
 }
 .footer{
-  background:linear-gradient(135deg,var(--rosa2),var(--vinho));
-  color:#fff;
-  padding:28px 18px;
+  background:linear-gradient(135deg,#a83161,var(--rose-dark));
+  color:white;
+  padding:30px 18px;
   text-align:center;
 }
 .footer-grid{
-  max-width:1120px;
+  max-width:1100px;
   margin:auto;
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:18px;
-  font-size:14px;
+  gap:16px;
+}
+.footer-item{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-weight:800;
 }
 .copy{
+  max-width:1100px;
+  margin:22px auto 0;
+  padding-top:18px;
   border-top:1px solid rgba(255,255,255,.22);
-  margin-top:22px;
-  padding-top:16px;
-  font-size:13px;
+  font-size:14px;
 }
 .float{
   position:fixed;
   right:18px;
   bottom:18px;
+  z-index:100;
   width:62px;
   height:62px;
   border-radius:50%;
   background:#25d366;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:30px;
-  box-shadow:0 10px 25px rgba(0,0,0,.25);
-  z-index:99;
+  color:white;
+  display:grid;
+  place-items:center;
+  box-shadow:0 12px 30px rgba(0,0,0,.25);
 }
-svg{width:100%;height:100%}
+.reveal{
+  opacity:0;
+  transform:translateY(18px);
+  transition:.6s ease;
+}
+.reveal.show{
+  opacity:1;
+  transform:none;
+}
 
-@media(max-width:850px){
+@media(max-width:900px){
   .menu{
     display:none;
     position:absolute;
-    top:86px;
+    top:90px;
     left:18px;
     right:18px;
-    background:#fff;
-    border-radius:18px;
-    padding:20px;
+    background:white;
+    border-radius:22px;
+    padding:22px;
     flex-direction:column;
-    box-shadow:var(--sombra);
+    box-shadow:var(--shadow);
   }
   .menu.active{display:flex}
   .menu-btn{display:block}
-  .hero{grid-template-columns:1fr;padding:28px 18px}
-  .grid,.reviews{grid-template-columns:repeat(2,1fr)}
-  .steps,.trust,.footer-grid{grid-template-columns:repeat(2,1fr)}
+  .hero{padding:0;margin:0 auto 35px}
+  .hero-card{
+    border-radius:0 0 34px 34px;
+    grid-template-columns:1fr;
+  }
+  .hero-text{padding:36px 22px}
+  .hero-image{
+    min-height:260px;
+    order:-1;
+  }
+  .products,.reviews{grid-template-columns:1fr 1fr}
+  .steps,.trust,.footer-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:560px){
-  .brand strong{font-size:23px}
-  .brand span{font-size:10px}
-  .logo-box{width:54px;height:54px}
-  .hero{margin-top:0;border-radius:0 0 24px 24px}
-  .grid,.reviews,.steps,.trust,.footer-grid{grid-template-columns:1fr}
+  .topbar{font-size:13px}
+  .nav{padding:13px 16px}
+  .logo-box{width:52px;height:52px}
+  .brand strong{font-size:27px}
+  .brand span{font-size:10px;letter-spacing:6px}
+  .menu-btn{width:50px;height:50px}
+  .hero h1{font-size:39px}
+  .hero p{font-size:17px}
   .btn{width:100%}
-  .art{height:165px}
+  .hero-image{min-height:230px}
+  section{margin:46px auto}
+  .products,.reviews,.steps,.trust,.footer-grid{grid-template-columns:1fr}
+  .card-img{height:230px}
+  .title h2{font-size:32px}
+  .trust{gap:18px}
+  .trust-item{justify-content:flex-start;text-align:left}
 }
 </style>
 </head>
 
 <body>
 
-<div class="top">🎁 Personalizados em São Luís-MA • Atendimento pelo WhatsApp</div>
+<div class="topbar">🎁 Personalizados em São Luís-MA • Atendimento pelo WhatsApp</div>
 
 <header class="header">
   <div class="nav">
-    <a class="logo" href="#">
+    <a class="logo-wrap" href="#">
       <div class="logo-box">
-        <!-- COLOQUE SUA LOGO PNG AQUI -->
+        <!-- coloque o PNG da logo aqui -->
         <img src="logo.png" alt="Personalize Moment">
       </div>
       <div class="brand">
@@ -379,135 +451,146 @@ svg{width:100%;height:100%}
 <main>
 
 <section class="hero">
-  <div>
-    <div class="local">📍 São Luís - MA</div>
-    <h1>Surpreenda quem você ama com presentes <span>personalizados únicos!</span> 💛</h1>
-    <p>Canecas, almofadas, camisas, garrafas, cadernos e presentes sob encomenda feitos com amor.</p>
+  <div class="hero-card">
+    <div class="hero-text">
+      <div class="location">📍 São Luís - MA</div>
+      <h1>Surpreenda quem você ama com presentes <span>personalizados únicos!</span> 💛</h1>
+      <p>Canecas, almofadas, camisas, garrafas, cadernos e presentes sob encomenda feitos com amor.</p>
 
-    <div class="badges">
-      <span class="badge">♡ Feitos com amor</span>
-      <span class="badge">⚙ Qualidade premium</span>
-      <span class="badge">🚚 Entrega em São Luís</span>
-      <span class="badge">💬 Atendimento no WhatsApp</span>
+      <div class="badges">
+        <span class="badge">♡ Feitos com amor</span>
+        <span class="badge">⚙ Qualidade premium</span>
+        <span class="badge">🚚 Entrega em São Luís</span>
+        <span class="badge">💬 Atendimento no WhatsApp</span>
+      </div>
+
+      <a class="btn" href="https://wa.me/559887873331?text=Olá!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20fazer%20um%20pedido." target="_blank">
+        💬 Fazer pedido pelo WhatsApp
+      </a>
     </div>
 
-    <a class="btn whats" target="_blank" href="https://wa.me/559887873331?text=Olá!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20fazer%20um%20pedido.">
-      💬 Fazer pedido pelo WhatsApp
-    </a>
-  </div>
-
-  <div class="hero-art">
-    <svg viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg">
-      <rect width="700" height="420" rx="28" fill="#fff3f7"/>
-      <path d="M60 70 C110 10, 190 40, 170 120 C235 55, 310 85, 270 175 C230 265, 110 300, 65 205 C30 145, 30 100, 60 70Z" fill="none" stroke="#d77096" stroke-width="8"/>
-      <path d="M190 60 L330 30 L250 120 Z" fill="none" stroke="#d77096" stroke-width="7"/>
-      <path d="M190 60 L250 120 L330 30" fill="none" stroke="#d77096" stroke-width="5"/>
-      <text x="75" y="245" font-size="56" fill="#c94f7c" font-family="Georgia" font-style="italic">Personalize</text>
-      <text x="165" y="295" font-size="30" letter-spacing="12" fill="#b83d6c">MOMENT</text>
-
-      <rect x="380" y="80" width="150" height="170" rx="14" fill="#ead0d7"/>
-      <rect x="395" y="98" width="120" height="70" rx="8" fill="#fff"/>
-      <circle cx="420" cy="120" r="16" fill="#d77096"/>
-      <circle cx="455" cy="120" r="16" fill="#d9a84f"/>
-      <circle cx="490" cy="120" r="16" fill="#d77096"/>
-      <text x="407" y="210" font-size="36" fill="#4b1629" font-family="Georgia" font-style="italic">família</text>
-
-      <rect x="555" y="72" width="52" height="200" rx="24" fill="#fff"/>
-      <rect x="562" y="40" width="38" height="38" rx="12" fill="#222"/>
-      <text x="580" y="220" font-size="26" fill="#c94f7c" transform="rotate(-90 580 220)" font-family="Georgia" font-style="italic">Gratidão</text>
-
-      <rect x="440" y="250" width="95" height="95" rx="14" fill="#fff"/>
-      <ellipse cx="487" cy="250" rx="48" ry="14" fill="#d77096"/>
-      <text x="462" y="298" font-size="28" fill="#c94f7c" font-family="Georgia" font-style="italic">Mãe</text>
-
-      <rect x="595" y="185" width="78" height="120" rx="8" fill="#b85c79"/>
-      <text x="607" y="220" font-size="17" fill="#fff" font-family="Georgia">Melhores</text>
-      <text x="610" y="242" font-size="17" fill="#fff" font-family="Georgia">momentos</text>
-      <path d="M620 255 C635 235, 670 250, 645 282 C620 250, 595 235, 620 255Z" fill="#fff"/>
-    </svg>
+    <div class="hero-image">
+      <img src="hero.jpg" alt="Produtos personalizados Personalize Moment">
+    </div>
   </div>
 </section>
 
-<section id="produtos">
+<section id="produtos" class="reveal">
   <div class="title">
-    <small>♥</small>
+    <div class="heart">♥</div>
     <h2>Nossos Produtos</h2>
     <p>Presentes que criam memórias</p>
   </div>
 
-  <div class="grid">
+  <div class="products">
 
-    <div class="card">
-      <div class="art">
-        <svg viewBox="0 0 300 220"><rect width="300" height="220" fill="#fff0f5"/><rect x="70" y="65" width="120" height="105" rx="14" fill="#fff"/><path d="M190 90 C245 80 245 155 190 145" fill="none" stroke="#fff" stroke-width="20"/><rect x="88" y="82" width="82" height="58" rx="8" fill="#f4c2d2"/><circle cx="112" cy="110" r="17" fill="#c94f7c"/><circle cx="145" cy="110" r="17" fill="#d9a84f"/><text x="97" y="160" font-size="18" fill="#c94f7c">foto</text></svg>
+    <article class="card">
+      <div class="card-img">
+        <div class="card-icon">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M4 7h11v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7Z"/><path d="M15 9h2a3 3 0 0 1 0 6h-2"/></svg>
+        </div>
+        <img src="caneca.jpg" alt="Canecas personalizadas">
       </div>
-      <div class="card-body"><h3>Canecas Personalizadas</h3><a class="mini" target="_blank" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20caneca%20personalizada.">Pedir orçamento</a></div>
-    </div>
+      <div class="card-body">
+        <h3>Canecas Personalizadas</h3>
+        <a class="mini-btn" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20caneca%20personalizada." target="_blank">Pedir orçamento</a>
+      </div>
+    </article>
 
-    <div class="card">
-      <div class="art">
-        <svg viewBox="0 0 300 220"><rect width="300" height="220" fill="#fff0f5"/><rect x="45" y="50" width="210" height="130" rx="28" fill="#f1d4dc"/><rect x="92" y="78" width="116" height="55" rx="8" fill="#fff"/><circle cx="115" cy="105" r="16" fill="#c94f7c"/><circle cx="150" cy="105" r="16" fill="#d9a84f"/><circle cx="185" cy="105" r="16" fill="#c94f7c"/><text x="92" y="160" font-size="24" fill="#8c2d4d" font-family="Georgia">mundo ♥</text></svg>
+    <article class="card">
+      <div class="card-img">
+        <div class="card-icon">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M8 8c2 2 6 2 8 0M8 16c2-2 6-2 8 0"/></svg>
+        </div>
+        <img src="almofada.jpg" alt="Almofadas com fotos">
       </div>
-      <div class="card-body"><h3>Almofadas com Fotos</h3><a class="mini" target="_blank" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20almofada%20personalizada.">Pedir orçamento</a></div>
-    </div>
+      <div class="card-body">
+        <h3>Almofadas com Fotos</h3>
+        <a class="mini-btn" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20almofada%20personalizada." target="_blank">Pedir orçamento</a>
+      </div>
+    </article>
 
-    <div class="card">
-      <div class="art">
-        <svg viewBox="0 0 300 220"><rect width="300" height="220" fill="#fff0f5"/><path d="M95 55 L125 35 H175 L205 55 L225 90 L190 105 V180 H110 V105 L75 90Z" fill="#171717"/><path d="M150 85 C170 55 225 85 150 150 C75 85 130 55 150 85Z" fill="#fff"/><circle cx="135" cy="105" r="13" fill="#c94f7c"/><circle cx="165" cy="105" r="13" fill="#d9a84f"/><text x="118" y="160" font-size="24" fill="#fff" font-family="Georgia">Te Amo</text></svg>
+    <article class="card">
+      <div class="card-img">
+        <div class="card-icon">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M8 4 5 6 3 10l4 2v8h10v-8l4-2-2-4-3-2"/><path d="M9 4a3 3 0 0 0 6 0"/></svg>
+        </div>
+        <img src="camisa.jpg" alt="Camisas personalizadas">
       </div>
-      <div class="card-body"><h3>Camisas Personalizadas</h3><a class="mini" target="_blank" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20camisa%20personalizada.">Pedir orçamento</a></div>
-    </div>
+      <div class="card-body">
+        <h3>Camisas Personalizadas</h3>
+        <a class="mini-btn" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20camisa%20personalizada." target="_blank">Pedir orçamento</a>
+      </div>
+    </article>
 
-    <div class="card">
-      <div class="art">
-        <svg viewBox="0 0 300 220"><rect width="300" height="220" fill="#fff0f5"/><rect x="120" y="55" width="65" height="130" rx="28" fill="#fff"/><rect x="128" y="28" width="48" height="40" rx="13" fill="#222"/><text x="155" y="160" font-size="25" fill="#c94f7c" transform="rotate(-90 155 160)" font-family="Georgia">Gratidão</text></svg>
+    <article class="card">
+      <div class="card-img">
+        <div class="card-icon">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M9 2h6v3H9z"/><path d="M8 5h8l1 4v10a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3V9l1-4Z"/></svg>
+        </div>
+        <img src="garrafa.jpg" alt="Garrafas térmicas">
       </div>
-      <div class="card-body"><h3>Garrafas Térmicas</h3><a class="mini" target="_blank" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20garrafa%20personalizada.">Pedir orçamento</a></div>
-    </div>
+      <div class="card-body">
+        <h3>Garrafas Térmicas</h3>
+        <a class="mini-btn" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20garrafa%20personalizada." target="_blank">Pedir orçamento</a>
+      </div>
+    </article>
 
-    <div class="card">
-      <div class="art">
-        <svg viewBox="0 0 300 220"><rect width="300" height="220" fill="#fff0f5"/><rect x="90" y="42" width="120" height="145" rx="12" fill="#b85c79"/><line x1="92" y1="62" x2="75" y2="62" stroke="#333" stroke-width="5"/><line x1="92" y1="92" x2="75" y2="92" stroke="#333" stroke-width="5"/><line x1="92" y1="122" x2="75" y2="122" stroke="#333" stroke-width="5"/><text x="112" y="86" font-size="17" fill="#fff">MELHORES</text><text x="115" y="108" font-size="17" fill="#fff">momentos</text><path d="M150 125 C165 105 205 122 150 165 C95 122 135 105 150 125Z" fill="#fff"/></svg>
+    <article class="card">
+      <div class="card-img">
+        <div class="card-icon">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M7 3h12v18H7z"/><path d="M5 7h4M5 12h4M5 17h4"/></svg>
+        </div>
+        <img src="caderno.jpg" alt="Cadernos personalizados">
       </div>
-      <div class="card-body"><h3>Cadernos Personalizados</h3><a class="mini" target="_blank" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20caderno%20personalizado.">Pedir orçamento</a></div>
-    </div>
+      <div class="card-body">
+        <h3>Cadernos Personalizados</h3>
+        <a class="mini-btn" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20caderno%20personalizado." target="_blank">Pedir orçamento</a>
+      </div>
+    </article>
 
-    <div class="card">
-      <div class="art">
-        <svg viewBox="0 0 300 220"><rect width="300" height="220" fill="#fff0f5"/><rect x="55" y="95" width="190" height="80" rx="10" fill="#e3c9b4"/><rect x="75" y="55" width="70" height="75" rx="10" fill="#fff"/><rect x="155" y="65" width="70" height="65" rx="10" fill="#fff"/><text x="166" y="103" font-size="22" fill="#c94f7c" font-family="Georgia">Mãe</text><circle cx="105" cy="90" r="15" fill="#c94f7c"/><circle cx="125" cy="90" r="15" fill="#d9a84f"/></svg>
+    <article class="card">
+      <div class="card-img">
+        <div class="card-icon">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M20 12v9H4v-9"/><path d="M2 7h20v5H2z"/><path d="M12 7v14"/><path d="M12 7C9 2 4 3 5 7M12 7c3-5 8-4 7 0"/></svg>
+        </div>
+        <img src="presente.jpg" alt="Presentes sob encomenda">
       </div>
-      <div class="card-body"><h3>Presentes Sob Encomenda</h3><a class="mini" target="_blank" href="https://wa.me/559887873331?text=Olá!%20Quero%20um%20presente%20personalizado%20sob%20encomenda.">Pedir orçamento</a></div>
-    </div>
+      <div class="card-body">
+        <h3>Presentes Sob Encomenda</h3>
+        <a class="mini-btn" href="https://wa.me/559887873331?text=Olá!%20Quero%20um%20presente%20personalizado%20sob%20encomenda." target="_blank">Pedir orçamento</a>
+      </div>
+    </article>
 
   </div>
 </section>
 
-<section id="como">
+<section id="como" class="reveal">
   <div class="title">
-    <small>♥</small>
+    <div class="heart">♥</div>
     <h2>Como funciona</h2>
   </div>
 
   <div class="steps">
-    <div class="step"><div class="icon">🛒</div><h3>Escolha</h3><p>Escolha o produto.</p></div>
-    <div class="step"><div class="icon">🖼️</div><h3>Envie</h3><p>Envie nome, foto ou frase.</p></div>
-    <div class="step"><div class="icon">✅</div><h3>Aprove</h3><p>Aprove a arte.</p></div>
-    <div class="step"><div class="icon">🚚</div><h3>Receba</h3><p>Receba com amor.</p></div>
+    <div class="step"><div class="step-icon">🛒</div><h3>Escolha</h3><p>Escolha o produto.</p></div>
+    <div class="step"><div class="step-icon">🖼️</div><h3>Envie</h3><p>Envie nome, foto ou frase.</p></div>
+    <div class="step"><div class="step-icon">✅</div><h3>Aprove</h3><p>Aprove a arte.</p></div>
+    <div class="step"><div class="step-icon">🚚</div><h3>Receba</h3><p>Receba com amor.</p></div>
   </div>
 </section>
 
-<section>
+<section class="reveal">
   <div class="trust">
-    <div>🎁 Perfeito para todas as ocasiões</div>
-    <div>♡ Feito com amor em cada detalhe</div>
-    <div>🛡️ Pagamento seguro</div>
-    <div>💬 Atendimento rápido pelo WhatsApp</div>
+    <div class="trust-item">🎁 Perfeito para todas as ocasiões</div>
+    <div class="trust-item">♡ Feito com amor em cada detalhe</div>
+    <div class="trust-item">🛡️ Pagamento seguro</div>
+    <div class="trust-item">💬 Atendimento rápido</div>
   </div>
 </section>
 
-<section id="avaliacoes">
+<section id="avaliacoes" class="reveal">
   <div class="title">
-    <small>♥</small>
+    <div class="heart">♥</div>
     <h2>Avaliações de Clientes</h2>
   </div>
 
@@ -518,31 +601,33 @@ svg{width:100%;height:100%}
   </div>
 </section>
 
-<section id="contato">
+<section id="contato" class="reveal">
   <div class="cta">
     <h2>Fale conosco</h2>
     <p>Estamos prontos para te atender!</p>
-    <div class="cta-btns">
-      <a class="btn whats" target="_blank" href="https://wa.me/559887873331?text=Olá!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20fazer%20um%20pedido.">💬 WhatsApp</a>
-      <a class="btn" target="_blank" href="https://instagram.com/personalizemoment">📸 Instagram</a>
+
+    <div class="cta-buttons">
+      <a class="btn" href="https://wa.me/559887873331?text=Olá!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20fazer%20um%20pedido." target="_blank">💬 WhatsApp</a>
+      <a class="btn rose" href="https://instagram.com/personalizemoment" target="_blank">📸 Instagram</a>
     </div>
   </div>
 </section>
 
 </main>
 
-<a class="float" target="_blank" href="https://wa.me/559887873331?text=Olá!%20Quero%20fazer%20um%20pedido.">💬</a>
+<a class="float" href="https://wa.me/559887873331?text=Olá!%20Quero%20fazer%20um%20pedido." target="_blank">💬</a>
 
 <footer class="footer">
   <div class="footer-grid">
-    <div>🚚 Entrega em São Luís - MA</div>
-    <div>🔒 Pagamento 100% Seguro</div>
-    <div>🛡️ Site 100% Seguro</div>
-    <div>♡ Feito com amor para você</div>
+    <div class="footer-item">🚚 Entrega em São Luís - MA</div>
+    <div class="footer-item">🔒 Pagamento seguro</div>
+    <div class="footer-item">🛡️ Atendimento protegido</div>
+    <div class="footer-item">♡ Feito com amor</div>
   </div>
+
   <div class="copy">
-    © 2024 Personalize Moment. Todos os direitos reservados.  
-    <br>Desenvolvido por <strong>VLINK</strong>
+    © 2024 Personalize Moment. Todos os direitos reservados.<br>
+    Desenvolvido por <strong>VLINK</strong>
   </div>
 </footer>
 
@@ -551,11 +636,21 @@ function toggleMenu(){
   document.getElementById("menu").classList.toggle("active");
 }
 
-document.querySelectorAll("#menu a").forEach(link=>{
-  link.addEventListener("click",()=>{
+document.querySelectorAll("#menu a").forEach(a=>{
+  a.addEventListener("click",()=>{
     document.getElementById("menu").classList.remove("active");
   });
 });
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+},{threshold:.12});
+
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 </script>
 
 </body>
