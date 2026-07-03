@@ -1,657 +1,340 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Personalize Moment | Bio Link</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-:root{
-  --rose:#c94f7c;
-  --rose-dark:#6d1838;
-  --rose-soft:#fff1f6;
-  --gold:#d9a84f;
-  --text:#2f2229;
-  --muted:#7b6d74;
-  --white:#fff;
-  --shadow:0 18px 45px rgba(130,35,72,.14);
-  --radius:26px;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  font-family:Inter,Arial,sans-serif;
-  background:linear-gradient(180deg,#fff7fa,#fff);
-  color:var(--text);
-}
-a{text-decoration:none;color:inherit}
-img{display:block;width:100%;height:100%;object-fit:cover}
-.topbar{
-  background:linear-gradient(90deg,var(--rose-dark),#8e2450);
-  color:white;
-  text-align:center;
-  padding:9px 16px;
-  font-size:14px;
-  font-weight:700;
-}
-.header{
-  position:sticky;
-  top:0;
-  z-index:99;
-  background:rgba(255,255,255,.94);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid #f3d4df;
-}
-.nav{
-  max-width:1100px;
-  margin:auto;
-  padding:14px 18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-.logo-wrap{display:flex;align-items:center;gap:12px}
-.logo-box{
-  width:62px;
-  height:62px;
-  border-radius:50%;
-  border:2px dashed var(--rose);
-  background:#ffe5ef;
-  overflow:hidden;
-  display:grid;
-  place-items:center;
-  color:var(--rose);
-  font-size:12px;
-  text-align:center;
-}
-.brand strong{
-  display:block;
-  font-family:Georgia,serif;
-  font-style:italic;
-  font-size:32px;
-  color:var(--rose);
-  line-height:1;
-}
-.brand span{
-  display:block;
-  margin-top:5px;
-  letter-spacing:7px;
-  font-size:11px;
-  color:var(--rose-dark);
-}
-.menu{
-  display:flex;
-  gap:22px;
-  font-weight:800;
-  font-size:14px;
-}
-.menu a:hover{color:var(--rose)}
-.menu-btn{
-  display:none;
-  width:54px;
-  height:54px;
-  border:0;
-  border-radius:18px;
-  background:var(--rose);
-  color:white;
-  font-size:30px;
-}
-.hero{
-  max-width:1100px;
-  margin:22px auto;
-  padding:24px;
-}
-.hero-card{
-  background:
-    radial-gradient(circle at 85% 20%,rgba(201,79,124,.20),transparent 34%),
-    linear-gradient(135deg,#fff1f6,#fff);
-  border-radius:34px;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  min-height:430px;
-}
-.hero-text{
-  padding:42px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-.location{
-  color:var(--rose);
-  font-weight:900;
-  margin-bottom:18px;
-}
-.hero h1{
-  font-size:clamp(35px,5vw,58px);
-  line-height:1.04;
-  margin-bottom:18px;
-}
-.hero h1 span{color:var(--rose)}
-.hero p{
-  color:var(--muted);
-  font-size:18px;
-  line-height:1.55;
-  margin-bottom:24px;
-}
-.badges{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-bottom:25px;
-}
-.badge{
-  background:white;
-  padding:10px 14px;
-  border-radius:999px;
-  box-shadow:0 8px 20px rgba(201,79,124,.10);
-  color:var(--rose-dark);
-  font-weight:800;
-  font-size:13px;
-  display:flex;
-  align-items:center;
-  gap:7px;
-}
-svg.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2}
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  border-radius:18px;
-  padding:17px 24px;
-  background:linear-gradient(135deg,#28bf66,#099544);
-  color:white;
-  font-weight:1000;
-  text-transform:uppercase;
-  box-shadow:0 14px 32px rgba(18,160,77,.25);
-  transition:.25s;
-}
-.btn:hover{transform:translateY(-3px)}
-.btn.rose{
-  background:linear-gradient(135deg,var(--rose),#a83161);
-  box-shadow:0 14px 32px rgba(201,79,124,.24);
-}
-.hero-image{
-  min-height:430px;
-  position:relative;
-  background:#ffe8f0;
-}
-.hero-image img{filter:saturate(1.02)}
-.hero-image::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(90deg,rgba(255,241,246,.75),transparent 35%);
-}
-section{
-  max-width:1100px;
-  margin:58px auto;
-  padding:0 18px;
-}
-.title{text-align:center;margin-bottom:30px}
-.title .heart{color:var(--rose);font-size:25px}
-.title h2{font-size:34px;margin-top:5px}
-.title p{color:var(--muted);font-size:17px;margin-top:8px}
-.products{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:24px;
-}
-.card{
-  background:white;
-  border-radius:var(--radius);
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  transition:.28s;
-}
-.card:hover{transform:translateY(-6px)}
-.card-img{
-  height:215px;
-  background:#fff0f5;
-  position:relative;
-}
-.card-icon{
-  position:absolute;
-  left:16px;
-  top:16px;
-  width:48px;
-  height:48px;
-  border-radius:50%;
-  background:linear-gradient(135deg,var(--rose),#a83161);
-  color:white;
-  display:grid;
-  place-items:center;
-  z-index:2;
-  box-shadow:0 10px 25px rgba(201,79,124,.25);
-}
-.card-body{
-  padding:20px;
-  text-align:center;
-}
-.card h3{
-  font-size:20px;
-  margin-bottom:14px;
-}
-.mini-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:11px 18px;
-  border-radius:999px;
-  background:#ffe1eb;
-  color:var(--rose);
-  font-weight:900;
-  transition:.25s;
-}
-.mini-btn:hover{
-  background:var(--rose);
-  color:white;
-}
-.steps{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
-}
-.step{
-  background:white;
-  border-radius:var(--radius);
-  padding:24px 18px;
-  text-align:center;
-  box-shadow:var(--shadow);
-}
-.step-icon{
-  width:62px;
-  height:62px;
-  margin:0 auto 14px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,var(--rose),#a83161);
-  color:white;
-}
-.step h3{font-size:20px;margin-bottom:6px}
-.step p{color:var(--muted)}
-.trust{
-  background:#fff0f5;
-  border-radius:var(--radius);
-  padding:25px;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-  box-shadow:var(--shadow);
-}
-.trust-item{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  text-align:center;
-  font-weight:900;
-  color:var(--rose-dark);
-}
-.reviews{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px;
-}
-.review{
-  background:white;
-  border-radius:var(--radius);
-  padding:24px;
-  box-shadow:var(--shadow);
-}
-.review h3{font-size:20px}
-.stars{color:var(--gold);margin:10px 0;font-size:18px}
-.review p{color:#4c3c44;line-height:1.5}
-.cta{
-  background:linear-gradient(135deg,#ffe1eb,#fff);
-  border-radius:34px;
-  padding:40px 24px;
-  box-shadow:var(--shadow);
-  text-align:center;
-}
-.cta h2{font-size:34px;margin-bottom:8px}
-.cta p{color:var(--muted);margin-bottom:24px;font-size:17px}
-.cta-buttons{
-  display:flex;
-  justify-content:center;
-  gap:16px;
-  flex-wrap:wrap;
-}
-.footer{
-  background:linear-gradient(135deg,#a83161,var(--rose-dark));
-  color:white;
-  padding:30px 18px;
-  text-align:center;
-}
-.footer-grid{
-  max-width:1100px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-}
-.footer-item{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  font-weight:800;
-}
-.copy{
-  max-width:1100px;
-  margin:22px auto 0;
-  padding-top:18px;
-  border-top:1px solid rgba(255,255,255,.22);
-  font-size:14px;
-}
-.float{
-  position:fixed;
-  right:18px;
-  bottom:18px;
-  z-index:100;
-  width:62px;
-  height:62px;
-  border-radius:50%;
-  background:#25d366;
-  color:white;
-  display:grid;
-  place-items:center;
-  box-shadow:0 12px 30px rgba(0,0,0,.25);
-}
-.reveal{
-  opacity:0;
-  transform:translateY(18px);
-  transition:.6s ease;
-}
-.reveal.show{
-  opacity:1;
-  transform:none;
-}
+  <title>Personalize Moment | Presentes Personalizados em São Luís-MA</title>
 
-@media(max-width:900px){
-  .menu{
-    display:none;
-    position:absolute;
-    top:90px;
-    left:18px;
-    right:18px;
-    background:white;
-    border-radius:22px;
-    padding:22px;
-    flex-direction:column;
-    box-shadow:var(--shadow);
-  }
-  .menu.active{display:flex}
-  .menu-btn{display:block}
-  .hero{padding:0;margin:0 auto 35px}
-  .hero-card{
-    border-radius:0 0 34px 34px;
-    grid-template-columns:1fr;
-  }
-  .hero-text{padding:36px 22px}
-  .hero-image{
-    min-height:260px;
-    order:-1;
-  }
-  .products,.reviews{grid-template-columns:1fr 1fr}
-  .steps,.trust,.footer-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:560px){
-  .topbar{font-size:13px}
-  .nav{padding:13px 16px}
-  .logo-box{width:52px;height:52px}
-  .brand strong{font-size:27px}
-  .brand span{font-size:10px;letter-spacing:6px}
-  .menu-btn{width:50px;height:50px}
-  .hero h1{font-size:39px}
-  .hero p{font-size:17px}
-  .btn{width:100%}
-  .hero-image{min-height:230px}
-  section{margin:46px auto}
-  .products,.reviews,.steps,.trust,.footer-grid{grid-template-columns:1fr}
-  .card-img{height:230px}
-  .title h2{font-size:32px}
-  .trust{gap:18px}
-  .trust-item{justify-content:flex-start;text-align:left}
-}
-</style>
+  <meta name="description" content="Presentes personalizados em São Luís-MA. Canecas, almofadas, camisas, garrafas, cadernos e produtos sob encomenda feitos com amor." />
+  <meta name="theme-color" content="#c94f7c" />
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 
 <body>
 
-<div class="topbar">🎁 Personalizados em São Luís-MA • Atendimento pelo WhatsApp</div>
-
-<header class="header">
-  <div class="nav">
-    <a class="logo-wrap" href="#">
-      <div class="logo-box">
-        <!-- coloque o PNG da logo aqui -->
-        <img src="logo.png" alt="Personalize Moment">
-      </div>
-      <div class="brand">
-        <strong>Personalize</strong>
-        <span>Moment</span>
-      </div>
-    </a>
-
-    <nav class="menu" id="menu">
-      <a href="#produtos">Produtos</a>
-      <a href="#como">Como funciona</a>
-      <a href="#avaliacoes">Avaliações</a>
-      <a href="#contato">Contato</a>
-    </nav>
-
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="topbar">
+    <span>🎁 Presentes personalizados em São Luís-MA</span>
+    <span>💬 Atendimento pelo WhatsApp</span>
   </div>
-</header>
 
-<main>
+  <header class="header">
+    <div class="container nav">
 
-<section class="hero">
-  <div class="hero-card">
-    <div class="hero-text">
-      <div class="location">📍 São Luís - MA</div>
-      <h1>Surpreenda quem você ama com presentes <span>personalizados únicos!</span> 💛</h1>
-      <p>Canecas, almofadas, camisas, garrafas, cadernos e presentes sob encomenda feitos com amor.</p>
+      <a href="#inicio" class="brand">
+        <div class="brand-logo">
+          <img src="assets/logo.png" alt="Logo Personalize Moment" />
+        </div>
 
-      <div class="badges">
-        <span class="badge">♡ Feitos com amor</span>
-        <span class="badge">⚙ Qualidade premium</span>
-        <span class="badge">🚚 Entrega em São Luís</span>
-        <span class="badge">💬 Atendimento no WhatsApp</span>
-      </div>
-
-      <a class="btn" href="https://wa.me/559887873331?text=Olá!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20fazer%20um%20pedido." target="_blank">
-        💬 Fazer pedido pelo WhatsApp
+        <div class="brand-text">
+          <strong>Personalize</strong>
+          <span>Moment</span>
+        </div>
       </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="menu" id="menu">
+        <a href="#inicio">Início</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#avaliacoes">Avaliações</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
     </div>
+  </header>
 
-    <div class="hero-image">
-      <img src="hero.jpg" alt="Produtos personalizados Personalize Moment">
+  <main>
+
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+
+        <div class="hero-content reveal">
+          <div class="pill">
+            <span>📍 São Luís - MA</span>
+            <span>Feito com amor</span>
+          </div>
+
+          <h1>
+            Presentes personalizados para tornar cada momento
+            <span>inesquecível.</span>
+          </h1>
+
+          <p>
+            Canecas, almofadas, camisas, garrafas, cadernos e presentes sob encomenda
+            feitos com carinho para surpreender quem você ama.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-whatsapp" href="https://wa.me/559887873331?text=Olá!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20fazer%20um%20pedido." target="_blank">
+              Fazer pedido pelo WhatsApp
+            </a>
+
+            <a class="btn btn-outline" href="#produtos">
+              Ver produtos
+            </a>
+          </div>
+
+          <div class="hero-info">
+            <div>
+              <strong>+ carinho</strong>
+              <span>em cada detalhe</span>
+            </div>
+            <div>
+              <strong>Entrega</strong>
+              <span>em São Luís</span>
+            </div>
+            <div>
+              <strong>100%</strong>
+              <span>personalizado</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-media reveal">
+          <img src="assets/hero.jpg" alt="Produtos personalizados Personalize Moment" />
+
+          <div class="floating-card card-one">
+            <strong>🎁 Presente único</strong>
+            <span>feito especialmente para você</span>
+          </div>
+
+          <div class="floating-card card-two">
+            <strong>💬 Pedido rápido</strong>
+            <span>direto no WhatsApp</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section" id="produtos">
+      <div class="container">
+
+        <div class="section-title reveal">
+          <span>♥ Produtos</span>
+          <h2>Escolha seu presente personalizado</h2>
+          <p>Produtos especiais para aniversários, datas comemorativas, lembranças e surpresas.</p>
+        </div>
+
+        <div class="products-grid">
+
+          <article class="product-card reveal">
+            <div class="product-image">
+              <img src="assets/caneca.jpg" alt="Canecas personalizadas" />
+              <span class="product-icon">☕</span>
+            </div>
+            <div class="product-content">
+              <h3>Canecas Personalizadas</h3>
+              <p>Com foto, nome, frase ou arte exclusiva.</p>
+              <a href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20caneca%20personalizada." target="_blank">Pedir orçamento</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <div class="product-image">
+              <img src="assets/almofada.jpg" alt="Almofadas personalizadas" />
+              <span class="product-icon">🛋️</span>
+            </div>
+            <div class="product-content">
+              <h3>Almofadas com Fotos</h3>
+              <p>Um presente afetivo e cheio de significado.</p>
+              <a href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20almofada%20personalizada." target="_blank">Pedir orçamento</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <div class="product-image">
+              <img src="assets/camisa.jpg" alt="Camisas personalizadas" />
+              <span class="product-icon">👕</span>
+            </div>
+            <div class="product-content">
+              <h3>Camisas Personalizadas</h3>
+              <p>Ideal para eventos, homenagens e presentes.</p>
+              <a href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20camisa%20personalizada." target="_blank">Pedir orçamento</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <div class="product-image">
+              <img src="assets/garrafa.jpg" alt="Garrafas personalizadas" />
+              <span class="product-icon">🥤</span>
+            </div>
+            <div class="product-content">
+              <h3>Garrafas Térmicas</h3>
+              <p>Personalizadas com nome, frase ou arte.</p>
+              <a href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20garrafa%20personalizada." target="_blank">Pedir orçamento</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <div class="product-image">
+              <img src="assets/caderno.jpg" alt="Cadernos personalizados" />
+              <span class="product-icon">📒</span>
+            </div>
+            <div class="product-content">
+              <h3>Cadernos Personalizados</h3>
+              <p>Capas únicas para estudos, trabalho ou presente.</p>
+              <a href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20caderno%20personalizado." target="_blank">Pedir orçamento</a>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <div class="product-image">
+              <img src="assets/presente.jpg" alt="Presentes sob encomenda" />
+              <span class="product-icon">🎁</span>
+            </div>
+            <div class="product-content">
+              <h3>Presentes Sob Encomenda</h3>
+              <p>Monte uma lembrança especial do seu jeito.</p>
+              <a href="https://wa.me/559887873331?text=Olá!%20Quero%20um%20presente%20personalizado%20sob%20encomenda." target="_blank">Pedir orçamento</a>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section soft" id="como-funciona">
+      <div class="container">
+
+        <div class="section-title reveal">
+          <span>Como funciona</span>
+          <h2>Seu pedido em 4 passos</h2>
+        </div>
+
+        <div class="steps-grid">
+
+          <div class="step-card reveal">
+            <div class="step-number">01</div>
+            <h3>Escolha o produto</h3>
+            <p>Veja as opções e escolha o presente ideal.</p>
+          </div>
+
+          <div class="step-card reveal">
+            <div class="step-number">02</div>
+            <h3>Envie sua ideia</h3>
+            <p>Mande nome, foto, frase ou referência pelo WhatsApp.</p>
+          </div>
+
+          <div class="step-card reveal">
+            <div class="step-number">03</div>
+            <h3>Aprove a arte</h3>
+            <p>A personalização é preparada para aprovação.</p>
+          </div>
+
+          <div class="step-card reveal">
+            <div class="step-number">04</div>
+            <h3>Receba com carinho</h3>
+            <p>Seu pedido é produzido e entregue com cuidado.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container trust-grid reveal">
+
+        <div class="trust-item">
+          <strong>🎁 Presentes especiais</strong>
+          <span>Para todas as ocasiões</span>
+        </div>
+
+        <div class="trust-item">
+          <strong>💖 Feito com amor</strong>
+          <span>Cuidado em cada detalhe</span>
+        </div>
+
+        <div class="trust-item">
+          <strong>💬 Atendimento rápido</strong>
+          <span>Direto pelo WhatsApp</span>
+        </div>
+
+        <div class="trust-item">
+          <strong>🚚 Entregas</strong>
+          <span>São Luís - MA</span>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section" id="avaliacoes">
+      <div class="container">
+
+        <div class="section-title reveal">
+          <span>Clientes</span>
+          <h2>Quem compra, recomenda</h2>
+        </div>
+
+        <div class="reviews-grid">
+
+          <div class="review-card reveal">
+            <div class="stars">★★★★★</div>
+            <p>Produto lindo, bem feito e entregue com muito capricho. Amei o resultado!</p>
+            <strong>Ana Clara</strong>
+          </div>
+
+          <div class="review-card reveal">
+            <div class="stars">★★★★★</div>
+            <p>Atendimento maravilhoso. O presente ficou do jeitinho que eu queria.</p>
+            <strong>Juliana M.</strong>
+          </div>
+
+          <div class="review-card reveal">
+            <div class="stars">★★★★★</div>
+            <p>Qualidade excelente e muito carinho na embalagem. Recomendo demais.</p>
+            <strong>Lucas R.</strong>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section" id="contato">
+      <div class="container">
+
+        <div class="cta reveal">
+          <span>Personalize Moment</span>
+          <h2>Pronto para fazer seu pedido?</h2>
+          <p>Chame no WhatsApp e peça seu orçamento personalizado agora.</p>
+
+          <div class="cta-actions">
+            <a class="btn btn-whatsapp" href="https://wa.me/559887873331?text=Olá!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20fazer%20um%20pedido." target="_blank">
+              Chamar no WhatsApp
+            </a>
+
+            <a class="btn btn-outline" href="https://instagram.com/personalizemoment" target="_blank">
+              Ver Instagram
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <a class="whatsapp-float" href="https://wa.me/559887873331?text=Olá!%20Quero%20fazer%20um%20pedido." target="_blank" aria-label="Chamar no WhatsApp">
+    💬
+  </a>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>© 2024 Personalize Moment. Todos os direitos reservados.</p>
+      <p>Desenvolvido por <strong>VLINK</strong></p>
     </div>
-  </div>
-</section>
-
-<section id="produtos" class="reveal">
-  <div class="title">
-    <div class="heart">♥</div>
-    <h2>Nossos Produtos</h2>
-    <p>Presentes que criam memórias</p>
-  </div>
-
-  <div class="products">
-
-    <article class="card">
-      <div class="card-img">
-        <div class="card-icon">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M4 7h11v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7Z"/><path d="M15 9h2a3 3 0 0 1 0 6h-2"/></svg>
-        </div>
-        <img src="caneca.jpg" alt="Canecas personalizadas">
-      </div>
-      <div class="card-body">
-        <h3>Canecas Personalizadas</h3>
-        <a class="mini-btn" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20caneca%20personalizada." target="_blank">Pedir orçamento</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="card-img">
-        <div class="card-icon">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M6 4h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/><path d="M8 8c2 2 6 2 8 0M8 16c2-2 6-2 8 0"/></svg>
-        </div>
-        <img src="almofada.jpg" alt="Almofadas com fotos">
-      </div>
-      <div class="card-body">
-        <h3>Almofadas com Fotos</h3>
-        <a class="mini-btn" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20almofada%20personalizada." target="_blank">Pedir orçamento</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="card-img">
-        <div class="card-icon">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M8 4 5 6 3 10l4 2v8h10v-8l4-2-2-4-3-2"/><path d="M9 4a3 3 0 0 0 6 0"/></svg>
-        </div>
-        <img src="camisa.jpg" alt="Camisas personalizadas">
-      </div>
-      <div class="card-body">
-        <h3>Camisas Personalizadas</h3>
-        <a class="mini-btn" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20camisa%20personalizada." target="_blank">Pedir orçamento</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="card-img">
-        <div class="card-icon">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M9 2h6v3H9z"/><path d="M8 5h8l1 4v10a3 3 0 0 1-3 3h-4a3 3 0 0 1-3-3V9l1-4Z"/></svg>
-        </div>
-        <img src="garrafa.jpg" alt="Garrafas térmicas">
-      </div>
-      <div class="card-body">
-        <h3>Garrafas Térmicas</h3>
-        <a class="mini-btn" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20garrafa%20personalizada." target="_blank">Pedir orçamento</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="card-img">
-        <div class="card-icon">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M7 3h12v18H7z"/><path d="M5 7h4M5 12h4M5 17h4"/></svg>
-        </div>
-        <img src="caderno.jpg" alt="Cadernos personalizados">
-      </div>
-      <div class="card-body">
-        <h3>Cadernos Personalizados</h3>
-        <a class="mini-btn" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20caderno%20personalizado." target="_blank">Pedir orçamento</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="card-img">
-        <div class="card-icon">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M20 12v9H4v-9"/><path d="M2 7h20v5H2z"/><path d="M12 7v14"/><path d="M12 7C9 2 4 3 5 7M12 7c3-5 8-4 7 0"/></svg>
-        </div>
-        <img src="presente.jpg" alt="Presentes sob encomenda">
-      </div>
-      <div class="card-body">
-        <h3>Presentes Sob Encomenda</h3>
-        <a class="mini-btn" href="https://wa.me/559887873331?text=Olá!%20Quero%20um%20presente%20personalizado%20sob%20encomenda." target="_blank">Pedir orçamento</a>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-<section id="como" class="reveal">
-  <div class="title">
-    <div class="heart">♥</div>
-    <h2>Como funciona</h2>
-  </div>
-
-  <div class="steps">
-    <div class="step"><div class="step-icon">🛒</div><h3>Escolha</h3><p>Escolha o produto.</p></div>
-    <div class="step"><div class="step-icon">🖼️</div><h3>Envie</h3><p>Envie nome, foto ou frase.</p></div>
-    <div class="step"><div class="step-icon">✅</div><h3>Aprove</h3><p>Aprove a arte.</p></div>
-    <div class="step"><div class="step-icon">🚚</div><h3>Receba</h3><p>Receba com amor.</p></div>
-  </div>
-</section>
-
-<section class="reveal">
-  <div class="trust">
-    <div class="trust-item">🎁 Perfeito para todas as ocasiões</div>
-    <div class="trust-item">♡ Feito com amor em cada detalhe</div>
-    <div class="trust-item">🛡️ Pagamento seguro</div>
-    <div class="trust-item">💬 Atendimento rápido</div>
-  </div>
-</section>
-
-<section id="avaliacoes" class="reveal">
-  <div class="title">
-    <div class="heart">♥</div>
-    <h2>Avaliações de Clientes</h2>
-  </div>
-
-  <div class="reviews">
-    <div class="review"><h3>Ana Clara</h3><div class="stars">★★★★★</div><p>Produto impecável! Superou minhas expectativas. Minha mãe amou o presente! 💕</p></div>
-    <div class="review"><h3>Juliana M.</h3><div class="stars">★★★★★</div><p>Atendimento maravilhoso e muito atencioso. Chegou tudo certinho e bem embalado.</p></div>
-    <div class="review"><h3>Lucas R.</h3><div class="stars">★★★★★</div><p>Qualidade excelente e do jeitinho que pedi. Com certeza vou comprar mais vezes!</p></div>
-  </div>
-</section>
-
-<section id="contato" class="reveal">
-  <div class="cta">
-    <h2>Fale conosco</h2>
-    <p>Estamos prontos para te atender!</p>
-
-    <div class="cta-buttons">
-      <a class="btn" href="https://wa.me/559887873331?text=Olá!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20fazer%20um%20pedido." target="_blank">💬 WhatsApp</a>
-      <a class="btn rose" href="https://instagram.com/personalizemoment" target="_blank">📸 Instagram</a>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<a class="float" href="https://wa.me/559887873331?text=Olá!%20Quero%20fazer%20um%20pedido." target="_blank">💬</a>
-
-<footer class="footer">
-  <div class="footer-grid">
-    <div class="footer-item">🚚 Entrega em São Luís - MA</div>
-    <div class="footer-item">🔒 Pagamento seguro</div>
-    <div class="footer-item">🛡️ Atendimento protegido</div>
-    <div class="footer-item">♡ Feito com amor</div>
-  </div>
-
-  <div class="copy">
-    © 2024 Personalize Moment. Todos os direitos reservados.<br>
-    Desenvolvido por <strong>VLINK</strong>
-  </div>
-</footer>
-
-<script>
-function toggleMenu(){
-  document.getElementById("menu").classList.toggle("active");
-}
-
-document.querySelectorAll("#menu a").forEach(a=>{
-  a.addEventListener("click",()=>{
-    document.getElementById("menu").classList.remove("active");
-  });
-});
-
-const observer = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
-    }
-  });
-},{threshold:.12});
-
-document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-</script>
+  </footer>
 
 </body>
 </html>
