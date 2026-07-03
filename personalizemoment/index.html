@@ -5,192 +5,231 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Personalize Moment | São Luís-MA</title>
   <meta name="description" content="Presentes personalizados em São Luís-MA. Canecas, almofadas, camisas, garrafas, cadernos e presentes sob encomenda." />
-  <meta name="theme-color" content="#c94f7c" />
   <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
 </head>
 
 <body>
 
-<div class="topbar">
-  <span>🎁 Personalizados em São Luís-MA</span>
-  <span>💬 Atendimento pelo WhatsApp</span>
-</div>
+<header class="top-header">
+  <div class="top-strip">
+    <span>🎁 Personalizados em São Luís-MA</span>
+    <span>💬 Atendimento pelo WhatsApp</span>
+  </div>
 
-<header class="header">
-  <div class="container nav">
+  <div class="nav">
     <a href="#inicio" class="brand">
-      <div class="brand-logo">
-        <img src="assets/logo.png" alt="Logo Personalize Moment" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-        <span class="logo-fallback">PM</span>
-      </div>
-      <div class="brand-text">
+      <img src="assets/logo.png" alt="Personalize Moment" />
+      <div>
         <strong>Personalize</strong>
         <span>Moment</span>
       </div>
     </a>
 
-    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="menu-btn" id="menuBtn">☰</button>
 
     <nav class="menu" id="menu">
       <a href="#inicio">Início</a>
       <a href="#produtos">Produtos</a>
-      <a href="#como-funciona">Como funciona</a>
+      <a href="#como">Como funciona</a>
       <a href="#avaliacoes">Avaliações</a>
       <a href="#contato">Contato</a>
     </nav>
   </div>
 </header>
 
-<main>
+<main id="inicio">
 
-<section class="hero" id="inicio">
-  <div class="container hero-grid">
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <img class="hero-logo" src="assets/logo.png" alt="Personalize Moment" />
 
-    <div class="hero-content reveal">
-      <div class="pill">
-        <span>📍 São Luís - MA</span>
-        <span>Feito com amor</span>
+        <div class="location">📍 São Luís - MA</div>
+
+        <h1>
+          Surpreenda quem você ama com presentes
+          <span>personalizados únicos!</span> 💛
+        </h1>
+
+        <div class="hero-badges">
+          <span>♡ Feitos com amor</span>
+          <span>⚙ Qualidade Premium</span>
+          <span>🚚 Entrega em São Luís</span>
+          <span>💬 Atendimento no WhatsApp</span>
+        </div>
       </div>
 
-      <h1>Presentes personalizados para tornar cada momento <span>inesquecível.</span></h1>
-
-      <p>Canecas, almofadas, camisas, garrafas, cadernos e presentes sob encomenda feitos com carinho para surpreender quem você ama.</p>
-
-      <div class="hero-actions">
-        <a class="btn btn-whatsapp" href="https://wa.me/559887873331?text=Olá!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20fazer%20um%20pedido." target="_blank">💬 Fazer pedido</a>
-        <a class="btn btn-outline" href="#produtos">Ver produtos</a>
+      <div class="hero-products">
+        <img src="assets/hero.jpg" alt="Produtos personalizados" />
       </div>
 
-      <div class="hero-info">
-        <div><strong>Entrega</strong><span>em São Luís</span></div>
-        <div><strong>100%</strong><span>personalizado</span></div>
-        <div><strong>Amor</strong><span>em cada detalhe</span></div>
+      <a class="main-btn" href="https://wa.me/559887873331?text=Olá!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20fazer%20um%20pedido." target="_blank">
+        💬 Fazer pedido pelo WhatsApp
+        <span>›</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="products" id="produtos">
+    <div class="section-title">
+      <span>♥</span>
+      <h2>Nossos Produtos</h2>
+      <p>Presentes que criam memórias</p>
+    </div>
+
+    <div class="product-grid">
+
+      <article class="product-card">
+        <div class="icon">☕</div>
+        <img src="assets/caneca.jpg" alt="Canecas personalizadas" />
+        <div class="product-info">
+          <h3>Canecas<br>Personalizadas</h3>
+          <a href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20caneca%20personalizada." target="_blank">Pedir orçamento</a>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="icon">🛋️</div>
+        <img src="assets/almofada.jpg" alt="Almofadas com fotos" />
+        <div class="product-info">
+          <h3>Almofadas<br>com Fotos</h3>
+          <a href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20almofada%20personalizada." target="_blank">Pedir orçamento</a>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="icon">👕</div>
+        <img src="assets/camisa.jpg" alt="Camisas personalizadas" />
+        <div class="product-info">
+          <h3>Camisas<br>Personalizadas</h3>
+          <a href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20camisa%20personalizada." target="_blank">Pedir orçamento</a>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="icon">🥤</div>
+        <img src="assets/garrafa.jpg" alt="Garrafas térmicas" />
+        <div class="product-info">
+          <h3>Garrafas<br>Térmicas</h3>
+          <a href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20garrafa%20personalizada." target="_blank">Pedir orçamento</a>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="icon">📒</div>
+        <img src="assets/caderno.jpg" alt="Cadernos personalizados" />
+        <div class="product-info">
+          <h3>Cadernos<br>Personalizados</h3>
+          <a href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20caderno%20personalizado." target="_blank">Pedir orçamento</a>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="icon">🎁</div>
+        <img src="assets/presente.jpg" alt="Presentes sob encomenda" />
+        <div class="product-info">
+          <h3>Presentes<br>Sob Encomenda</h3>
+          <a href="https://wa.me/559887873331?text=Olá!%20Quero%20um%20presente%20personalizado%20sob%20encomenda." target="_blank">Pedir orçamento</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="how" id="como">
+    <div class="section-title compact">
+      <span>♥</span>
+      <h2>Como funciona</h2>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div>🛒</div>
+        <strong>1</strong>
+        <p>Escolha o<br>produto</p>
+      </div>
+
+      <div class="step">
+        <div>🖼️</div>
+        <strong>2</strong>
+        <p>Envie nome,<br>foto ou frase</p>
+      </div>
+
+      <div class="step">
+        <div>✅</div>
+        <strong>3</strong>
+        <p>Aprove a<br>arte</p>
+      </div>
+
+      <div class="step">
+        <div>🚚</div>
+        <strong>4</strong>
+        <p>Receba seu<br>pedido com amor</p>
       </div>
     </div>
+  </section>
 
-    <div class="hero-media reveal">
-      <img src="assets/hero.jpg" alt="Produtos Personalize Moment" onerror="this.style.display='none';">
-      <div class="hero-placeholder">
-        <strong>Personalize Moment</strong>
-        <span>Coloque sua imagem hero.jpg em assets/</span>
+  <section class="benefits">
+    <div>🎁 <strong>Perfeito para</strong><span>todas as ocasiões</span></div>
+    <div>♡ <strong>Feito com amor</strong><span>em cada detalhe</span></div>
+    <div>🛡️ <strong>Pagamento seguro</strong><span>e protegido</span></div>
+    <div>💬 <strong>Atendimento rápido</strong><span>pelo WhatsApp</span></div>
+  </section>
+
+  <section class="reviews" id="avaliacoes">
+    <div class="section-title compact">
+      <span>♥</span>
+      <h2>Avaliações de Clientes</h2>
+    </div>
+
+    <div class="review-grid">
+      <div class="review-card">
+        <strong>Ana Clara</strong>
+        <span>★★★★★</span>
+        <p>Produto impecável! Superou minhas expectativas. Minha mãe amou o presente! 💕</p>
       </div>
-      <div class="floating-card card-one"><strong>🎁 Presente único</strong><span>feito especialmente</span></div>
-      <div class="floating-card card-two"><strong>💬 Pedido rápido</strong><span>direto no WhatsApp</span></div>
-    </div>
 
-  </div>
-</section>
+      <div class="review-card">
+        <strong>Juliana M.</strong>
+        <span>★★★★★</span>
+        <p>Atendimento maravilhoso e muito atencioso. Chegou tudo certinho e bem embalado.</p>
+      </div>
 
-<section class="section" id="produtos">
-  <div class="container">
-    <div class="section-title reveal">
-      <span>♥ Produtos</span>
-      <h2>Escolha seu presente personalizado</h2>
-      <p>Produtos especiais para datas comemorativas, lembranças e surpresas.</p>
-    </div>
-
-    <div class="products-grid">
-
-      <article class="product-card reveal">
-        <div class="product-image"><img src="assets/caneca.jpg" alt="Canecas personalizadas" onerror="this.style.display='none';"><span class="product-icon">☕</span></div>
-        <div class="product-content"><h3>Canecas Personalizadas</h3><p>Com foto, nome, frase ou arte exclusiva.</p><a target="_blank" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20caneca%20personalizada.">Pedir orçamento</a></div>
-      </article>
-
-      <article class="product-card reveal">
-        <div class="product-image"><img src="assets/almofada.jpg" alt="Almofadas personalizadas" onerror="this.style.display='none';"><span class="product-icon">🛋️</span></div>
-        <div class="product-content"><h3>Almofadas com Fotos</h3><p>Um presente afetivo e cheio de significado.</p><a target="_blank" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20almofada%20personalizada.">Pedir orçamento</a></div>
-      </article>
-
-      <article class="product-card reveal">
-        <div class="product-image"><img src="assets/camisa.jpg" alt="Camisas personalizadas" onerror="this.style.display='none';"><span class="product-icon">👕</span></div>
-        <div class="product-content"><h3>Camisas Personalizadas</h3><p>Ideal para eventos, homenagens e presentes.</p><a target="_blank" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20camisa%20personalizada.">Pedir orçamento</a></div>
-      </article>
-
-      <article class="product-card reveal">
-        <div class="product-image"><img src="assets/garrafa.jpg" alt="Garrafas personalizadas" onerror="this.style.display='none';"><span class="product-icon">🥤</span></div>
-        <div class="product-content"><h3>Garrafas Térmicas</h3><p>Personalizadas com nome, frase ou arte.</p><a target="_blank" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20garrafa%20personalizada.">Pedir orçamento</a></div>
-      </article>
-
-      <article class="product-card reveal">
-        <div class="product-image"><img src="assets/caderno.jpg" alt="Cadernos personalizados" onerror="this.style.display='none';"><span class="product-icon">📒</span></div>
-        <div class="product-content"><h3>Cadernos Personalizados</h3><p>Capas únicas para estudos, trabalho ou presente.</p><a target="_blank" href="https://wa.me/559887873331?text=Olá!%20Quero%20orçamento%20de%20caderno%20personalizado.">Pedir orçamento</a></div>
-      </article>
-
-      <article class="product-card reveal">
-        <div class="product-image"><img src="assets/presente.jpg" alt="Presentes sob encomenda" onerror="this.style.display='none';"><span class="product-icon">🎁</span></div>
-        <div class="product-content"><h3>Presentes Sob Encomenda</h3><p>Monte uma lembrança especial do seu jeito.</p><a target="_blank" href="https://wa.me/559887873331?text=Olá!%20Quero%20um%20presente%20personalizado%20sob%20encomenda.">Pedir orçamento</a></div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<section class="section soft" id="como-funciona">
-  <div class="container">
-    <div class="section-title reveal">
-      <span>Como funciona</span>
-      <h2>Seu pedido em 4 passos</h2>
-    </div>
-
-    <div class="steps-grid">
-      <div class="step-card reveal"><div class="step-number">01</div><h3>Escolha o produto</h3><p>Veja as opções e escolha o presente ideal.</p></div>
-      <div class="step-card reveal"><div class="step-number">02</div><h3>Envie sua ideia</h3><p>Mande nome, foto, frase ou referência.</p></div>
-      <div class="step-card reveal"><div class="step-number">03</div><h3>Aprove a arte</h3><p>A personalização é preparada para aprovação.</p></div>
-      <div class="step-card reveal"><div class="step-number">04</div><h3>Receba com carinho</h3><p>Seu pedido é produzido com cuidado.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container trust-grid reveal">
-    <div class="trust-item"><strong>🎁 Presentes especiais</strong><span>Para todas as ocasiões</span></div>
-    <div class="trust-item"><strong>💖 Feito com amor</strong><span>Cuidado em cada detalhe</span></div>
-    <div class="trust-item"><strong>💬 Atendimento rápido</strong><span>Direto pelo WhatsApp</span></div>
-    <div class="trust-item"><strong>🚚 Entregas</strong><span>São Luís - MA</span></div>
-  </div>
-</section>
-
-<section class="section" id="avaliacoes">
-  <div class="container">
-    <div class="section-title reveal">
-      <span>Clientes</span>
-      <h2>Quem compra, recomenda</h2>
-    </div>
-
-    <div class="reviews-grid">
-      <div class="review-card reveal"><div class="stars">★★★★★</div><p>Produto lindo, bem feito e entregue com muito capricho. Amei o resultado!</p><strong>Ana Clara</strong></div>
-      <div class="review-card reveal"><div class="stars">★★★★★</div><p>Atendimento maravilhoso. O presente ficou do jeitinho que eu queria.</p><strong>Juliana M.</strong></div>
-      <div class="review-card reveal"><div class="stars">★★★★★</div><p>Qualidade excelente e muito carinho na embalagem. Recomendo demais.</p><strong>Lucas R.</strong></div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="contato">
-  <div class="container">
-    <div class="cta reveal">
-      <span>Personalize Moment</span>
-      <h2>Pronto para fazer seu pedido?</h2>
-      <p>Chame no WhatsApp e peça seu orçamento personalizado agora.</p>
-
-      <div class="cta-actions">
-        <a class="btn btn-whatsapp" href="https://wa.me/559887873331?text=Olá!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20fazer%20um%20pedido." target="_blank">💬 Chamar no WhatsApp</a>
-        <a class="btn btn-outline" href="https://instagram.com/personalizemoment" target="_blank">📸 Ver Instagram</a>
+      <div class="review-card">
+        <strong>Lucas R.</strong>
+        <span>★★★★★</span>
+        <p>Qualidade excelente e do jeitinho que pedi. Com certeza vou comprar mais vezes!</p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section class="contact" id="contato">
+    <h2>Fale conosco</h2>
+    <p>Estamos prontos para te atender!</p>
+
+    <div class="contact-buttons">
+      <a class="whats" href="https://wa.me/559887873331?text=Olá!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20fazer%20um%20pedido." target="_blank">💬 WhatsApp</a>
+      <a class="insta" href="https://instagram.com/personalizemoment" target="_blank">📸 Instagram</a>
+    </div>
+  </section>
 
 </main>
 
-<a class="whatsapp-float" href="https://wa.me/559887873331?text=Olá!%20Quero%20fazer%20um%20pedido." target="_blank">💬</a>
+<a class="float-whats" href="https://wa.me/559887873331?text=Olá!%20Quero%20fazer%20um%20pedido." target="_blank">💬</a>
 
 <footer class="footer">
-  <div class="container footer-content">
-    <p>© 2024 Personalize Moment. Todos os direitos reservados.</p>
-    <p>Desenvolvido por <strong>VLINK</strong></p>
+  <div class="footer-grid">
+    <div>🚚 Entrega em<br>São Luís - MA</div>
+    <div>🔒 Pagamento<br>100% Seguro</div>
+    <div>🛡️ Site 100% Seguro<br>Seus dados protegidos</div>
+    <div>♡ Feito com amor<br>para você</div>
+  </div>
+
+  <div class="copy">
+    © 2024 Personalize Moment. Todos os direitos reservados.
+    <br>
+    Desenvolvido por <strong>VLINK</strong>
   </div>
 </footer>
 
