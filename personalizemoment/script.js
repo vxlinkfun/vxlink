@@ -4,11 +4,13 @@ const menu = document.getElementById("menu");
 if (menuBtn && menu) {
   menuBtn.addEventListener("click", () => {
     menu.classList.toggle("active");
+    menuBtn.classList.toggle("active");
   });
 
   document.querySelectorAll(".menu a").forEach((link) => {
     link.addEventListener("click", () => {
       menu.classList.remove("active");
+      menuBtn.classList.remove("active");
     });
   });
 }
