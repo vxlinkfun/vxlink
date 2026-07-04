@@ -3,125 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sandelícia | Bio Link</title>
+  <title>Sandelícia</title>
   <meta name="description" content="Sandelícia - Doçura em cada pedaço. Bolos artesanais em Alto Alegre do Pindaré - MA." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <svg style="display:none">
-    <symbol id="wa" viewBox="0 0 24 24"><path d="M20 11.8A8 8 0 0 1 8.1 18.8L4 20l1.3-4A8 8 0 1 1 20 11.8Z"/><path d="M9 8.8c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.6c.1.3.1.5-.1.7l-.4.5c.8 1.4 1.9 2.4 3.3 3.1l.5-.6c.2-.2.4-.3.7-.2l1.6.7c.3.1.4.3.4.6v.5c0 .3-.1.6-.5.8-.7.4-2.5.4-4.7-.9-2.2-1.2-3.9-3.2-4.4-5.1-.3-.9.4-1.5.6-1.6Z"/></symbol>
-    <symbol id="cake" viewBox="0 0 24 24"><path d="M4 13h16v7H4Z"/><path d="M7 10h10v3H7Z"/><path d="M12 6v4"/><path d="M10 6c0-1 1-2 2-2s2 1 2 2-1 2-2 2-2-1-2-2Z"/><path d="M4 16c1 1 2 1 3 0s2-1 3 0 2 1 3 0 2-1 3 0 2 1 4 0"/></symbol>
-    <symbol id="slice" viewBox="0 0 24 24"><path d="M3 17 21 8v11H3Z"/><path d="M3 17v3h18"/><path d="M8 14c1 1 2 1 3 0s2-1 3 0 2 1 3 0"/></symbol>
-    <symbol id="insta" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="4"/><circle cx="12" cy="12" r="3"/><path d="M16.5 7.5h.01"/></symbol>
-    <symbol id="pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></symbol>
-    <symbol id="truck" viewBox="0 0 24 24"><path d="M3 15h10V7H3Z"/><path d="M13 10h4l3 3v2h-7Z"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
-    <symbol id="star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9Z"/></symbol>
-  </svg>
+<svg style="display:none">
+  <symbol id="wa" viewBox="0 0 24 24"><path d="M20 11.8A8 8 0 0 1 8.1 18.8L4 20l1.3-4A8 8 0 1 1 20 11.8Z"/><path d="M9 8.8c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.6c.1.3.1.5-.1.7l-.4.5c.8 1.4 1.9 2.4 3.3 3.1l.5-.6c.2-.2.4-.3.7-.2l1.6.7c.3.1.4.3.4.6v.5c0 .3-.1.6-.5.8-.7.4-2.5.4-4.7-.9-2.2-1.2-3.9-3.2-4.4-5.1-.3-.9.4-1.5.6-1.6Z"/></symbol>
+  <symbol id="slice" viewBox="0 0 24 24"><path d="M3 17 21 8v11H3Z"/><path d="M3 17v3h18"/><path d="M8 14c1 1 2 1 3 0s2-1 3 0 2 1 3 0"/></symbol>
+  <symbol id="cake" viewBox="0 0 24 24"><path d="M5 13h14v7H5Z"/><path d="M7 10h10v3H7Z"/><path d="M12 6v4"/><path d="M10 6c0-1 1-2 2-2s2 1 2 2-1 2-2 2-2-1-2-2Z"/></symbol>
+  <symbol id="star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9Z"/></symbol>
+  <symbol id="insta" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="4"/><circle cx="12" cy="12" r="3"/><path d="M16.5 7.5h.01"/></symbol>
+  <symbol id="pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+</svg>
 
-  <main class="page">
-    <section class="hero-card">
-      <div class="choco choco-top"></div>
+<main class="bio">
 
-      <div class="logo-wrap">
-        <img src="logo.png" alt="Logo Sandelícia" class="logo" />
-      </div>
+  <section class="top">
+    <div class="logo-box">
+      <img src="logo.png" alt="Sandelícia" />
+    </div>
 
-      <h1>Sandelícia</h1>
-      <p class="subtitle">Doçura em cada pedaço</p>
+    <h1>Sandelícia</h1>
+    <p class="slogan">Doçura em cada pedaço</p>
 
-      <div class="location">
-        <svg><use href="#pin"/></svg>
-        Alto Alegre do Pindaré - MA
-      </div>
+    <div class="place">
+      <svg><use href="#pin"/></svg>
+      Alto Alegre do Pindaré - MA
+    </div>
+  </section>
 
-      <p class="desc">
-        Bolos artesanais, fatias e encomendas feitas com carinho para adoçar seus melhores momentos.
-      </p>
+  <section class="buttons">
 
-      <div class="highlight">
-        <span>Premium</span>
-        <span>Artesanal</span>
-        <span>Feito com amor</span>
-      </div>
-    </section>
+    <a class="btn-main" target="_blank" href="https://wa.me/5598981030603?text=Ol%C3%A1%2C%20vim%20pelo%20link%20da%20Sandel%C3%ADcia%20e%20quero%20fazer%20um%20pedido.">
+      <span class="icon"><svg><use href="#wa"/></svg></span>
+      <span>
+        <strong>Fazer pedido</strong>
+        <small>Atendimento pelo WhatsApp</small>
+      </span>
+      <b>›</b>
+    </a>
 
-    <section class="links">
-      <a class="link-card main" href="https://wa.me/5598981030603?text=Ol%C3%A1%2C%20vim%20pelo%20link%20da%20Sandel%C3%ADcia%20e%20quero%20fazer%20um%20pedido." target="_blank">
-        <div class="icon"><svg><use href="#wa"/></svg></div>
-        <div>
-          <h2>Fazer pedido</h2>
-          <p>Atendimento pelo WhatsApp</p>
-        </div>
-        <span class="arrow">›</span>
-      </a>
+    <a class="btn-link" target="_blank" href="https://wa.me/5598981030603?text=Ol%C3%A1%2C%20quero%20consultar%20as%20fatias%20dispon%C3%ADveis.">
+      <span class="icon"><svg><use href="#slice"/></svg></span>
+      <span>
+        <strong>Fatias disponíveis</strong>
+        <small>Consulte sabores e valores</small>
+      </span>
+      <b>›</b>
+    </a>
 
-      <a class="link-card" href="https://wa.me/5598981030603?text=Ol%C3%A1%2C%20quero%20ver%20as%20fatias%20dispon%C3%ADveis." target="_blank">
-        <div class="icon"><svg><use href="#slice"/></svg></div>
-        <div>
-          <h2>Fatias disponíveis</h2>
-          <p>Consulte sabores e valores</p>
-        </div>
-        <span class="arrow">›</span>
-      </a>
+    <a class="btn-link" target="_blank" href="https://wa.me/5598981030603?text=Ol%C3%A1%2C%20quero%20encomendar%20um%20bolo%20vulc%C3%A3o.">
+      <span class="icon"><svg><use href="#cake"/></svg></span>
+      <span>
+        <strong>Bolos vulcão</strong>
+        <small>Mais recheio e cremosidade</small>
+      </span>
+      <b>›</b>
+    </a>
 
-      <a class="link-card" href="https://wa.me/5598981030603?text=Ol%C3%A1%2C%20quero%20encomendar%20um%20bolo%20vulc%C3%A3o." target="_blank">
-        <div class="icon"><svg><use href="#cake"/></svg></div>
-        <div>
-          <h2>Bolos vulcão</h2>
-          <p>Mais recheio e cremosidade</p>
-        </div>
-        <span class="arrow">›</span>
-      </a>
+    <a class="btn-link" target="_blank" href="https://wa.me/5598981030603?text=Ol%C3%A1%2C%20quero%20or%C3%A7amento%20para%20bolo%20confeitado.">
+      <span class="icon"><svg><use href="#star"/></svg></span>
+      <span>
+        <strong>Bolos confeitados</strong>
+        <small>Aniversários e momentos especiais</small>
+      </span>
+      <b>›</b>
+    </a>
 
-      <a class="link-card" href="https://wa.me/5598981030603?text=Ol%C3%A1%2C%20quero%20or%C3%A7amento%20para%20bolo%20confeitado." target="_blank">
-        <div class="icon"><svg><use href="#star"/></svg></div>
-        <div>
-          <h2>Bolos confeitados</h2>
-          <p>Aniversários e momentos especiais</p>
-        </div>
-        <span class="arrow">›</span>
-      </a>
+    <a class="btn-link" target="_blank" href="https://instagram.com/sandelicia.bolos">
+      <span class="icon"><svg><use href="#insta"/></svg></span>
+      <span>
+        <strong>Instagram</strong>
+        <small>Acompanhe nossas novidades</small>
+      </span>
+      <b>›</b>
+    </a>
 
-      <a class="link-card" href="https://instagram.com/sandelicia.bolos" target="_blank">
-        <div class="icon"><svg><use href="#insta"/></svg></div>
-        <div>
-          <h2>Instagram</h2>
-          <p>Acompanhe nossas novidades</p>
-        </div>
-        <span class="arrow">›</span>
-      </a>
+  </section>
 
-      <div class="link-card no-click">
-        <div class="icon"><svg><use href="#truck"/></svg></div>
-        <div>
-          <h2>Delivery grátis</h2>
-          <p>Para Alto Alegre do Pindaré</p>
-        </div>
-      </div>
-    </section>
+  <section class="sabores">
+    <h2>Sabores</h2>
+    <div>
+      <span>Brigadeiro Branco</span>
+      <span>Ninho</span>
+      <span>Paçoca</span>
+      <span>Prestígio</span>
+      <span>Chocolate com Morango</span>
+      <span>Oreo</span>
+      <span>Ninho com Limão</span>
+      <span>Dois Amores</span>
+    </div>
+  </section>
 
-    <section class="flavors">
-      <h3>Sabores</h3>
-      <div class="chips">
-        <span>Brigadeiro Branco</span>
-        <span>Ninho</span>
-        <span>Paçoca</span>
-        <span>Prestígio</span>
-        <span>Chocolate com Morango</span>
-        <span>Oreo</span>
-        <span>Ninho com Limão</span>
-        <span>Dois Amores</span>
-      </div>
-    </section>
+  <footer>
+    <p>DESENVOLVIDO POR <strong>VXLINK.FUN</strong></p>
+  </footer>
 
-    <footer>
-      <div class="footer-brand">Sandelícia</div>
-      <p>Feito com carinho por <strong>VXLink.fun</strong></p>
-      <small>vxlink.fun/sandelicia</small>
-    </footer>
-  </main>
+</main>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
