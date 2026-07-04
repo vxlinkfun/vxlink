@@ -1,16 +1,13 @@
-const menuBtn = document.getElementById("menuBtn");
-const menu = document.getElementById("menu");
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const target = document.querySelector(link.getAttribute("href"));
 
-if (menuBtn && menu) {
-  menuBtn.addEventListener("click", () => {
-    menu.classList.toggle("active");
-    menuBtn.classList.toggle("active");
+    if (target) {
+      event.preventDefault();
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
   });
-
-  document.querySelectorAll(".menu a").forEach((link) => {
-    link.addEventListener("click", () => {
-      menu.classList.remove("active");
-      menuBtn.classList.remove("active");
-    });
-  });
-}
+});
