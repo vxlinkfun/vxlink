@@ -3,351 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>VXLINK | Bio Link Premium para Negócios Locais</title>
-  <meta name="description" content="A VXLINK cria bio links premium para negócios locais: página profissional, WhatsApp, Instagram, catálogo, links, SEO, QR Code e presença digital." />
-  <meta name="keywords" content="VXLINK, bio link, mini site, link na bio, site para empresa, SEO local, WhatsApp, Instagram, Sandelícia, Personalize Moment, Isisnet" />
-  <meta name="author" content="VXLINK" />
+  <title>VXLINK | Bio Link Premium para empresas locais</title>
+  <meta name="description" content="Bio Link Premium VXLINK: página profissional para WhatsApp, Instagram, localização, catálogo e QR Code. Plano único de R$20." />
   <meta name="theme-color" content="#7c3cff" />
-
-  <meta property="og:title" content="VXLINK | Bio Link Premium para Negócios Locais" />
-  <meta property="og:description" content="Transforme seu link da bio em uma página premium para vender, atender e passar confiança." />
+  <meta property="og:title" content="VXLINK | Bio Link Premium" />
+  <meta property="og:description" content="Sua empresa com um link profissional, bonito e pronto para vender." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://vxlink.fun" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <span>✨ Bio links premium para empresas locais</span>
-      <span>vxlink.fun/cliente</span>
-      <span>WhatsApp: (98) 98599-6937</span>
-    </div>
-  </div>
-
   <nav class="nav">
     <div class="container nav-inner">
-      <a class="brand" href="#">
-        <span class="brand-mark">VX</span>
-        <span>VXLINK</span>
-      </a>
-
-      <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
-      </button>
-
-      <div class="nav-links" id="navLinks">
-        <a href="#servicos">Serviços</a>
-        <a href="#parceiros">Parceiros</a>
-        <a href="#preco">Preço</a>
-        <a href="#processo">Processo</a>
-        <a href="#faq">FAQ</a>
-        <a class="nav-cta" href="https://wa.me/5598985996937" target="_blank">Chamar agora</a>
+      <a class="brand" href="#"><span class="brand-icon"><svg viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="14"></rect><path d="M14 17l5 14 5-14M25 17l9 14M34 17l-9 14"></path></svg></span><span>VXLINK</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu"><svg class="open-icon" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="close-icon" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <div class="nav-menu" id="navMenu">
+        <a href="#beneficios">Benefícios</a><a href="#parceiros">Parceiros</a><a href="#preco">Plano</a><a href="#contato">Contato</a><a class="menu-whats" href="https://wa.me/5598985996937?text=Quero%20meu%20Bio%20Link%20Premium%20VXLINK" target="_blank">Pedir agora</a>
       </div>
     </div>
   </nav>
-
-  <header class="hero">
-    <div class="hero-glow hero-glow-1"></div>
-    <div class="hero-glow hero-glow-2"></div>
-
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <div class="badge">
-          <span class="pulse"></span>
-          Presença digital simples, bonita e profissional
-        </div>
-
-        <h1>Seu negócio com um <span>Bio Link Premium</span> que passa confiança.</h1>
-
-        <p>
-          A VXLINK cria uma página exclusiva para sua empresa com botões, fotos,
-          WhatsApp, Instagram, localização, catálogo, QR Code e visual premium.
-          Tudo pronto para divulgar em redes sociais e vender melhor.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn primary" href="https://wa.me/5598985996937?text=Quero%20meu%20Bio%20Link%20Premium%20da%20VXLINK" target="_blank">
-            Quero meu bio link
-            <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-          <a class="btn secondary" href="#preco">Ver plano de R$ 20</a>
-        </div>
-
-        <div class="trust">
-          <div><strong>Pagamento único</strong><span>Sem mensalidade</span></div>
-          <div><strong>Link próprio</strong><span>vxlink.fun/cliente</span></div>
-          <div><strong>Mobile first</strong><span>Bonito no celular</span></div>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <div class="floating-chip chip-1">SEO local</div>
-        <div class="floating-chip chip-2">QR Code</div>
-        <div class="phone-card">
-          <div class="phone-top"></div>
-          <div class="profile">
-            <div class="avatar">VX</div>
-            <h3>Sua Empresa</h3>
-            <p>@cliente.vxlink</p>
+  <main>
+    <header class="hero">
+      <div class="container hero-grid">
+        <section class="hero-content">
+          <div class="eyebrow"><svg viewBox="0 0 24 24"><path d="M12 2l2.7 6.8L22 12l-7.3 3.2L12 22l-2.7-6.8L2 12l7.3-3.2L12 2z"/></svg>Bio Link Premium</div>
+          <h1>Um link profissional para sua empresa vender melhor.</h1>
+          <p>A VXLINK cria uma página premium para colocar na bio, status, cartão e QR Code: WhatsApp, Instagram, localização, produtos e contatos em um só lugar.</p>
+          <div class="hero-actions"><a class="btn btn-primary" href="https://wa.me/5598985996937?text=Quero%20meu%20Bio%20Link%20Premium%20VXLINK" target="_blank">Quero meu link <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a class="btn btn-soft" href="#preco">Ver plano R$20</a></div>
+        </section>
+        <aside class="preview-card" aria-label="Prévia do Bio Link">
+          <div class="preview-shine"></div><div class="preview-header"><span></span><small>vxlink.fun/cliente</small></div>
+          <div class="preview-profile"><div class="preview-logo"><svg viewBox="0 0 48 48"><rect x="5" y="5" width="38" height="38" rx="14"></rect><path d="M14 17l5 14 5-14M25 17l9 14M34 17l-9 14"></path></svg></div><h2>Sua Empresa</h2><p>Atendimento rápido e profissional</p></div>
+          <div class="preview-links">
+            <a href="#"><svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-12 7L4 20l1.4-3.8A8 8 0 1 1 20 11.5z"/><path d="M8 10h8M8 14h5"/></svg>WhatsApp</a>
+            <a href="#"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.2 7-12a7 7 0 1 0-14 0c0 6.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Localização</a>
+            <a href="#"><svg viewBox="0 0 24 24"><path d="M4 7h16v13H4z"/><path d="M8 7V5h8v2"/><path d="M8 12h8"/></svg>Produtos</a>
+            <a href="#"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3"/><path d="M17.5 6.5h.01"/></svg>Instagram</a>
           </div>
-
-          <div class="link-list">
-            <a href="#">💬 Chamar no WhatsApp</a>
-            <a href="#">📍 Ver localização</a>
-            <a href="#">🛍️ Produtos e serviços</a>
-            <a href="#">📷 Instagram oficial</a>
-          </div>
-
-          <div class="mini-stats">
-            <div><strong>+Cliques</strong><span>Atendimento</span></div>
-            <div><strong>+Visual</strong><span>Confiança</span></div>
-          </div>
-        </div>
+        </aside>
       </div>
-    </div>
-  </header>
-
-  <section class="brand-marquee" id="parceiros" aria-label="Empresas parceiras">
-    <div class="marquee-track">
-      <span>ISISNET</span>
-      <span>Personalize Moment</span>
-      <span>Sandelícia</span>
-      <span>VXLINK</span>
-      <span>Bio Link Premium</span>
-      <span>ISISNET</span>
-      <span>Personalize Moment</span>
-      <span>Sandelícia</span>
-      <span>VXLINK</span>
-      <span>Bio Link Premium</span>
-    </div>
-  </section>
-
-  <section id="servicos" class="section">
-    <div class="container">
-      <div class="section-head">
-        <span>O que a VXLINK entrega</span>
-        <h2>Mais que um link bonito. Uma mini presença digital.</h2>
-        <p>Feito para pequenos negócios que querem parecer mais profissionais no Instagram, WhatsApp, panfleto, cartão e Google.</p>
-      </div>
-
-      <div class="cards">
-        <article class="card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>
-          </div>
-          <h3>Página exclusiva</h3>
-          <p>Um endereço do tipo <b>vxlink.fun/cliente</b> com identidade visual, botões e informações do negócio.</p>
-        </article>
-
-        <article class="card active">
-          <div class="icon">
-            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-12.7 7.4L3 20l1.4-5A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 9h8M8 13h5"/></svg>
-          </div>
-          <h3>Botões inteligentes</h3>
-          <p>WhatsApp, Instagram, localização, cardápio, catálogo, promoções, atendimento e redes sociais.</p>
-        </article>
-
-        <article class="card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-4 3 3 5-7"/></svg>
-          </div>
-          <h3>SEO e compartilhamento</h3>
-          <p>Título, descrição, visual de compartilhamento, velocidade e estrutura para passar mais confiança.</p>
-        </article>
-
-        <article class="card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24"><path d="M5 5h5v5H5zM14 5h5v5h-5zM5 14h5v5H5zM14 14h2v2h-2zM17 17h2v2h-2z"/></svg>
-          </div>
-          <h3>QR Code</h3>
-          <p>QR Code para colocar em embalagem, cartão, fachada, panfleto, story, status e materiais impressos.</p>
-        </article>
-
-        <article class="card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6z"/><path d="m9 12 2 2 4-5"/></svg>
-          </div>
-          <h3>Visual premium</h3>
-          <p>Layout escuro, moderno, roxo, com cards, efeitos, animações leves e acabamento profissional.</p>
-        </article>
-
-        <article class="card">
-          <div class="icon">
-            <svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 10-13h-7z"/></svg>
-          </div>
-          <h3>Rápido no celular</h3>
-          <p>Otimizado para abrir bem em celular e PC, com código leve em HTML, CSS e JavaScript puro.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section showcase">
-    <div class="container showcase-grid">
-      <div>
-        <div class="section-head left">
-          <span>Modelo para clientes</span>
-          <h2>Perfeito para comércio local, serviços e criadores.</h2>
-          <p>Ideal para confeitaria, provedor de internet, personalizados, delivery, barbearia, loja, assistência técnica, estética e muito mais.</p>
-        </div>
-
-        <div class="features">
-          <div><b>01</b><span>Organiza todos os links importantes em uma única página.</span></div>
-          <div><b>02</b><span>Facilita o cliente chamar no WhatsApp sem ficar procurando contato.</span></div>
-          <div><b>03</b><span>Deixa o negócio mais bonito e confiável na bio do Instagram.</span></div>
-        </div>
-      </div>
-
-      <div class="dashboard">
-        <div class="dash-head">
-          <span>VXLINK Preview</span>
-          <strong>Online</strong>
-        </div>
-        <div class="dash-line"><span>Cliente</span><b>vxlink.fun/sandelicia</b></div>
-        <div class="dash-line"><span>Botão principal</span><b>WhatsApp</b></div>
-        <div class="dash-line"><span>Visual</span><b>Premium Roxo</b></div>
-        <div class="dash-line"><span>Entrega</span><b>HTML + CSS + JS</b></div>
-        <div class="progress"><span style="width:92%"></span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="preco" class="section price-section">
-    <div class="container">
-      <div class="section-head">
-        <span>Plano único</span>
-        <h2>Preço simples para começar agora.</h2>
-        <p>Sem enrolação, sem mensalidade obrigatória. Um plano direto para colocar o negócio no digital.</p>
-      </div>
-
-      <div class="price-card">
-        <div class="price-badge">Mais vendido</div>
-        <h3>Bio Link Premium</h3>
-        <p class="price-desc">Página profissional para divulgar sua empresa com visual VXLINK.</p>
-
-        <div class="price">
-          <small>R$</small>20
-          <span>pagamento único</span>
-        </div>
-
-        <ul>
-          <li>✅ Link personalizado: vxlink.fun/cliente</li>
-          <li>✅ Botões de WhatsApp, Instagram e localização</li>
-          <li>✅ Cards para produtos, serviços ou promoções</li>
-          <li>✅ Visual premium nas cores VXLINK</li>
-          <li>✅ Otimização para celular e PC</li>
-          <li>✅ SEO básico e compartilhamento bonito</li>
-          <li>✅ QR Code para divulgação</li>
-        </ul>
-
-        <a class="btn primary full" href="https://wa.me/5598985996937?text=Quero%20o%20Bio%20Link%20Premium%20de%20R%2420" target="_blank">
-          Pedir meu bio link
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section id="processo" class="section">
-    <div class="container">
-      <div class="section-head">
-        <span>Como funciona</span>
-        <h2>Processo simples para o cliente entender.</h2>
-      </div>
-
-      <div class="steps">
-        <div class="step"><b>1</b><h3>Você manda os dados</h3><p>Nome, logo, WhatsApp, Instagram, fotos, endereço e links.</p></div>
-        <div class="step"><b>2</b><h3>A VXLINK cria</h3><p>Montamos a página com visual premium e informações organizadas.</p></div>
-        <div class="step"><b>3</b><h3>Publicamos</h3><p>O cliente recebe o link no modelo vxlink.fun/cliente.</p></div>
-        <div class="step"><b>4</b><h3>Divulga e vende</h3><p>Coloca na bio, status, cartão, QR Code e redes sociais.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq" class="section faq-section">
-    <div class="container">
-      <div class="section-head">
-        <span>Dúvidas</span>
-        <h2>Perguntas frequentes</h2>
-      </div>
-
-      <div class="faq">
-        <details>
-          <summary>O cliente paga mensalidade?</summary>
-          <p>Esse plano é pagamento único de R$ 20. Caso no futuro o cliente queira manutenção, painel, campanhas ou alterações frequentes, isso pode virar serviço separado.</p>
-        </details>
-        <details>
-          <summary>O link fica como?</summary>
-          <p>O modelo é vxlink.fun/cliente, por exemplo: vxlink.fun/sandelicia, vxlink.fun/isisnet ou vxlink.fun/personalizemoment.</p>
-        </details>
-        <details>
-          <summary>Funciona no celular?</summary>
-          <p>Sim. O layout é mobile first, ou seja, feito primeiro para ficar bonito e rápido no celular.</p>
-        </details>
-        <details>
-          <summary>Dá para colocar produtos?</summary>
-          <p>Sim. Dá para colocar cards de produtos, serviços, promoções, fotos, links de pedido e botões para atendimento.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <section class="final-cta">
-    <div class="container">
-      <div class="cta-box">
-        <h2>Transforme a bio do cliente em uma vitrine premium.</h2>
-        <p>Um link bonito, rápido e direto para atendimento. Simples para vender, profissional para apresentar.</p>
-        <a class="btn primary" href="https://wa.me/5598985996937" target="_blank">Chamar a VXLINK</a>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <a class="brand" href="#">
-          <span class="brand-mark">VX</span>
-          <span>VXLINK</span>
-        </a>
-        <p>Bio links premium para negócios locais que querem uma presença digital bonita, rápida e profissional.</p>
-      </div>
-
-      <div>
-        <h4>Serviços</h4>
-        <a href="#servicos">Bio Link Premium</a>
-        <a href="#servicos">Mini sites</a>
-        <a href="#servicos">QR Code</a>
-        <a href="#servicos">SEO básico</a>
-      </div>
-
-      <div>
-        <h4>Parceiros</h4>
-        <a href="#parceiros">ISISNET</a>
-        <a href="#parceiros">Personalize Moment</a>
-        <a href="#parceiros">Sandelícia</a>
-      </div>
-
-      <div>
-        <h4>Contato</h4>
-        <a href="https://vxlink.fun">vxlink.fun</a>
-        <a href="https://wa.me/5598985996937" target="_blank">(98) 98599-6937</a>
-        <a href="https://www.instagram.com/mateus.vxlink" target="_blank">@mateus.vxlink</a>
-      </div>
-    </div>
-
-    <div class="container copy">
-      © 2026 VXLINK.FUN — Bio Link Premium, mini sites e presença digital.
-    </div>
-  </footer>
-
-  <button class="to-top" id="toTop" aria-label="Voltar ao topo">↑</button>
-
+    </header>
+    <section class="partners" id="parceiros"><div class="partners-track">
+      <span>✦ ISISNET</span><span>✦ Personalize Moment</span><span>✦ Sandelícia</span><span>✦ VXLINK</span><span>✦ ISISNET</span><span>✦ Personalize Moment</span><span>✦ Sandelícia</span><span>✦ VXLINK</span>
+    </div></section>
+    <section class="section" id="beneficios"><div class="container"><div class="section-title"><span>O essencial</span><h2>4 pontos que fazem diferença no seu negócio</h2></div><div class="benefit-grid">
+      <article class="benefit-card"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg></div><h3>Página premium</h3><p>Um link exclusivo com visual profissional, feito para apresentar sua empresa com mais confiança.</p></article>
+      <article class="benefit-card"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-12 7L4 20l1.4-3.8A8 8 0 1 1 20 11.5z"/><path d="M8 10h8M8 14h5"/></svg></div><h3>Contato rápido</h3><p>Botões diretos para WhatsApp, Instagram, localização e atendimento sem confusão.</p></article>
+      <article class="benefit-card"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M5 5h5v5H5zM14 5h5v5h-5zM5 14h5v5H5zM14 14h2v2h-2zM18 14h1v5h-5v-1"/></svg></div><h3>QR Code</h3><p>Ideal para cartão, embalagem, panfleto, balcão, story e status do WhatsApp.</p></article>
+      <article class="benefit-card"><div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-4 3 3 5-7"/></svg></div><h3>SEO básico</h3><p>Título, descrição, compartilhamento bonito e estrutura leve para celular e computador.</p></article>
+    </div></div></section>
+    <section class="section price-section" id="preco"><div class="container price-wrap"><div class="price-copy"><span>Plano único</span><h2>Bio Link Premium por R$20</h2><p>Pagamento único para criar a página inicial do cliente no modelo VXLINK.</p></div><article class="price-card"><div class="price-top"><div><small>Plano</small><h3>Bio Link Premium</h3></div><div class="price-value"><sup>R$</sup>20</div></div><div class="price-items"><p>✓ Link no modelo vxlink.fun/cliente</p><p>✓ WhatsApp, Instagram e localização</p><p>✓ Visual premium responsivo</p><p>✓ QR Code para divulgação</p></div><a class="btn btn-primary full" href="https://wa.me/5598985996937?text=Quero%20o%20Bio%20Link%20Premium%20de%20R%2420" target="_blank">Pedir meu Bio Link</a></article></div></section>
+  </main>
+  <footer class="footer" id="contato"><div class="container footer-inner"><div class="footer-brand"><a class="brand" href="#"><span class="brand-icon"><svg viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="14"></rect><path d="M14 17l5 14 5-14M25 17l9 14M34 17l-9 14"></path></svg></span><span>VXLINK</span></a><p>Bio links premium para negócios locais.</p></div><div class="footer-actions"><a href="https://vxlink.fun">vxlink.fun</a><a href="https://wa.me/5598985996937" target="_blank">WhatsApp</a><a href="https://www.instagram.com/mateus.vxlink" target="_blank">Instagram</a></div></div><div class="container footer-bottom">© 2026 VXLINK.FUN — Presença digital com acabamento premium.</div></footer>
   <script src="script.js"></script>
 </body>
 </html>
