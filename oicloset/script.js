@@ -1,12 +1,9 @@
 /**
- * Intersection Observer para Animação de Entrada
- * Sem bibliotecas, performance máxima.
+ * Animação de entrada suave
  */
 document.addEventListener('DOMContentLoaded', () => {
-    const observerOptions = {
-        threshold: 0.1
-    };
-
+    const cards = document.querySelectorAll('.card, .hero');
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -14,14 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 entry.target.style.transform = 'translateY(0)';
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.1 });
 
-    // Seleciona elementos para animar
-    const elements = document.querySelectorAll('.card, .hero');
-    elements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'all 0.6s ease-out';
-        observer.observe(el);
+    cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'all 0.6s ease-out';
+        observer.observe(card);
     });
 });
