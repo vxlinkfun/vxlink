@@ -5,45 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oi, Closet | Curadoria Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS Integrado para Garantir Aplicação */
+        :root {
+            --bg: #F8F7F5;
+            --card-white: #FFFFFF;
+            --text-main: #1A1A1A;
+            --accent-nude: #C5A090;
+        }
+        body { background: var(--bg); font-family: 'Outfit', sans-serif; color: var(--text-main); margin: 0; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; }
+        
+        .hero { text-align: center; margin-bottom: 50px; }
+        .brand-name { font-size: 3rem; letter-spacing: -2px; font-weight: 600; }
+        
+        .grid-actions { display: grid; gap: 20px; width: 100%; max-width: 450px; }
+        
+        .card { 
+            background: var(--card-white); padding: 25px; border-radius: 24px; 
+            display: flex; align-items: center; gap: 20px; text-decoration: none; 
+            color: var(--text-main); border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03); transition: 0.4s;
+        }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent-nude); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+        
+        .icon { width: 32px; height: 32px; stroke: var(--text-main); stroke-width: 1.5; fill: none; flex-shrink: 0; }
+        
+        .trust-section { max-width: 450px; margin: 40px auto; text-align: center; }
+        .badge { background: #EAEAE8; padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; margin: 5px; display: inline-block; }
+        
+        .footer { margin-top: 60px; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: #999; text-decoration: none; }
+    </style>
 </head>
 <body>
 
     <header class="hero">
         <h1 class="brand-name">OI, CLOSET</h1>
-        <p class="brand-sub">Curadoria de Moda Feminina</p>
+        <p>Curadoria de Moda Feminina</p>
     </header>
 
-    <main class="main-wrapper">
-        <section class="grid-actions">
-            <a href="https://oicloset.kyte.site/pt-BR" class="card">
-                <svg viewBox="0 0 24 24" class="icon"><path d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-                <div class="text"><h3>Loja Online</h3><p>Coleção exclusiva</p></div>
-            </a>
-            <a href="https://chat.whatsapp.com/FqkQyvR35wG3xaaof7nfAy" class="card">
-                <svg viewBox="0 0 24 24" class="icon"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                <div class="text"><h3>Grupo VIP</h3><p>Ofertas antecipadas</p></div>
-            </a>
-            <a href="https://www.instagram.com/oi_closet" class="card">
-                <svg viewBox="0 0 24 24" class="icon"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                <div class="text"><h3>Instagram</h3><p>Siga nossos conteúdos</p></div>
-            </a>
-        </section>
-
-        <section class="trust-section">
-            <h2>Compromisso Oi Closet</h2>
-            <div class="badges">
-                <div class="badge">Frete para todo o Brasil</div>
-                <div class="badge">Segurança no Pagamento</div>
-                <div class="badge">Atendimento Humanizado</div>
-            </div>
-        </section>
+    <main class="grid-actions">
+        <a href="https://oicloset.kyte.site/pt-BR" class="card">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+            <div><h3>Loja Online</h3><p>Coleção exclusiva</p></div>
+        </a>
+        <a href="https://chat.whatsapp.com/FqkQyvR35wG3xaaof7nfAy" class="card">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+            <div><h3>Grupo VIP</h3><p>Ofertas antecipadas</p></div>
+        </a>
+        <a href="https://www.instagram.com/oi_closet" class="card">
+            <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg>
+            <div><h3>Instagram</h3><p>Siga nossos conteúdos</p></div>
+        </a>
     </main>
 
-    <footer class="footer">
-        <a href="https://vxlink.fun">Desenvolvido por VXLink.fun</a>
-    </footer>
+    <section class="trust-section">
+        <div class="badge">Frete para todo o Brasil</div>
+        <div class="badge">Segurança no Pagamento</div>
+        <div class="badge">Atendimento Humanizado</div>
+    </section>
 
-    <script src="script.js"></script>
+    <a href="https://vxlink.fun" class="footer">Desenvolvido por VXLink.fun</a>
+
 </body>
 </html>
