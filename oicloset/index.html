@@ -22,6 +22,17 @@
             display: flex; flex-direction: column; align-items: center;
         }
 
+        /* Botão Flutuante */
+        .float-wa {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #25d366; color: white;
+            padding: 15px; border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 1000; transition: 0.3s;
+        }
+        .float-wa:hover { transform: scale(1.1); }
+        .float-wa svg { width: 30px; height: 30px; fill: white; }
+
         /* Hero */
         .hero { text-align: center; padding: 60px 20px; }
         .brand-logo { font-family: 'Playfair Display', serif; font-size: 3rem; letter-spacing: 1px; }
@@ -48,15 +59,10 @@
         .tags { display: flex; flex-direction: column; gap: 10px; }
         
         .tag { 
-            font-size: 0.75rem; 
-            border: 1px solid #ccc; 
-            padding: 10px 15px; 
-            border-radius: 50px;
-            background: var(--branco);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            font-size: 0.75rem; border: 1px solid #ccc; 
+            padding: 10px 15px; border-radius: 50px;
+            background: var(--branco); display: flex;
+            align-items: center; justify-content: center; gap: 8px;
         }
         
         .mini-icon { width: 14px; height: 14px; stroke: #999; fill: none; stroke-width: 2; }
@@ -65,6 +71,11 @@
     </style>
 </head>
 <body>
+
+    <!-- Botão Flutuante WhatsApp -->
+    <a href="https://wa.me/559691954729?text=Olá,%20vi%20a%20página%20da%20Oi%20Closet%20e%20gostaria%20de%20mais%20informações." class="float-wa" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.195 0-5.797 2.602-5.797 5.797 0 1.023.289 2.008.82 2.871l-.57 2.086 2.148-.563a5.776 5.776 0 0 0 2.891.758h.008c3.195 0 5.797-2.602 5.797-5.797 0-3.195-2.602-5.797-5.797-5.797zm0 10.531h-.008c-.93 0-1.836-.25-2.625-.727l-.188-.113-1.953.512.52-1.906-.121-.191a5.617 5.617 0 0 1-.852-2.988c0-3.109 2.531-5.641 5.641-5.641 3.109 0 5.641 2.531 5.641 5.641 0 3.109-2.531 5.641-5.641 5.641zM15.48 14.613c-.172-.086-1.016-.5-1.172-.559s-.273-.086-.391.086c-.117.172-.457.563-.563.672-.109.117-.219.133-.391.047s-.727-.273-1.383-1.023c-.512-.578-.859-1.293-.961-1.465s-.012-.266.078-.352c.078-.078.172-.203.258-.305s.117-.18.172-.305c.055-.125.027-.234-.016-.328s-.391-1.023-.535-1.406c-.141-.375-.289-.328-.391-.336h-.328c-.117 0-.313.047-.477.234s-.625.617-.625 1.508.43 1.742.492 1.828.859 1.398 2.078 1.953c.293.125.52.203.703.258.297.094.57.086.781.047.234-.039 1.016-.414 1.156-.812s.141-.742.094-.812c-.039-.078-.148-.117-.32-.203z"/></svg>
+    </a>
 
     <header class="hero">
         <h1 class="brand-logo">Oi, Closet</h1>
