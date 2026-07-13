@@ -21,11 +21,11 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Pulsação sutil para o botão flutuante */
+        /* Pulsação fluida e suave para o botão flutuante */
         @keyframes premiumPulse {
-            0% { box-shadow: 0 4px 15px rgba(238, 203, 199, 0.4); }
-            50% { box-shadow: 0 4px 25px rgba(238, 203, 199, 0.8); }
-            100% { box-shadow: 0 4px 15px rgba(238, 203, 199, 0.4); }
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(238, 203, 199, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 4px 25px rgba(238, 203, 199, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(238, 203, 199, 0.4); }
         }
 
         body {
@@ -37,18 +37,27 @@
             animation: premiumFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Botão Flutuante Premium - Restaurado para a estrutura original idêntica */
+        /* Botão Flutuante Premium - Corrigido e Fluido */
         .float-wa {
-            position: fixed; bottom: 30px; right: 30px;
-            background: var(--rosa-closet); /* Cor do site aplicada */
-            padding: 15px; border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(238, 203, 199, 0.5); /* Sombra suave */
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px;
+            background: var(--rosa-closet);
+            padding: 15px; 
+            border-radius: 50%;
             z-index: 1000; 
-            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
             animation: premiumPulse 2s infinite ease-in-out;
         }
-        .float-wa:hover { transform: scale(1.1); }
-        .float-wa svg { width: 30px; height: 30px; fill: var(--branco); display: block; } /* Ícone branco para contraste */
+        .float-wa:hover { 
+            animation: none; /* Pausa a pulsação ao passar o mouse para priorizar o controle do usuário */
+            transform: scale(1.15) translateY(-3px); 
+            box-shadow: 0 8px 25px rgba(238, 203, 199, 0.8);
+        }
+        .float-wa svg { width: 30px; height: 30px; fill: var(--branco); display: block; }
 
         /* Hero */
         .hero { text-align: center; padding: 60px 20px 30px; }
@@ -133,7 +142,7 @@
 </head>
 <body>
 
-    <!-- Botão Flutuante WhatsApp (Cor do site + Ícone Moderno + Layout Original) -->
+    <!-- Botão Flutuante WhatsApp (Cor do site + Ícone Moderno + Layout Fluido) -->
     <a href="https://wa.me/559691954729?text=Olá,%20vi%20a%20página%20da%20Oi%20Closet%20e%20gostaria%20de%20mais%20informações." class="float-wa" target="_blank">
         <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-1.018-.273-.152-.473-.23-.673.078-.199.305-.77.969-1.07 1.172-.301.199-.57.222-1.047.078-.477-.145-1.508-.559-2.871-1.777-1.062-.945-1.781-2.113-1.988-2.418-.203-.305-.02-.47.133-.621.141-.141.316-.359.473-.535.156-.176.211-.305.316-.512.105-.207.055-.383-.027-.535-.082-.152-.673-1.621-.922-2.223-.238-.598-.484-.516-.673-.516-.172 0-.367-.02-.562-.02-.196 0-.516.074-.785.359-.273.289-1.035 1.016-1.035 2.484 0 1.465 1.055 2.879 1.199 3.074.148.195 2.078 3.172 5.035 4.449.703.305 1.25.488 1.676.621.703.223 1.344.191 1.848.113.563-.086 1.758-.723 2.008-1.422.246-.703.246-1.305.172-1.422-.074-.117-.273-.188-.57-.336zM12 0C5.373 0 0 5.373 0 12c0 2.114.545 4.168 1.571 5.973L0 24l6.197-1.558C7.946 23.46 9.94 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818c-1.845 0-3.652-.497-5.228-1.433l-3.75 1.026 1.004-3.658-1.41-2.455c-1.01-1.751-1.01-3.805 0-5.556 1.01-1.751 2.766-2.775 4.67-2.775s3.66 1.024 4.67 2.775c1.01 1.751 1.01 3.805 0 5.556l-1.41 2.455 1.004 3.658-3.75-1.026z"/></svg>
     </a>
@@ -187,7 +196,7 @@
                 <span>Segurança Garantida</span>
             </div>
             <div class="tag">
-                <svg class="mini-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 "></path></svg>
+                <svg class="mini-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81 .7A2 2 0 0 1 22 16.92z"/></svg>
                 <span>Atendimento Premium</span>
             </div>
         </div>
