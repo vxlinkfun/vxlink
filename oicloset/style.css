@@ -1,70 +1,32 @@
-/* Reset Premium */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
 :root {
-    --bg-color: #FDFBF8;
-    --card-bg: #FFFFFF;
-    --rosa-accent: #F8BBD0;
-    --text-color: #2D2D2D;
-    --shadow: 0 10px 30px rgba(0,0,0,0.05);
+    --bg: #F8F7F5;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --accent: #C5A090; /* Tom Nude Premium */
 }
 
-body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+body { background: var(--bg); font-family: 'Outfit', sans-serif; color: var(--text); padding: 40px 20px; }
+
+.hero { text-align: center; margin-bottom: 50px; }
+.brand-name { font-size: 3rem; letter-spacing: -2px; }
+
+.grid-actions { display: grid; gap: 15px; max-width: 400px; margin: 0 auto; }
+
+.card { 
+    background: var(--card); padding: 20px; border-radius: 20px; display: flex; 
+    align-items: center; gap: 20px; text-decoration: none; color: var(--text);
+    border: 1px solid rgba(0,0,0,0.05); transition: 0.4s;
 }
 
-/* Hero Section */
-.hero { text-align: center; padding: 60px 0 40px; }
-.brand { font-size: 2.5rem; letter-spacing: -1.5px; font-weight: 600; }
-.subtitle { color: #888; margin-top: 8px; font-weight: 300; }
+.card:hover { transform: scale(1.02); border-color: var(--accent); }
 
-/* Grid Layout */
-.grid-container {
-    width: 100%;
-    max-width: 450px;
-    display: grid;
-    gap: 16px;
-}
+.icon { width: 28px; height: 28px; stroke: var(--text); stroke-width: 1.5; fill: none; }
 
-/* Cards */
-.card {
-    background: var(--card-bg);
-    padding: 24px;
-    border-radius: 24px;
-    text-decoration: none;
-    color: var(--text-color);
-    border: 1px solid rgba(0,0,0,0.04);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
+.trust-section { max-width: 400px; margin: 40px auto; text-align: center; }
+.trust-section h2 { font-size: 1.1rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 2px; }
+.badges { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.badge { background: #EEE; padding: 8px 15px; border-radius: 50px; font-size: 0.8rem; }
 
-.card:hover {
-    transform: translateY(-5px);
-    border-color: var(--rosa-accent);
-    box-shadow: var(--shadow);
-}
+.footer { text-align: center; margin-top: 50px; }
+.footer a { color: #999; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; }
 
-.icon { width: 32px; height: 32px; color: var(--rosa-accent); }
-
-/* Trust Badge */
-.trust-badge {
-    text-align: center;
-    padding: 16px;
-    border: 1px dashed var(--rosa-accent);
-    border-radius: 16px;
-    color: #666;
-    font-size: 0.85rem;
-    margin-top: 10px;
-}
-
-/* Footer */
-.footer { padding: 40px; color: #AAA; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
