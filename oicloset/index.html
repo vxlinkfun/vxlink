@@ -3,68 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oi, Closet | Curadoria Premium</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Oi, Closet | Beleza Feminina</title>
+    <!-- Fonte sofisticada -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* CSS Integrado para Garantir Aplicação */
         :root {
-            --bg: #F8F7F5;
-            --card-white: #FFFFFF;
-            --text-main: #1A1A1A;
-            --accent-nude: #C5A090;
+            --rosa-closet: #eecbc7; /* Tom retirado da identidade visual */
+            --nude-fundo: #fbf5f3;
+            --preto-texto: #1a1a1a;
+            --branco: #ffffff;
         }
-        body { background: var(--bg); font-family: 'Outfit', sans-serif; color: var(--text-main); margin: 0; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; }
-        
-        .hero { text-align: center; margin-bottom: 50px; }
-        .brand-name { font-size: 3rem; letter-spacing: -2px; font-weight: 600; }
-        
-        .grid-actions { display: grid; gap: 20px; width: 100%; max-width: 450px; }
-        
-        .card { 
-            background: var(--card-white); padding: 25px; border-radius: 24px; 
-            display: flex; align-items: center; gap: 20px; text-decoration: none; 
-            color: var(--text-main); border: 1px solid rgba(0,0,0,0.06);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03); transition: 0.4s;
+
+        body {
+            background-color: var(--nude-fundo);
+            color: var(--preto-texto);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column; align-items: center;
         }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent-nude); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-        
-        .icon { width: 32px; height: 32px; stroke: var(--text-main); stroke-width: 1.5; fill: none; flex-shrink: 0; }
-        
-        .trust-section { max-width: 450px; margin: 40px auto; text-align: center; }
-        .badge { background: #EAEAE8; padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; margin: 5px; display: inline-block; }
-        
-        .footer { margin-top: 60px; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: #999; text-decoration: none; }
+
+        /* Hero */
+        .hero { text-align: center; padding: 60px 20px; }
+        .brand-logo { font-family: 'Playfair Display', serif; font-size: 3rem; letter-spacing: 1px; }
+        .brand-sub { font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; color: #888; }
+
+        /* Grid */
+        .grid { display: grid; gap: 20px; width: 90%; max-width: 400px; }
+
+        .card {
+            background: var(--branco);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex; align-items: center; gap: 20px;
+            text-decoration: none; color: var(--preto-texto);
+            transition: 0.3s;
+        }
+        .card:hover { border-color: var(--rosa-closet); }
+
+        .svg-icon { width: 30px; height: 30px; fill: var(--rosa-closet); }
+
+        /* Compromisso */
+        .compromisso { margin: 40px 0; text-align: center; }
+        .tags { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 15px; }
+        .tag { font-size: 0.75rem; border: 1px solid #ccc; padding: 8px 15px; border-radius: 50px; }
+
+        .footer { margin-bottom: 40px; font-size: 0.7rem; color: #bbb; text-decoration: none; }
     </style>
 </head>
 <body>
 
     <header class="hero">
-        <h1 class="brand-name">OI, CLOSET</h1>
-        <p>Curadoria de Moda Feminina</p>
+        <h1 class="brand-logo">Oi, Closet</h1>
+        <p class="brand-sub">Beleza Feminina</p>
     </header>
 
-    <main class="grid-actions">
+    <main class="grid">
         <a href="https://oicloset.kyte.site/pt-BR" class="card">
-            <svg class="icon" viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1z"/></svg>
             <div><h3>Loja Online</h3><p>Coleção exclusiva</p></div>
         </a>
+
         <a href="https://chat.whatsapp.com/FqkQyvR35wG3xaaof7nfAy" class="card">
-            <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-            <div><h3>Grupo VIP</h3><p>Ofertas antecipadas</p></div>
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+            <div><h3>Grupo VIP</h3><p>Ofertas exclusivas</p></div>
         </a>
+
         <a href="https://www.instagram.com/oi_closet" class="card">
-            <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg>
-            <div><h3>Instagram</h3><p>Siga nossos conteúdos</p></div>
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.77 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <div><h3>Instagram</h3><p>Siga a gente por lá</p></div>
         </a>
     </main>
 
-    <section class="trust-section">
-        <div class="badge">Frete para todo o Brasil</div>
-        <div class="badge">Segurança no Pagamento</div>
-        <div class="badge">Atendimento Humanizado</div>
+    <section class="compromisso">
+        <div class="tags">
+            <span class="tag">Frete p/ todo Brasil</span>
+            <span class="tag">Segurança Garantida</span>
+            <span class="tag">Atendimento Premium</span>
+        </div>
     </section>
 
-    <a href="https://vxlink.fun" class="footer">Desenvolvido por VXLink.fun</a>
+    <a href="https://vxlink.fun" class="footer">DESENVOLVIDO POR VXLINK.FUN</a>
 
 </body>
 </html>
