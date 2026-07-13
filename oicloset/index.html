@@ -12,6 +12,20 @@
             --nude-fundo: #fbf5f3;
             --preto-texto: #1a1a1a;
             --branco: #ffffff;
+            --transition-premium: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Efeito de entrada suave ao carregar a página */
+        @keyframes premiumFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Pulsação sutil para o botão flutuante */
+        @keyframes premiumPulse {
+            0% { box-shadow: 0 4px 15px rgba(238, 203, 199, 0.5); }
+            50% { box-shadow: 0 4px 25px rgba(238, 203, 199, 0.8); }
+            100% { box-shadow: 0 4px 15px rgba(238, 203, 199, 0.5); }
         }
 
         body {
@@ -20,6 +34,7 @@
             font-family: 'Montserrat', sans-serif;
             margin: 0; padding: 0;
             display: flex; flex-direction: column; align-items: center;
+            animation: premiumFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         /* Botão Flutuante Premium */
@@ -27,10 +42,16 @@
             position: fixed; bottom: 30px; right: 30px;
             background: var(--rosa-closet); /* Cor do site aplicada */
             padding: 15px; border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(238, 203, 199, 0.5); /* Sombra suave */
-            z-index: 1000; transition: 0.3s;
+            z-index: 1000; 
+            transition: var(--transition-premium);
+            animation: premiumPulse 2s infinite ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .float-wa:hover { transform: scale(1.1); }
+        .float-wa:hover { 
+            transform: scale(1.1) translateY(-3px); 
+        }
         .float-wa svg { width: 30px; height: 30px; fill: var(--branco); } /* Ícone branco para contraste */
 
         /* Hero */
@@ -56,14 +77,22 @@
             border: 1px solid rgba(0,0,0,0.05);
             display: flex; align-items: center; gap: 20px;
             text-decoration: none; color: var(--preto-texto);
-            transition: 0.3s;
+            transition: var(--transition-premium);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
         }
-        .card:hover { border-color: var(--rosa-closet); }
+        .card:hover { 
+            border-color: var(--rosa-closet); 
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(238, 203, 199, 0.3); /* Glow sutil na cor da marca */
+        }
 
-        .svg-icon { width: 30px; height: 30px; fill: var(--rosa-closet); }
+        .svg-icon { width: 30px; height: 30px; fill: var(--rosa-closet); transition: var(--transition-premium); }
+        .card:hover .svg-icon {
+            transform: scale(1.1);
+        }
 
         /* Compromisso */
-        .compromisso { margin: 40px 0; text-align: center; width: 90%; max-width: 400px; }
+        .compromisso { margin: 40px 0; text-align: center; width: 90%; max-width: 500px; }
         .tags { display: flex; flex-direction: column; gap: 10px; }
         
         .tag { 
@@ -71,11 +100,39 @@
             padding: 10px 15px; border-radius: 50px;
             background: var(--branco); display: flex;
             align-items: center; justify-content: center; gap: 8px;
+            transition: var(--transition-premium);
+        }
+        .tag:hover {
+            border-color: var(--rosa-closet);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(238, 203, 199, 0.2);
         }
         
-        .mini-icon { width: 14px; height: 14px; stroke: #999; fill: none; stroke-width: 2; }
+        .mini-icon { width: 14px; height: 14px; stroke: #999; fill: none; stroke-width: 2; transition: var(--transition-premium); }
+        .tag:hover .mini-icon {
+            stroke: var(--rosa-closet);
+        }
 
-        .footer { margin-bottom: 40px; font-size: 0.7rem; color: #bbb; text-decoration: none; letter-spacing: 1px; }
+        .footer { margin-bottom: 40px; font-size: 0.7rem; color: #bbb; text-decoration: none; letter-spacing: 1px; transition: var(--transition-premium); }
+        .footer:hover { color: var(--rosa-closet); }
+
+        /* OTIMIZAÇÃO PARA PC (Telas maiores que 768px) */
+        @media (min-width: 768px) {
+            .hero { padding: 80px 20px 40px; }
+            .brand-logo { font-size: 4rem; }
+            .grid { max-width: 500px; gap: 24px; }
+            .compromisso { max-width: 700px; }
+            .tags { 
+                flex-direction: row; 
+                justify-content: center; 
+                flex-wrap: wrap;
+                gap: 12px; 
+            }
+            .tag {
+                padding: 12px 22px;
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
