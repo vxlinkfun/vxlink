@@ -1,203 +1,90 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+:root {
+    --rosa-bebe: #FCE4EC;
+    --rosa-claro: #F8BBD0;
+    --nude: #FDFBF8;
+    --branco: #FFFFFF;
+    --cinza: #E0E0E0;
+    --preto: #2D2D2D;
+    --transition: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-body{
-background:#0f0f11;
-color:#fff;
-overflow-x:hidden;
+body {
+    background-color: var(--nude);
+    color: var(--preto);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
 }
 
-.bg{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:
-radial-gradient(circle at top,#ff4fa322 0%,transparent 45%),
-radial-gradient(circle at bottom,#ffb3d822 0%,transparent 45%),
-#0f0f11;
-z-index:-1;
+/* --- Hero --- */
+.hero {
+    padding: 100px 20px;
+    text-align: center;
 }
 
-.container{
-max-width:460px;
-margin:auto;
-padding:25px 18px 40px;
+.brand-title {
+    font-size: 3.5rem;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
 }
 
-.hero{
-text-align:center;
-margin-bottom:30px;
+.hero-location {
+    font-style: normal;
+    color: #888;
+    margin: 20px 0;
+    font-size: 0.9rem;
 }
 
-.logo img{
-width:110px;
-height:110px;
-border-radius:50%;
-padding:6px;
-background:#fff;
-box-shadow:0 10px 30px rgba(255,90,170,.25);
+/* --- Botão Premium --- */
+.btn-primary {
+    display: inline-block;
+    padding: 18px 40px;
+    background: linear-gradient(135deg, var(--rosa-bebe), var(--rosa-claro));
+    color: var(--preto);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: transform 0.3s var(--transition), box-shadow 0.3s var(--transition);
 }
 
-.hero h1{
-margin-top:18px;
-font-size:38px;
-font-weight:700;
-letter-spacing:2px;
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(248, 187, 208, 0.3);
 }
 
-.subtitle{
-margin-top:8px;
-font-size:15px;
-color:#d8d8d8;
+/* --- Bento Grid --- */
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.location{
-display:inline-flex;
-align-items:center;
-gap:8px;
-margin-top:18px;
-padding:12px 22px;
-border-radius:30px;
-background:#ffffff12;
-backdrop-filter:blur(12px);
-font-weight:600;
+.card {
+    background: var(--branco);
+    padding: 24px;
+    border-radius: 24px;
+    text-decoration: none;
+    color: var(--preto);
+    border: 1px solid rgba(0,0,0,0.03);
+    transition: transform 0.4s var(--transition);
 }
 
-.shipping{
-margin-top:15px;
-font-size:15px;
-color:#ffc5df;
-font-weight:500;
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--rosa-claro);
 }
 
-.buttons{
-display:flex;
-flex-direction:column;
-gap:18px;
-margin-top:35px;
+.card-wide { grid-column: span 2; }
+
+.card-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 16px;
 }
 
-.btn{
-display:flex;
-align-items:center;
-padding:18px;
-border-radius:28px;
-background:#1b1b20;
-text-decoration:none;
-color:#fff;
-transition:.3s;
-box-shadow:0 10px 25px rgba(0,0,0,.25);
-}
-
-.btn:hover{
-transform:translateY(-3px);
-box-shadow:0 18px 40px rgba(255,90,170,.25);
-}
-
-.primary{
-background:linear-gradient(135deg,#ff3d92,#ff82b7);
-}
-
-.icon{
-width:62px;
-height:62px;
-border-radius:18px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#ffffff22;
-font-size:24px;
-margin-right:18px;
-}
-
-.text{
-flex:1;
-}
-
-.text h3{
-font-size:19px;
-font-weight:700;
-}
-
-.text span{
-font-size:14px;
-opacity:.85;
-}
-
-.arrow{
-font-size:18px;
-}
-
-.categories{
-margin-top:40px;
-}
-
-.categories h2{
-text-align:center;
-margin-bottom:20px;
-font-size:24px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-}
-
-.item{
-background:#1a1a1f;
-border-radius:22px;
-padding:25px;
-text-align:center;
-transition:.3s;
-box-shadow:0 8px 20px rgba(0,0,0,.25);
-}
-
-.item:hover{
-transform:translateY(-4px);
-background:#24242b;
-}
-
-.item span{
-display:block;
-margin-top:10px;
-font-size:15px;
-font-weight:600;
-}
-
-footer{
-margin-top:50px;
-text-align:center;
-color:#999;
-font-size:13px;
-padding:30px 0;
-border-top:1px solid #2b2b2b;
-}
-
-footer b{
-color:#ff7eb7;
-letter-spacing:3px;
-}
-
-@media(max-width:400px){
-
-.hero h1{
-font-size:30px;
-}
-
-.text h3{
-font-size:17px;
-}
-
-.icon{
-width:55px;
-height:55px;
-}
-
+/* --- Responsividade --- */
+@media (max-width: 480px) {
+    .brand-title { font-size: 2.5rem; }
 }
