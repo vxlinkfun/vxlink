@@ -34,9 +34,14 @@
         .float-wa svg { width: 30px; height: 30px; fill: var(--branco); } /* Ícone branco para contraste */
 
         /* Hero */
-        .hero { text-align: center; padding: 60px 20px; }
-        .brand-logo { font-family: 'Playfair Display', serif; font-size: 3rem; letter-spacing: 1px; }
-        .brand-sub { font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; color: #888; }
+        .hero { text-align: center; padding: 60px 20px 30px; }
+        .brand-logo { font-family: 'Playfair Display', serif; font-size: 3rem; letter-spacing: 1px; margin-bottom: 5px; }
+        .brand-sub { font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; color: #888; margin-bottom: 15px; }
+        
+        /* Descrição e Localização Otimizadas */
+        .bio-text { font-size: 0.85rem; color: #555; max-width: 320px; margin: 0 auto 15px; line-height: 1.6; font-weight: 400; }
+        .loc-premium { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 0.8rem; font-weight: 600; color: #333; margin-top: 12px; }
+        .loc-icon { width: 16px; height: 16px; stroke: var(--rosa-closet); fill: none; stroke-width: 2; }
 
         /* Grid */
         .grid { display: grid; gap: 20px; width: 90%; max-width: 400px; }
@@ -80,6 +85,15 @@
     <header class="hero">
         <h1 class="brand-logo">Oi, Closet</h1>
         <p class="brand-sub">Beleza Feminina</p>
+        <div class="bio-text">
+            Roupas em breve... <br>
+            Área premium & Makes de R$10 <br>
+            Enviamos para todo o Brasil
+            <div class="loc-premium">
+                <svg class="loc-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+                Av. Equatorial, 1315, Pedrinhas, Macapá - AP
+            </div>
+        </div>
     </header>
 
     <main class="grid">
