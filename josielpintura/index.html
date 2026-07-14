@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Pinturas | Vxlink Premium</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #f8fafc; /* Off-white premium para contraste limpo */
+            color: #0f172a; 
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient light glow usando o azul exato da logo no fundo */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 600px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(26, 115, 232, 0.06) 0%, rgba(248, 250, 252, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 440px;
+            margin: 0 auto;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Animações Premium de Entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Profile Area */
+        .profile-wrapper {
+            margin-bottom: 35px;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .logo-bg {
+            width: 130px;
+            height: 130px;
+            background: #ffffff;
+            border-radius: 50%;
+            margin: 0 auto 24px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08), 0 0 0 3px rgba(26, 115, 232, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Configuração perfeita para a logo física circular do cliente */
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .profile-name {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0f172a; 
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .profile-tagline {
+            font-size: 14px;
+            color: #475569; 
+            font-weight: 400;
+            line-height: 1.5;
+            margin-bottom: 18px;
+            padding: 0 15px;
+        }
+
+        /* Location badge com pin SVG - Tema Claro */
+        .location-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(26, 115, 232, 0.07);
+            border: 1px solid rgba(26, 115, 232, 0.18);
+            color: #1a73e8; 
+            padding: 7px 16px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .location-badge svg {
+            width: 13px;
+            height: 13px;
+            fill: currentColor;
+        }
+
+        /* Buttons & Actions Section */
+        .links-wrapper {
+            margin-bottom: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.2s; /* Entra logo após o cabeçalho */
+        }
+
+        .btn-link {
+            display: block;
+            border-radius: 20px;
+            padding: 20px 24px;
+            text-decoration: none;
+            text-align: left;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        /* Botão Direct Ativo */
+        .btn-link.active-direct {
+            background: #ffffff;
+            border: 1.8px solid #1a73e8; 
+            box-shadow: 0 8px 20px rgba(26, 115, 232, 0.06);
+        }
+
+        .btn-link.active-direct:hover {
+            box-shadow: 0 12px 28px rgba(26, 115, 232, 0.14);
+            border-color: #003399; 
+            transform: translateY(-2px);
+        }
+
+        /* Standby WhatsApp Button */
+        .btn-link.standby-whatsapp {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1.5px dashed #cbd5e1;
+            opacity: 0.75;
+        }
+
+        .btn-link.standby-whatsapp:hover {
+            opacity: 0.95;
+            background: #ffffff;
+            border-color: #94a3b8;
+        }
+
+        .btn-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .btn-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-icon-svg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            color: #1a73e8; 
+        }
+
+        .btn-link.active-direct .btn-icon-svg {
+            color: #1a73e8;
+            filter: drop-shadow(0 2px 4px rgba(26, 115, 232, 0.15));
+        }
+
+        .btn-link.standby-whatsapp .btn-icon-svg {
+            color: #94a3b8;
+        }
+
+        .btn-text-box {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .btn-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a; 
+            letter-spacing: -0.2px;
+        }
+
+        .btn-link.active-direct .btn-title {
+            color: #1a73e8; 
+        }
+
+        .btn-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 400;
+        }
+
+        .btn-arrow-svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: #94a3b8;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: all 0.3s ease;
+        }
+
+        .btn-link.active-direct .btn-arrow-svg {
+            stroke: #1a73e8;
+        }
+
+        .btn-link.active-direct:hover .btn-arrow-svg {
+            transform: translateX(4px);
+            stroke: #003399;
+        }
+
+        /* Specialties Block - Fundo Branco Limpo */
+        .specialties-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 26px 28px;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.4s; /* Terceiro elemento a surgir */
+        }
+
+        .specialties-title {
+            font-size: 12px;
+            font-weight: 800;
+            color: #64748b;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .specialties-title::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 14px;
+            background-color: #1a73e8; 
+            border-radius: 2px;
+        }
+
+        .specialty-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .specialty-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 14px;
+            color: #334155; 
+            font-weight: 600;
+            transition: transform 0.2s ease;
+            cursor: default;
+        }
+
+        .specialty-item:hover {
+            transform: translateX(4px);
+            color: #0f172a;
+        }
+
+        /* Specialty SVG Container */
+        .specialty-icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: rgba(26, 115, 232, 0.06);
+            border: 1px solid rgba(26, 115, 232, 0.15);
+            border-radius: 12px;
+            color: #1a73e8; 
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .specialty-item:hover .specialty-icon-container {
+            background: #1a73e8;
+            color: #ffffff;
+            box-shadow: 0 6px 15px rgba(26, 115, 232, 0.25);
+            border-color: #1a73e8;
+        }
+
+        .specialty-icon-container svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Footer Stamp */
+        .footer-stamp {
+            margin-top: 45px;
+            font-size: 10px;
+            color: #94a3b8;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.6s;
+        }
+
+        .footer-stamp span {
+            color: #1a73e8;
+        }
+
+        /* Standby Tooltip */
+        .standby-tooltip {
+            position: absolute;
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            box-shadow: 0 15px 30px rgba(15, 23, 42, 0.15);
+            pointer-events: none;
+            z-index: 10;
+            animation: tooltipAppear 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes tooltipAppear {
+            from { opacity: 0; transform: translateY(5px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .fade-out {
+            opacity: 0 !important;
+            transform: translateY(-5px) scale(0.95) !important;
+            transition: all 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Profile Area -->
+        <div class="profile-wrapper">
+            <div class="logo-bg">
+                <!-- Direcionado para carregar a imagem física 'logo.png' de forma perfeitamente circular -->
+                <img src="logo.png" alt="JS Pinturas Logo" class="logo-img">
+            </div>
+            
+            <h1 class="profile-name">JS Pinturas</h1>
+            <p class="profile-tagline">Deixando sua casa nova de novo. Pintura profissional com acabamento premium e de alto padrão.</p>
+            
+            <span class="location-badge">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                Marabá – PA
+            </span>
+        </div>
+
+        <!-- Links Section -->
+        <div class="links-wrapper">
+            
+            <!-- Direct Button (ACTIVE PREMIUM) -->
+            <a href="https://ig.me/m/josiell_pinturas" class="btn-link active-direct" target="_blank">
+                <div class="btn-content">
+                    <div class="btn-left">
+                        <div class="btn-icon-svg">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            </svg>
+                        </div>
+                        <div class="btn-text-box">
+                            <div class="btn-title">Orçamento via Direct</div>
+                            <div class="btn-subtitle">Toque para falar comigo agora</div>
+                        </div>
+                    </div>
+                    <svg class="btn-arrow-svg" viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+            </a>
+
+            <!-- WhatsApp Button (STANDBY) -->
+            <div class="btn-link standby-whatsapp">
+                <div class="btn-content">
+                    <div class="btn-left">
+                        <div class="btn-icon-svg">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;">
+                                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                            </svg>
+                        </div>
+                        <div class="btn-text-box">
+                            <div class="btn-title" style="color: #64748b;">Chamar no WhatsApp</div>
+                            <div class="btn-subtitle" style="color: #94a3b8;">Espaço reservado para o seu número</div>
+                        </div>
+                    </div>
+                    <svg class="btn-arrow-svg" viewBox="0 0 24 24" style="stroke: #94a3b8;">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Specialties Section -->
+        <div class="specialties-card">
+            <h3 class="specialties-title">Especialidades</h3>
+            <div class="specialty-list">
+                
+                <div class="specialty-item">
+                    <div class="specialty-icon-container">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M18 12h-5V5a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1z"></path>
+                            <path d="M12 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"></path>
+                        </svg>
+                    </div>
+                    <span>Pintura Residencial & Comercial</span>
+                </div>
+
+                <div class="specialty-item">
+                    <div class="specialty-icon-container">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path>
+                        </svg>
+                    </div>
+                    <span>Acabamento Fino e Massas</span>
+                </div>
+
+                <div class="specialty-item">
+                    <div class="specialty-icon-container">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 14.7255 3.09032 17.1962 4.85857 19C5.34776 19.5 5.59235 20.25 5.43666 20.9C5.3 21.5 4.8 22 4 22H12Z"></path>
+                            <circle cx="7.5" cy="10.5" r="1.5" fill="currentColor"></circle>
+                            <circle cx="11.5" cy="7.5" r="1.5" fill="currentColor"></circle>
+                            <circle cx="16.5" cy="9.5" r="1.5" fill="currentColor"></circle>
+                        </svg>
+                    </div>
+                    <span>Aplicação de Texturas & Efeitos</span>
+                </div>
+
+                <div class="specialty-item">
+                    <div class="specialty-icon-container">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                    <span>Renovação Premium de Fachadas</span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer-stamp">
+            DESENVOLVIDO POR <span>VXLINK.FUN</span>
+        </div>
+
+    </div>
+
+    <!-- Active Magnetic Micro-interactions & Tooltip -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const activeBtn = document.querySelector('.btn-link.active-direct');
+            const standbyBtn = document.querySelector('.btn-link.standby-whatsapp');
+
+            if (activeBtn) {
+                activeBtn.addEventListener('mousemove', (e) => {
+                    const rect = activeBtn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - (rect.width / 2);
+                    const y = e.clientY - rect.top - (rect.height / 2);
+                    
+                    activeBtn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+                    activeBtn.style.boxShadow = `0 12px 30px rgba(26, 115, 232, 0.15)`;
+                });
+
+                activeBtn.addEventListener('mouseleave', () => {
+                    activeBtn.style.transform = 'translate(0px, 0px)';
+                    activeBtn.style.boxShadow = '0 8px 20px rgba(26, 115, 232, 0.06)';
+                });
+            }
+
+            if (standbyBtn) {
+                standbyBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    if (document.querySelector('.standby-tooltip')) return;
+
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'standby-tooltip';
+                    tooltip.innerText = 'Este botão será ativado com o seu WhatsApp!';
+                    document.body.appendChild(tooltip);
+
+                    const rect = standbyBtn.getBoundingClientRect();
+                    tooltip.style.left = `${rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2)}px`;
+                    tooltip.style.top = `${rect.top - 48 + window.scrollY}px`;
+
+                    setTimeout(() => {
+                        tooltip.classList.add('fade-out');
+                        setTimeout(() => tooltip.remove(), 400);
+                    }, 1800);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
