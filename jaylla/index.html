@@ -254,6 +254,92 @@
             color: #94a3b8;
         }
 
+        /* Card de Horários de Atendimento (Novo Bloco Premium) */
+        .schedule-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 22px 20px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.25s;
+        }
+
+        .schedule-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            color: #e5c158;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .schedule-header svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .schedule-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .schedule-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+        }
+
+        .schedule-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .schedule-day {
+            font-size: 12px;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        .schedule-day span {
+            display: block;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
+        }
+
+        .schedule-time {
+            font-size: 13.5px;
+            color: #ffffff;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* Destaque para o Intervalo */
+        .schedule-item.interval {
+            background: rgba(229, 193, 88, 0.03);
+            border: 1px solid rgba(229, 193, 88, 0.1);
+            padding: 8px 12px;
+            border-radius: 12px;
+            border-bottom: none;
+        }
+
+        .schedule-item.interval .schedule-day {
+            color: #e5c158;
+        }
+
+        .schedule-item.interval .schedule-time {
+            color: #e5c158;
+        }
+
         /* Banner Ofertas / Produtos Destaque */
         .offer-banner {
             background: rgba(255, 255, 255, 0.02);
@@ -265,7 +351,7 @@
             overflow: hidden;
             opacity: 0;
             animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            animation-delay: 0.3s;
+            animation-delay: 0.35s;
         }
 
         .badge-offer {
@@ -337,7 +423,6 @@
         <!-- Header Card -->
         <div class="header-card">
             <div class="logo-container">
-                <!-- Correção aqui: Apenas "logo.png" de forma direta pois está na mesma pasta -->
                 <img src="logo.png" alt="Jaylla Logo" class="logo-img">
             </div>
             <h1 class="brand-title">JAYLLA</h1>
@@ -385,8 +470,8 @@
                 </div>
             </a>
 
-            <!-- Item 2 Grid (Localização) -->
-            <a href="https://maps.app.goo.gl/13NZ5rYx3pksKwFm7" class="btn-grid-item" target="_blank">
+            <!-- Item 2 Grid (Localização Atualizada com ponto de referência) -->
+            <a href="https://maps.google.com/?q=Santa+Helena,+04+-+esquina+com+a+mega+show" class="btn-grid-item" target="_blank">
                 <div class="btn-grid-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
@@ -395,10 +480,36 @@
                 </div>
                 <div>
                     <div class="btn-grid-title">Localização</div>
-                    <div class="btn-grid-desc">Venha nos visitar</div>
+                    <div class="btn-grid-desc">Rua Santa Helena, 04</div>
                 </div>
             </a>
 
+        </div>
+
+        <!-- Card de Horários de Atendimento (Timeline Premium) -->
+        <div class="schedule-card">
+            <div class="schedule-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                Horário de Atendimento
+            </div>
+            <div class="schedule-timeline">
+                <div class="schedule-item">
+                    <div class="schedule-day">Manhã<span>Segunda a Sábado</span></div>
+                    <div class="schedule-time">08:00 às 12:00</div>
+                </div>
+                <!-- Intervalo com destaque de Recarga sutil -->
+                <div class="schedule-item interval">
+                    <div class="schedule-day">Novo Intervalo<span>Recarga / Almoço</span></div>
+                    <div class="schedule-time">12:00 às 15:30</div>
+                </div>
+                <div class="schedule-item">
+                    <div class="schedule-day">Tarde / Noite<span>Segunda a Sábado</span></div>
+                    <div class="schedule-time">15:30 às 19:30</div>
+                </div>
+            </div>
         </div>
 
         <!-- Banner Exclusivo de Ofertas -->
