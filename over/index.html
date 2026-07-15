@@ -50,11 +50,11 @@
             position: relative;
         }
 
-        /* Animações Premium */
+        /* Animações Premium de Entrada com Transição Suave */
         @keyframes revealUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(24px);
             }
             to {
                 opacity: 1;
@@ -72,7 +72,7 @@
             text-align: center;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
             opacity: 0;
-            animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: revealUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .logo-box {
@@ -153,7 +153,7 @@
             stroke-width: 2;
         }
 
-        /* Grid de Destaques Estilo Categorias de E-commerce */
+        /* Título das Categorias */
         .category-title {
             font-size: 11px;
             font-weight: 800;
@@ -164,17 +164,18 @@
             text-align: left;
             padding-left: 8px;
             opacity: 0;
-            animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: revealUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             animation-delay: 0.1s;
         }
 
-        .grid-categories {
+        /* Grid de Links */
+        .grid-links {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
             margin-bottom: 20px;
             opacity: 0;
-            animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: revealUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             animation-delay: 0.15s;
         }
 
@@ -295,8 +296,8 @@
             text-transform: uppercase;
             font-weight: 800;
             opacity: 0;
-            animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            animation-delay: 0.3s;
+            animation: revealUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.2s;
             text-align: center;
         }
 
@@ -318,8 +319,8 @@
         <!-- Profile Header -->
         <div class="profile-card">
             <div class="logo-box">
-                <!-- Direto para over/logo.png -->
-                <img src="over/logo.png" alt="OVER Logo" class="logo-img">
+                <!-- Correção do caminho para funcionar no mesmo diretório -->
+                <img src="logo.png" alt="OVER Logo" class="logo-img">
             </div>
             <h1 class="brand-title">OVER</h1>
             <p class="brand-subtitle">For Man</p>
@@ -360,7 +361,7 @@
             </a>
 
             <!-- Grid Item 1 (Catálogo Instagram) -->
-            <a href="https://instagram.com/over_mcp" class="btn-grid-box" target="_blank">
+            <a href="https://www.instagram.com/over_mcp?igsh=MW5zZ2d3bTNxcWJ6ZQ==" class="btn-grid-box" target="_blank">
                 <div class="btn-grid-icon-mini">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -385,7 +386,7 @@
                 </div>
                 <div class="btn-grid-text">
                     <div class="btn-grid-title-mini">Onde Estamos</div>
-                    <div class="btn-grid-desc" style="font-size: 10.5px; color: #64748b;">Rua Paraná, 425 - Santa Rita</div>
+                    <div class="btn-grid-subtitle-mini">Rua Paraná, 425</div>
                 </div>
             </a>
 
