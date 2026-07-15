@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVER | For Man</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #0b0b0c; /* Cinza quase preto urbano */
+            color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 30px 16px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Detalhe de fundo suave em cinza azulado */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, rgba(11, 11, 12, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 410px;
+            margin: 0 auto;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Animações Premium */
+        @keyframes revealUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Profile Header Estilo Streetwear */
+        .profile-card {
+            background: #111113;
+            border: 1px solid #1e1e22;
+            border-radius: 28px;
+            padding: 32px 24px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .logo-box {
+            width: 120px;
+            height: 120px;
+            background: #000;
+            border-radius: 50%;
+            margin: 0 auto 24px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #2e2e34;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .brand-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .brand-subtitle {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #64748b;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .brand-desc {
+            font-size: 13.5px;
+            color: #94a3b8;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .brand-desc span {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        /* Badge de Localização Minimalista */
+        .badge-location {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #1e1e22;
+            border: 1px solid #2e2e34;
+            color: #f1f5f9;
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-top: 16px;
+        }
+
+        .badge-location svg {
+            width: 12px;
+            height: 12px;
+            fill: none;
+            stroke: #94a3b8;
+            stroke-width: 2;
+        }
+
+        /* Grid de Destaques Estilo Categorias de E-commerce */
+        .category-title {
+            font-size: 11px;
+            font-weight: 800;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            text-align: left;
+            padding-left: 8px;
+            opacity: 0;
+            animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.1s;
+        }
+
+        .grid-categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.15s;
+        }
+
+        /* Botão Esportivo Principal (WhatsApp) */
+        .btn-sport {
+            grid-column: span 2;
+            background: #ffffff;
+            border: none;
+            border-radius: 18px;
+            padding: 22px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: #0b0b0c;
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-sport:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.15);
+            background: #f1f5f9;
+        }
+
+        .btn-sport-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-align: left;
+        }
+
+        .btn-sport-icon {
+            width: 38px;
+            height: 38px;
+            background: #0b0b0c;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+        }
+
+        .btn-sport-title {
+            font-size: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.2px;
+        }
+
+        .btn-sport-subtitle {
+            font-size: 11px;
+            color: #475569;
+            font-weight: 600;
+        }
+
+        .btn-sport svg.arrow {
+            stroke: #0b0b0c;
+            stroke-width: 2.5;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-sport:hover svg.arrow {
+            transform: translateX(4px);
+        }
+
+        /* Botões de Grid Menores */
+        .btn-grid-box {
+            background: #111113;
+            border: 1px solid #1e1e22;
+            border-radius: 18px;
+            padding: 20px 16px;
+            text-decoration: none;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-grid-box:hover {
+            background: #151518;
+            border-color: #3f3f46;
+            transform: translateY(-2px);
+        }
+
+        .btn-grid-icon-mini {
+            color: #94a3b8;
+            transition: color 0.3s ease;
+        }
+
+        .btn-grid-box:hover .btn-grid-icon-mini {
+            color: #ffffff;
+        }
+
+        .btn-grid-text {
+            text-align: left;
+        }
+
+        .btn-grid-title-mini {
+            font-size: 13.5px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .btn-grid-subtitle-mini {
+            font-size: 10.5px;
+            color: #64748b;
+        }
+
+        /* Footer Stamp */
+        .footer-stamp {
+            margin-top: 40px;
+            font-size: 10px;
+            color: #475569;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 800;
+            opacity: 0;
+            animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.3s;
+            text-align: center;
+        }
+
+        .footer-stamp a {
+            text-decoration: none;
+            color: #ffffff;
+            transition: color 0.3s ease;
+        }
+
+        .footer-stamp a:hover {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Profile Header -->
+        <div class="profile-card">
+            <div class="logo-box">
+                <!-- Direto para over/logo.png -->
+                <img src="over/logo.png" alt="OVER Logo" class="logo-img">
+            </div>
+            <h1 class="brand-title">OVER</h1>
+            <p class="brand-subtitle">For Man</p>
+            <p class="brand-desc">Sua grife esportiva de alto padrão. Camisetas exclusivas, shorts Dryfit, calças e moletons com o melhor estilo e envio imediato <span>para todo o Brasil</span>. ⚡</p>
+            
+            <div class="badge-location">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                Macapá - AP
+            </div>
+        </div>
+
+        <!-- Título das Categorias -->
+        <h3 class="category-title">Atendimento & Redes</h3>
+
+        <!-- Grid de Links Dinâmico -->
+        <div class="grid-links">
+            
+            <!-- Botão Principal de Atendimento (WhatsApp com mensagem configurada) -->
+            <a href="https://wa.me/5596981153586?text=E%20a%C3%AD%2C%20equipe%20OVER!%20Vim%20pelo%20link%20da%20bio%20e%20quero%20dar%20uma%20olhada%20nos%20modelos%20dispon%C3%ADveis%20para%20entrega.%20%E2%9A%A1" class="btn-sport" target="_blank">
+                <div class="btn-sport-content">
+                    <div class="btn-sport-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="btn-sport-title">Falar no WhatsApp</div>
+                        <div class="btn-sport-subtitle">Loja física & Delivery</div>
+                    </div>
+                </div>
+                <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </a>
+
+            <!-- Grid Item 1 (Catálogo Instagram) -->
+            <a href="https://instagram.com/over_mcp" class="btn-grid-box" target="_blank">
+                <div class="btn-grid-icon-mini">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </div>
+                <div class="btn-grid-text">
+                    <div class="btn-grid-title-mini">Catálogo Completo</div>
+                    <div class="btn-grid-subtitle-mini">Nosso Instagram</div>
+                </div>
+            </a>
+
+            <!-- Grid Item 2 (Como Chegar) -->
+            <a href="https://maps.google.com/?q=Rua+Parana,+425+-+Santa+Rita,+Macapa" class="btn-grid-box" target="_blank">
+                <div class="btn-grid-icon-mini">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon>
+                        <line x1="9" y1="3" x2="9" y2="18"></line>
+                        <line x1="15" y1="6" x2="15" y2="21"></line>
+                    </svg>
+                </div>
+                <div class="btn-grid-text">
+                    <div class="btn-grid-title-mini">Onde Estamos</div>
+                    <div class="btn-grid-desc" style="font-size: 10.5px; color: #64748b;">Rua Paraná, 425 - Santa Rita</div>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Rodapé -->
+        <div class="footer-stamp">
+            DESENVOLVIDO POR <a href="https://vxlink.fun" target="_blank">VXLINK.FUN</a>
+        </div>
+
+    </div>
+
+    <!-- Active Magnetic Micro-interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const activeBtn = document.querySelector('.btn-sport');
+
+            if (activeBtn) {
+                activeBtn.addEventListener('mousemove', (e) => {
+                    const rect = activeBtn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - (rect.width / 2);
+                    const y = e.clientY - rect.top - (rect.height / 2);
+                    
+                    activeBtn.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+                });
+
+                activeBtn.addEventListener('mouseleave', () => {
+                    activeBtn.style.transform = 'translate(0px, 0px)';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
