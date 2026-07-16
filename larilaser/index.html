@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lari Laser | Clínica de Depilação a Laser</title>
+    <style>
+        /* Importação das fontes premium: Cormorant Garamond para títulos sofisticados e Plus Jakarta Sans para os textos */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            /* Fundo acetinado mesclando o nude e rosé característicos da marca */
+            background: linear-gradient(180deg, #fbf7f4 0%, #ecdcd2 50%, #fbf7f4 100%);
+            color: #4a3e3d; 
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 16px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Partículas de brilho dourado flutuando de leve no fundo */
+        .sparkles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .sparkle {
+            position: absolute;
+            color: rgba(212, 175, 55, 0.4); /* Ouro suave */
+            pointer-events: none;
+            user-select: none;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(-20px) scale(0.6) rotate(0deg);
+                opacity: 0;
+            }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.8; }
+            100% {
+                transform: translateY(105vh) scale(1) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        /* Ambient glow dourado */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 600px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(251, 247, 244, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 440px;
+            margin: 0 auto;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Animações de Entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Profile Area */
+        .profile-wrapper {
+            margin-bottom: 35px;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .logo-bg {
+            width: 135px;
+            height: 135px;
+            background: #ffffff;
+            border-radius: 50%;
+            margin: 0 auto 24px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 15px 35px rgba(74, 62, 61, 0.05), 
+                0 0 0 2px rgba(212, 175, 55, 0.2), 
+                0 0 15px rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .profile-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 34px;
+            font-weight: 600;
+            color: #4a3e3d; 
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .profile-tagline {
+            font-size: 13.5px;
+            color: #7a6a68; 
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            padding: 0 15px;
+        }
+
+        .profile-tagline span {
+            color: #c5a059; /* Dourado da marca */
+            font-weight: 600;
+        }
+
+        /* Location badge */
+        .location-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(197, 160, 89, 0.08);
+            border: 1px solid rgba(197, 160, 89, 0.25);
+            color: #9e7f46; 
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .location-badge svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+        }
+
+        /* Buttons & Actions Section */
+        .links-wrapper {
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.2s;
+        }
+
+        .btn-link {
+            display: block;
+            border-radius: 24px;
+            padding: 20px 24px;
+            text-decoration: none;
+            text-align: left;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        /* Botão do WhatsApp (Destaque Ativo Premium) */
+        .btn-link.active-whatsapp {
+            background: linear-gradient(135deg, #ffffff 0%, #fbf9f7 100%);
+            border: 1.5px solid rgba(197, 160, 89, 0.4); 
+            box-shadow: 
+                0 10px 25px rgba(74, 62, 61, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .btn-link.active-whatsapp:hover {
+            box-shadow: 
+                0 15px 30px rgba(197, 160, 89, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 1);
+            border-color: #c5a059; 
+            transform: translateY(-2px);
+        }
+
+        /* Botão do Instagram */
+        .btn-link.secondary-instagram {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(74, 62, 61, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .btn-link.secondary-instagram:hover {
+            border-color: rgba(197, 160, 89, 0.4);
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .btn-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .btn-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-icon-svg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+        }
+
+        .btn-link.active-whatsapp .btn-icon-svg {
+            color: #c5a059;
+            filter: drop-shadow(0 2px 4px rgba(197, 160, 89, 0.2));
+        }
+
+        .btn-link.secondary-instagram .btn-icon-svg {
+            color: #7a6a68;
+        }
+
+        .btn-text-box {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .btn-title {
+            font-size: 15.5px;
+            font-weight: 700;
+            color: #4a3e3d; 
+            letter-spacing: -0.2px;
+        }
+
+        .btn-link.active-whatsapp .btn-title {
+            color: #8c713a; 
+        }
+
+        .btn-subtitle {
+            font-size: 11.5px;
+            color: #7a6a68;
+            font-weight: 400;
+        }
+
+        .btn-arrow-svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: #9e8e8c;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: all 0.3s ease;
+        }
+
+        .btn-link.active-whatsapp .btn-arrow-svg {
+            stroke: #c5a059;
+        }
+
+        .btn-link.active-whatsapp:hover .btn-arrow-svg {
+            transform: translateX(4px);
+        }
+
+        /* Seção Elegante de Combos (Lari Laser) */
+        .combos-card {
+            background: #ffffff;
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            border-radius: 28px;
+            padding: 26px 22px;
+            text-align: left;
+            box-shadow: 0 12px 35px rgba(74, 62, 61, 0.03);
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.3s;
+            margin-bottom: 24px;
+        }
+
+        .combos-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: #4a3e3d;
+            letter-spacing: 0.5px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .combos-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(197, 160, 89, 0.3), transparent);
+        }
+
+        .combos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .combo-box {
+            background: #faf6f4;
+            border: 1px solid rgba(197, 160, 89, 0.12);
+            border-radius: 18px;
+            padding: 16px 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .combo-box:hover {
+            transform: translateY(-2px);
+            border-color: rgba(197, 160, 89, 0.4);
+            box-shadow: 0 8px 20px rgba(197, 160, 89, 0.08);
+        }
+
+        .combo-tag {
+            font-size: 9px;
+            font-weight: 800;
+            color: #9e7f46;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .combo-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #4a3e3d;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .combo-details {
+            font-size: 10.5px;
+            color: #7a6a68;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        /* Seção Tabela de Preços */
+        .prices-card {
+            background: #ffffff;
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            border-radius: 28px;
+            padding: 26px 22px;
+            text-align: left;
+            box-shadow: 0 12px 35px rgba(74, 62, 61, 0.03);
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.4s;
+        }
+
+        .prices-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+
+        .prices-table th {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #c5a059;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .prices-table td {
+            padding: 14px 0;
+            font-size: 13px;
+            font-weight: 500;
+            color: #4a3e3d;
+            border-bottom: 1px dashed rgba(197, 160, 89, 0.1);
+        }
+
+        .prices-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .price-value {
+            text-align: right;
+            font-weight: 700;
+            color: #8c713a;
+        }
+
+        /* Footer Stamp */
+        .footer-stamp {
+            margin-top: 45px;
+            font-size: 10px;
+            color: #9e8e8c;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.5s;
+        }
+
+        .footer-stamp a {
+            text-decoration: none;
+            color: #c5a059;
+            transition: color 0.3s ease;
+        }
+
+        .footer-stamp a:hover {
+            color: #4a3e3d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Brilhos Flutuantes -->
+    <div class="sparkles-container" id="sparklesContainer"></div>
+
+    <div class="container">
+        
+        <!-- Profile Area -->
+        <div class="profile-wrapper">
+            <div class="logo-bg">
+                <img src="logo.png" alt="Lari Laser Logo" class="logo-img">
+            </div>
+            
+            <h1 class="profile-name">Lari Laser</h1>
+            <p class="profile-tagline">Mais do que estética. <span>Liberdade para sua pele</span> de forma segura e com a tecnologia mais avançada do mercado.</p>
+            
+            <span class="location-badge">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                Curionópolis - PA
+            </span>
+        </div>
+
+        <!-- Links Section -->
+        <div class="links-wrapper">
+            
+            <!-- WhatsApp Link -->
+            <a href="https://wa.me/5594991778650?text=Ol%C3%A1%20Lari%20Laser!%20Gostaria%20de%20tirar%20algumas%20d%C3%BAvidas%20e%20agendar%20um%20hor%C3%A1rio%20para%20minha%20sess%C3%A3o.%20%E2%9C%A8" class="btn-link active-whatsapp" target="_blank">
+                <div class="btn-content">
+                    <div class="btn-left">
+                        <div class="btn-icon-svg">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            </svg>
+                        </div>
+                        <div class="btn-text-box">
+                            <div class="btn-title">Agendar Horário</div>
+                            <div class="btn-subtitle">Reserve sua sessão pelo nosso WhatsApp</div>
+                        </div>
+                    </div>
+                    <svg class="btn-arrow-svg" viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Instagram Link -->
+            <a href="https://www.instagram.com/larilaser_clinica?igsh=MW8xeXlqazhyNWNlMw==" class="btn-link secondary-instagram" target="_blank">
+                <div class="btn-content">
+                    <div class="btn-left">
+                        <div class="btn-icon-svg">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px;">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </div>
+                        <div class="btn-text-box">
+                            <div class="btn-title">Nosso Perfil</div>
+                            <div class="btn-subtitle">Veja fotos, resultados e dicas de autocuidado</div>
+                        </div>
+                    </div>
+                    <svg class="btn-arrow-svg" viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Seção de Combos Promocionais (Do flyer de combos) -->
+        <div class="combos-card">
+            <h3 class="combos-title">Combos Especiais</h3>
+            <div class="combos-grid">
+                
+                <div class="combo-box">
+                    <span class="combo-tag">Essencial</span>
+                    <h4 class="combo-name">Essencial Laser</h4>
+                    <p class="combo-details">Axilas + Buço</p>
+                </div>
+
+                <div class="combo-box">
+                    <span class="combo-tag">Essencial Plus</span>
+                    <h4 class="combo-name">Essencial Plus</h4>
+                    <p class="combo-details">Axilas + Buço + Íntima Completa + Perianal</p>
+                </div>
+
+                <div class="combo-box" style="grid-column: span 2;">
+                    <span class="combo-tag">Mais Desejado</span>
+                    <h4 class="combo-name" style="font-size: 18px;">Lisa Sempre</h4>
+                    <p class="combo-details">Axilas + Buço + Íntima Completa + Perianal + Meia Perna</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Seção de Tabela de Preços (Do flyer individual) -->
+        <div class="prices-card">
+            <h3 class="combos-title">Áreas e Valores</h3>
+            <table class="prices-table">
+                <thead>
+                    <tr>
+                        <th style="text-align: left;">Procedimento</th>
+                        <th style="text-align: right;">Sessão Avulsa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Buço</td>
+                        <td class="price-value">R$ 49,90</td>
+                    </tr>
+                    <tr>
+                        <td>Axilas</td>
+                        <td class="price-value">R$ 89,00</td>
+                    </tr>
+                    <tr>
+                        <td>Virilha Completa (com perianal)</td>
+                        <td class="price-value">R$ 190,00</td>
+                    </tr>
+                    <tr>
+                        <td>Meia Perna</td>
+                        <td class="price-value">R$ 180,00</td>
+                    </tr>
+                    <tr>
+                        <td>Perna Completa</td>
+                        <td class="price-value">R$ 350,00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Assinatura Vxlink -->
+        <div class="footer-stamp">
+            DESENVOLVIDO POR <a href="https://vxlink.fun" target="_blank">VXLINK.FUN</a>
+        </div>
+
+    </div>
+
+    <!-- Script de Brilhos e Micro-interações de Alta Performance -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('sparklesContainer');
+            const totalSparkles = 12; 
+            const shapes = ['✦', '✨', '•'];
+
+            for (let i = 0; i < totalSparkles; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
+                
+                // Tamanhos randômicos para efeito tridimensional
+                const size = Math.random() * 12 + 10; 
+                sparkle.style.fontSize = `${size}px`;
+                
+                // Dispersão horizontal
+                sparkle.style.left = `${Math.random() * 95}%`;
+                
+                // Animações com delays variáveis para fluidez total
+                sparkle.style.animationDelay = `${Math.random() * 8}s`;
+                const duration = Math.random() * 10 + 10; // 10s a 20s
+                sparkle.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(sparkle);
+            }
+
+            // Efeito de Parallax suave de luxo no botão principal
+            const activeBtn = document.querySelector('.btn-link.active-whatsapp');
+            if (activeBtn) {
+                activeBtn.addEventListener('mousemove', (e) => {
+                    const rect = activeBtn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - (rect.width / 2);
+                    const y = e.clientY - rect.top - (rect.height / 2);
+                    
+                    activeBtn.style.transform = `translate(${x * 0.06}px, ${y * 0.06}px)`;
+                });
+
+                activeBtn.addEventListener('mouseleave', () => {
+                    activeBtn.style.transform = 'translate(0px, 0px)';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
