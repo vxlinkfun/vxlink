@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patita's Pet Shop | Boutique Pet</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            background-color: #fbf9f6;
+            color: #3a4d39;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background Glow Premium */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 600px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(58, 77, 57, 0.05) 0%, rgba(251, 249, 246, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            z-index: 1;
+            position: relative;
+            text-align: center;
+        }
+
+        /* Perfil Boutique */
+        .profile-area {
+            margin-bottom: 35px;
+        }
+
+        .logo-container {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            padding: 3px;
+            background: linear-gradient(135deg, #3a4d39 0%, #8ca98b 100%);
+            box-shadow: 0 12px 30px rgba(58, 77, 57, 0.12), 0 0 0 4px #ffffff;
+        }
+
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #fff;
+        }
+
+        .brand-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 34px;
+            font-weight: 700;
+            color: #2f3e2e;
+            margin-bottom: 6px;
+            letter-spacing: -0.2px;
+        }
+
+        .tagline {
+            font-size: 11px;
+            color: #7b887a;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        /* Botões Estilo Boutique (Extremamente Premium) */
+        .links-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .btn-premium {
+            display: block;
+            width: 100%;
+            text-decoration: none;
+            background: #ffffff;
+            border: 1px solid rgba(58, 77, 57, 0.12);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 
+                0 4px 15px rgba(58, 77, 57, 0.02),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        /* Detalhe de friso lateral esquerdo (marca de luxo) */
+        .btn-premium::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 20%;
+            height: 60%;
+            width: 3.5px;
+            background-color: #c5a059; /* Toque de ouro */
+            border-radius: 0 4px 4px 0;
+            transition: all 0.3s ease;
+        }
+
+        .btn-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 22px;
+            width: 100%;
+        }
+
+        .btn-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-align: left;
+        }
+
+        /* Wrapper do Ícone SVG */
+        .btn-icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background: rgba(58, 77, 57, 0.05);
+            border-radius: 12px;
+            color: #3a4d39;
+            transition: all 0.3s ease;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            border-color: #3a4d39;
+            box-shadow: 0 12px 28px rgba(58, 77, 57, 0.08);
+        }
+
+        /* Hover no botão do WhatsApp */
+        .btn-premium.active-whatsapp:hover {
+            background: #3a4d39;
+            border-color: #3a4d39;
+            box-shadow: 0 12px 28px rgba(58, 77, 57, 0.2);
+        }
+
+        .btn-premium.active-whatsapp:hover::before {
+            background-color: #ffffff;
+        }
+
+        .btn-premium.active-whatsapp:hover .btn-icon-wrapper {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+        }
+
+        .btn-premium.active-whatsapp:hover .btn-title {
+            color: #ffffff;
+        }
+
+        .btn-premium.active-whatsapp:hover .btn-subtitle {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .btn-premium.active-whatsapp:hover .btn-arrow-svg {
+            stroke: #ffffff;
+            transform: translateX(4px);
+        }
+
+        /* Hover no botão do Instagram */
+        .btn-premium.secondary-instagram:hover {
+            background: #fafaf9;
+            border-color: #3a4d39;
+        }
+
+        .btn-premium.secondary-instagram:hover .btn-icon-wrapper {
+            background: rgba(58, 77, 57, 0.1);
+        }
+
+        .btn-premium.secondary-instagram:hover .btn-arrow-svg {
+            stroke: #3a4d39;
+            transform: translateX(4px);
+        }
+
+        .btn-text-box {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .btn-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #2f3e2e;
+            transition: color 0.3s ease;
+        }
+
+        .btn-subtitle {
+            font-size: 11px;
+            color: #7b887a;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .btn-arrow-svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: #94a3b8;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: all 0.3s ease;
+        }
+
+        /* Card de Destaque com visual Glassmorphism Premium */
+        .luxury-card {
+            padding: 26px;
+            background: #ffffff;
+            border-radius: 28px;
+            border: 1px solid rgba(58, 77, 57, 0.1);
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(58, 77, 57, 0.02);
+        }
+
+        .card-header {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #2f3e2e;
+        }
+
+        .card-header svg {
+            width: 22px;
+            height: 22px;
+            color: #3a4d39;
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: #604d3f;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Grid de Informações Úteis (Sem Emojis, 100% SVG) */
+        .grid-info {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(58, 77, 57, 0.03);
+            border: 1px solid rgba(58, 77, 57, 0.06);
+            border-radius: 16px;
+        }
+
+        .info-icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3a4d39;
+        }
+
+        .info-icon-wrapper svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .info-text {
+            font-size: 11.5px;
+            font-weight: 700;
+            color: #3a4d39;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 10px;
+            color: #9c8e85;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #3a4d39;
+            font-weight: 700;
+        }
+
+        /* SVG Global Utility */
+        .icon-svg { stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Perfil -->
+        <div class="profile-area">
+            <div class="logo-container">
+                <img src="logo.png" class="logo-img" alt="Logo Patita's Pet Shop">
+            </div>
+            <h1 class="brand-name">Patita’s Pet Shop</h1>
+            <p class="tagline">Buritizal • Cuidados Especializados</p>
+        </div>
+
+        <!-- Links Oficiais Reais (Pixel Perfect) -->
+        <div class="links-wrapper">
+            
+            <!-- WhatsApp Principal Oficial -->
+            <a href="https://wa.me/9691644045" class="btn-premium active-whatsapp" target="_blank">
+                <div class="btn-content">
+                    <div class="btn-left">
+                        <div class="btn-icon-wrapper">
+                            <svg class="icon-svg" viewBox="0 0 24 24">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            </svg>
+                        </div>
+                        <div class="btn-text-box">
+                            <span class="btn-title">Agendar Banho & Tosa</span>
+                            <span class="btn-subtitle">Fale conosco diretamente no WhatsApp</span>
+                        </div>
+                    </div>
+                    <svg class="btn-arrow-svg" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+            </a>
+
+            <!-- Instagram Link -->
+            <a href="https://www.instagram.com/patitaspetshop_buritizal?igsh=MW8xeXlqazhyNWNlMw==" class="btn-premium secondary-instagram" target="_blank">
+                <div class="btn-content">
+                    <div class="btn-left">
+                        <div class="btn-icon-wrapper">
+                            <svg class="icon-svg" viewBox="0 0 24 24">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </div>
+                        <div class="btn-text-box">
+                            <span class="btn-title">Nosso Instagram</span>
+                            <span class="btn-subtitle">Siga-nos para ver as fofuras do dia</span>
+                        </div>
+                    </div>
+                    <svg class="btn-arrow-svg" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Seção de Destaques Informativos -->
+        <div class="luxury-card">
+            
+            <div class="card-header">
+                <!-- SVG de Carro/Transporte para o Táxi Pet -->
+                <svg class="icon-svg" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                Serviço de Táxi Pet
+            </div>
+            
+            <p class="card-desc">
+                Buscamos seu pet em casa com total segurança, conforto e levamos de volta após o banho ou tosa. Agende o transporte junto com o horário dele!
+            </p>
+
+            <!-- Detalhes do Petshop com Ícones SVG customizados e elegantes -->
+            <div class="grid-info">
+                
+                <div class="info-row">
+                    <div class="info-icon-wrapper">
+                        <!-- SVG de Relógio -->
+                        <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <span class="info-text">Segunda a Sábado: 07:30 - 18:00</span>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-icon-wrapper">
+                        <!-- SVG de Pin de Localização -->
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"></path><circle cx="12" cy="9" r="2"></circle></svg>
+                    </div>
+                    <span class="info-text">Buritizal — AP</span>
+                </div>
+
+                <div class="info-row" style="background: rgba(197, 160, 89, 0.04); border-color: rgba(197, 160, 89, 0.15);">
+                    <div class="info-icon-wrapper" style="color: #c5a059;">
+                        <!-- SVG de Mapa/Endereço -->
+                        <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 15 9 18 3 15"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg>
+                    </div>
+                    <span class="info-text" style="color: #7b643a;">Av. Hildemar Maia, 2813-B</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Rodapé -->
+        <div class="footer">
+            DESENVOLVIDO POR <a href="https://vxlink.fun" target="_blank">VXLINK.FUN</a>
+        </div>
+        
+    </div>
+
+</body>
+</html>
