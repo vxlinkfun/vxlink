@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mais Leve | Marmitaria Saudável</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            /* Fundo degradê clean mesclando o verde da logo com tons pastéis orgânicos */
+            background: linear-gradient(135deg, #f4f7f1 0%, #eaf0e3 50%, #f7f9f5 100%);
+            color: #2c3e2b; /* Verde escuro floresta para excelente contraste */
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 16px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Container de Folhas caindo no fundo (Efeito Leveza) */
+        .leaves-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        /* Folhas Orgânicas Verdes Interativas */
+        .leaf {
+            position: absolute;
+            background: rgba(160, 204, 93, 0.22); /* Verde Mais Leve */
+            border-radius: 100% 0 100% 0; /* Formato clássico de folha */
+            box-shadow: inset 2px -2px 5px rgba(255, 255, 255, 0.6);
+            animation: drift ease-in-out infinite;
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translateY(-40px) translateX(0) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% {
+                transform: translateY(105vh) translateX(40px) rotate(270deg) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Detalhe de iluminação suave no topo */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -5%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 650px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(160, 204, 93, 0.12) 0%, rgba(244, 247, 251, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Animações Premium de Entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Profile Area */
+        .profile-wrapper {
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .logo-bg {
+            width: 130px;
+            height: 130px;
+            background: #a0cc5d; /* Cor exata da marca */
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 30px rgba(160, 204, 93, 0.25), 0 0 0 4px #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .profile-name {
+            font-family: 'Playfair Display', serif; /* Fonte serifada luxuosa */
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e2b;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        .profile-tagline {
+            font-size: 13.5px;
+            color: #60725f;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            padding: 0 12px;
+        }
+
+        .profile-tagline span {
+            color: #a0cc5d;
+            font-weight: 700;
+        }
+
+        /* Location badge */
+        .location-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(160, 204, 93, 0.1);
+            border: 1px solid rgba(160, 204, 93, 0.2);
+            color: #557049; 
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .location-badge svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+        }
+
+        /* Buttons Section */
+        .links-wrapper {
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.18s;
+        }
+
+        .btn-link {
+            display: block;
+            border-radius: 20px;
+            padding: 18px 22px;
+            text-decoration: none;
+            text-align: left;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        /* Botão do WhatsApp (Destaque Principal com Verde Mais Leve) */
+        .btn-link.active-whatsapp {
+            background: #a0cc5d; 
+            border: none;
+            box-shadow: 0 8px 24px rgba(160, 204, 93, 0.3);
+        }
+
+        .btn-link.active-whatsapp:hover {
+            box-shadow: 0 12px 28px rgba(160, 204, 93, 0.45);
+            transform: translateY(-2px);
+            background: #94bd52;
+        }
+
+        /* Botão do Instagram (Visual clean transparente com borda fina) */
+        .btn-link.secondary-instagram {
+            background: #ffffff;
+            border: 1px solid rgba(160, 204, 93, 0.3);
+            box-shadow: 0 4px 12px rgba(160, 204, 93, 0.05);
+        }
+
+        .btn-link.secondary-instagram:hover {
+            border-color: #a0cc5d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(160, 204, 93, 0.12);
+        }
+
+        .btn-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .btn-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .btn-icon-svg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+        }
+
+        .btn-link.active-whatsapp .btn-icon-svg {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        .btn-link.secondary-instagram .btn-icon-svg {
+            background: rgba(160, 204, 93, 0.08);
+            color: #a0cc5d;
+        }
+
+        .btn-text-box {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .btn-title {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: -0.1px;
+        }
+
+        .btn-link.active-whatsapp .btn-title {
+            color: #ffffff; 
+        }
+
+        .btn-link.secondary-instagram .btn-title {
+            color: #2c3e2b;
+        }
+
+        .btn-subtitle {
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .btn-link.active-whatsapp .btn-subtitle {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .btn-link.secondary-instagram .btn-subtitle {
+            color: #60725f;
+        }
+
+        .btn-arrow-svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: all 0.3s ease;
+        }
+
+        .btn-link.active-whatsapp .btn-arrow-svg {
+            stroke: #ffffff;
+        }
+
+        .btn-link.secondary-instagram .btn-arrow-svg {
+            stroke: #a0cc5d;
+        }
+
+        .btn-link:hover .btn-arrow-svg {
+            transform: translateX(4px);
+        }
+
+        /* Card Organizado de Horários (Agenda) */
+        .schedule-card {
+            background: #ffffff;
+            border: 1px solid rgba(160, 204, 93, 0.15);
+            border-radius: 24px;
+            padding: 22px;
+            margin-bottom: 20px;
+            text-align: left;
+            box-shadow: 0 10px 25px rgba(160, 204, 93, 0.05);
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.25s;
+        }
+
+        .schedule-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #557049;
+            font-size: 12.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        .schedule-header svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .schedule-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            font-size: 13px;
+            border-bottom: 1px dashed rgba(160, 204, 93, 0.15);
+        }
+
+        .schedule-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .schedule-label {
+            color: #60725f;
+            font-weight: 500;
+        }
+
+        .schedule-time {
+            font-weight: 700;
+            color: #2c3e2b;
+        }
+
+        /* Rodapé / Assinatura */
+        .footer-stamp {
+            margin-top: 40px;
+            font-size: 10px;
+            color: #94a3b8;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.35s;
+        }
+
+        .footer-stamp a {
+            text-decoration: none;
+            color: #a0cc5d;
+            transition: color 0.3s ease;
+        }
+
+        .footer-stamp a:hover {
+            color: #557049;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Folhas Orgânicas Flutuantes -->
+    <div class="leaves-container" id="leavesContainer"></div>
+
+    <div class="container">
+        
+        <!-- Profile Wrapper -->
+        <div class="profile-wrapper">
+            <div class="logo-bg">
+                <img src="logo.png" alt="Mais Leve Logo" class="logo-img">
+            </div>
+            
+            <h1 class="profile-name">Mais Leve</h1>
+            <p class="profile-tagline">Transformando sua rotina com <span>marmitas saudáveis</span> e deliciosas para você comer bem sem complicação.</p>
+            
+            <div class="location-badge">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                Arapiraca - AL
+            </div>
+        </div>
+
+        <!-- Links Section -->
+        <div class="links-wrapper">
+            
+            <!-- WhatsApp Link -->
+            <a href="https://wa.me/5582999024278?text=Ol%C3%A1%20equipe%20Mais%20Leve!%20Gostaria%20de%20receber%20o%20card%C3%A1pio%20da%20semana%20e%20fazer%20meu%20pedido.%20%F0%9F%A5%97" class="btn-link active-whatsapp" target="_blank">
+                <div class="btn-content">
+                    <div class="btn-left">
+                        <div class="btn-icon-svg">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                        </div>
+                        <div class="btn-text-box">
+                            <div class="btn-title">Fazer Pedido aqui</div>
+                            <div class="btn-subtitle">Escolha seu prato e monte sua rotina</div>
+                        </div>
+                    </div>
+                    <svg class="btn-arrow-svg" viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Instagram Link -->
+            <a href="https://www.instagram.com/maisleve.marmitaria?igsh=MW8xeXlqazhyNWNlMw==" class="btn-link secondary-instagram" target="_blank">
+                <div class="btn-content">
+                    <div class="btn-left">
+                        <div class="btn-icon-svg">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </div>
+                        <div class="btn-text-box">
+                            <div class="btn-title">Nosso Instagram</div>
+                            <div class="btn-subtitle">Siga e veja as novidades diárias</div>
+                        </div>
+                    </div>
+                    <svg class="btn-arrow-svg" viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Horários de Funcionamento Clássico -->
+        <div class="schedule-card">
+            <div class="schedule-header">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                Dias e Horários de Entrega
+            </div>
+            <div class="schedule-row">
+                <span class="schedule-label">Dias de Atendimento</span>
+                <span class="schedule-time">Segunda a Sexta-Feira</span>
+            </div>
+            <div class="schedule-row">
+                <span class="schedule-label">Horário de Entrega</span>
+                <span class="schedule-time">09:00 às 16:00</span>
+            </div>
+            <div class="schedule-row">
+                <span class="schedule-label">Sábados e Domingos</span>
+                <span class="schedule-time" style="color: #c2410c;">Fechado</span>
+            </div>
+        </div>
+
+        <!-- Rodapé -->
+        <div class="footer-stamp">
+            DESENVOLVIDO POR <a href="https://vxlink.fun" target="_blank">VXLINK.FUN</a>
+        </div>
+
+    </div>
+
+    <!-- Script de Folhas Verdes Flutuantes em Alto Desempenho -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('leavesContainer');
+            const totalLeaves = 8; // Densidade suave para não poluir
+
+            for (let i = 0; i < totalLeaves; i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'leaf';
+                
+                // Tamanhos orgânicos variando de 14px a 28px
+                const width = Math.random() * 14 + 14;
+                const height = width * 1.5; // Proporção folha alongada
+                leaf.style.width = `${width}px`;
+                leaf.style.height = `${height}px`;
+                
+                // Distribuição horizontal randômica
+                leaf.style.left = `${Math.random() * 95}%`;
+                
+                // Delay e velocidade da animação para cair de forma esparsa
+                leaf.style.animationDelay = `${Math.random() * 12}s`;
+                const duration = Math.random() * 10 + 12; // 12s a 22s
+                leaf.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(leaf);
+            }
+
+            // Micro-interação magnética suave no botão ativo
+            const activeBtn = document.querySelector('.btn-link.active-whatsapp');
+            if (activeBtn) {
+                activeBtn.addEventListener('mousemove', (e) => {
+                    const rect = activeBtn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - (rect.width / 2);
+                    const y = e.clientY - rect.top - (rect.height / 2);
+                    
+                    activeBtn.style.transform = `translate(${x * 0.08}px, ${y * 0.08}px)`;
+                });
+
+                activeBtn.addEventListener('mouseleave', () => {
+                    activeBtn.style.transform = 'translate(0px, 0px)';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
