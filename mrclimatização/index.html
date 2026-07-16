@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR Climatização | Soluções em Ar Condicionado</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            /* Fundo branco/cinza premium e limpo */
+            background-color: #f8fafc; 
+            color: #0f172a; 
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 16px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Container do efeito térmico (Sol virando Gelo) */
+        .thermal-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        /* Partícula Térmica Dinâmica */
+        .thermal-particle {
+            position: absolute;
+            font-size: 16px;
+            pointer-events: none;
+            user-select: none;
+            transition: color 0.8s ease, transform 0.1s linear;
+            opacity: 0;
+        }
+
+        /* Brilho de fundo sutil combinando o quente e o frio */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: 10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 112, 243, 0.05) 0%, rgba(248, 250, 252, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 107, 0, 0.04) 0%, rgba(248, 250, 252, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 440px;
+            margin: 0 auto;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Animações de Entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Profile Area */
+        .profile-wrapper {
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .logo-bg {
+            width: 140px;
+            height: 140px;
+            background: #ffffff;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 15px 35px rgba(15, 23, 42, 0.06), 
+                0 0 0 4px #ffffff,
+                0 0 20px rgba(0, 112, 243, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 12px;
+        }
+
+        /* Status online dinâmico representativo */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            color: #16a34a;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #22c55e;
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        .profile-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: #032040; /* Azul escuro corporativo */
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .profile-tagline {
+            font-size: 13.5px;
+            color: #475569; 
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            padding: 0 15px;
+        }
+
+        .profile-tagline span {
+            color: #0070f3;
+            font-weight: 700;
+        }
+
+        /* Seção de Contatos Rápidos Inteligentes (Duplo WhatsApp) */
+        .links-wrapper {
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.15s;
+        }
+
+        .btn-link {
+            display: block;
+            border-radius: 20px;
+            padding: 18px 20px;
+            text-decoration: none;
+            text-align: left;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02);
+            cursor: pointer;
+        }
+
+        /* Destaque para o WhatsApp Principal */
+        .btn-link.highlight-blue {
+            border-color: #0070f3;
+            box-shadow: 0 8px 20px rgba(0, 112, 243, 0.06);
+        }
+
+        .btn-link.highlight-blue:hover {
+            transform: translateY(-2px);
+            border-color: #0051b3;
+            box-shadow: 0 12px 24px rgba(0, 112, 243, 0.12);
+        }
+
+        /* Destaque para o WhatsApp Secundário (Atendimento Alternativo) */
+        .btn-link.highlight-orange {
+            border-color: #ff6b00;
+            box-shadow: 0 8px 20px rgba(255, 107, 0, 0.05);
+        }
+
+        .btn-link.highlight-orange:hover {
+            transform: translateY(-2px);
+            border-color: #d45900;
+            box-shadow: 0 12px 24px rgba(255, 107, 0, 0.12);
+        }
+
+        .btn-link.standard-instagram:hover {
+            transform: translateY(-2px);
+            border-color: #032040;
+            box-shadow: 0 8px 20px rgba(3, 32, 64, 0.05);
+        }
+
+        .btn-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .btn-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .btn-icon-svg {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+        }
+
+        .btn-link.highlight-blue .btn-icon-svg {
+            color: #0070f3;
+        }
+
+        .btn-link.highlight-orange .btn-icon-svg {
+            color: #ff6b00;
+        }
+
+        .btn-link.standard-instagram .btn-icon-svg {
+            color: #475569;
+        }
+
+        .btn-text-box {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .btn-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0f172a; 
+            letter-spacing: -0.1px;
+        }
+
+        .btn-link.highlight-blue .btn-title {
+            color: #0070f3;
+        }
+
+        .btn-link.highlight-orange .btn-title {
+            color: #ff6b00;
+        }
+
+        .btn-subtitle {
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 400;
+        }
+
+        .btn-arrow-svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: #94a3b8;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-link.highlight-blue .btn-arrow-svg { stroke: #0070f3; }
+        .btn-link.highlight-orange .btn-arrow-svg { stroke: #ff6b00; }
+
+        .btn-link:hover .btn-arrow-svg {
+            transform: translateX(4px);
+        }
+
+        /* Seção de Credibilidade / Diferenciais (Flyer) */
+        .credibility-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 24px;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.03);
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.2s;
+            margin-bottom: 20px;
+        }
+
+        .credibility-title {
+            font-size: 12px;
+            font-weight: 800;
+            color: #64748b;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .credibility-title::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 14px;
+            background-color: #0070f3; 
+            border-radius: 2px;
+        }
+
+        .credibility-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .credibility-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13.5px;
+            color: #334155;
+            font-weight: 600;
+        }
+
+        .credibility-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: rgba(0, 112, 243, 0.06);
+            border-radius: 8px;
+            color: #0070f3;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer-stamp {
+            margin-top: 40px;
+            font-size: 10px;
+            color: #94a3b8;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation-delay: 0.3s;
+        }
+
+        .footer-stamp a {
+            text-decoration: none;
+            color: #0070f3;
+            transition: color 0.3s ease;
+        }
+
+        .footer-stamp a:hover {
+            color: #ff6b00;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Canvas Térmico (Efeito Sol virando Gelo) -->
+    <div class="thermal-container" id="thermalContainer"></div>
+
+    <div class="container">
+        
+        <!-- Profile Area -->
+        <div class="profile-wrapper">
+            <div class="status-badge">
+                <div class="status-dot"></div>
+                Equipe Online no Campo
+            </div>
+            
+            <div class="logo-bg">
+                <img src="logo.png" alt="MR Climatização Logo" class="logo-img">
+            </div>
+            
+            <h1 class="profile-name">MR Climatização</h1>
+            <p class="profile-tagline">Mais de <span>5 anos no campo</span> entregando projetos de infraestrutura, limpeza e instalação impecável de ar condicionado.</p>
+            
+            <span class="location-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; display: inline-block; vertical-align: middle;">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                Rondônia – RO
+            </span>
+        </div>
+
+        <!-- Links Section -->
+        <div class="links-wrapper">
+            
+            <!-- WhatsApp 1 (Principal) -->
+            <a href="https://wa.me/5569993881592?text=Ol%C3%A1%20MR%20Climatiza%C3%A7%C3%A3o!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20instala%C3%A7%C3%A3o%2Fmanuten%C3%A7%C3%A3o.%20%E2%9D%84%EF%B8%8F" class="btn-link highlight-blue" target="_blank">
+                <div class="btn-content">
+                    <div class="btn-left">
+                        <div class="btn-icon-svg">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            </svg>
+                        </div>
+                        <div class="btn-text-box">
+                            <div class="btn-title">WhatsApp Atendimento</div>
+                            <div class="btn-subtitle">(69) 99388-1592 • Orçamentos Rápidos</div>
+                        </div>
+                    </div>
+                    <svg class="btn-arrow-svg" viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+            </a>
+
+            <!-- WhatsApp 2 (Alternativo) -->
+            <a href="https://wa.me/5569993204262?text=Ol%C3%A1%20MR%20Climatiza%C3%A7%C3%A3o!%20Gostaria%20de%20falar%20sobre%20um%20projeto%20ou%20suporte.%20%F0%9F%9A\A0" class="btn-link highlight-orange" target="_blank">
+                <div class="btn-content">
+                    <div class="btn-left">
+                        <div class="btn-icon-svg">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                        </div>
+                        <div class="btn-text-box">
+                            <div class="btn-title">Contato Alternativo</div>
+                            <div class="btn-subtitle">(69) 99320-4262 • Projetos & Infraestrutura</div>
+                        </div>
+                    </div>
+                    <svg class="btn-arrow-svg" viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Instagram Link -->
+            <a href="https://www.instagram.com/mr_clamatizacao_01?igsh=ZWUyOXJrNG00c2Ju" class="btn-link standard-instagram" target="_blank">
+                <div class="btn-content">
+                    <div class="btn-left">
+                        <div class="btn-icon-svg">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </div>
+                        <div class="btn-text-box">
+                            <div class="btn-title">Nosso Instagram</div>
+                            <div class="btn-subtitle">Veja nosso portfólio de obras concluídas</div>
+                        </div>
+                    </div>
+                    <svg class="btn-arrow-svg" viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Seção de Credibilidade / Diferenciais Garantidos -->
+        <div class="credibility-card">
+            <h3 class="credibility-title">Por que escolher a MR?</h3>
+            <div class="credibility-list">
+                
+                <div class="credibility-item">
+                    <div class="credibility-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <span>Experiência Sólida: 5 anos de atuação prática</span>
+                </div>
+
+                <div class="credibility-item">
+                    <div class="credibility-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <span>Projetos & Infraestrutura completa de AC</span>
+                </div>
+
+                <div class="credibility-item">
+                    <div class="credibility-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <span>Instalação Limpa e Manutenção Preventiva</span>
+                </div>
+
+                <div class="credibility-item">
+                    <div class="credibility-icon" style="background: rgba(255,107,0,0.08); color: #ff6b00;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <span>Compromisso e Garantia Real em cada serviço</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Assinatura Vxlink -->
+        <div class="footer-stamp">
+            DESENVOLVIDO POR <a href="https://vxlink.fun" target="_blank">VXLINK.FUN</a>
+        </div>
+
+    </div>
+
+    <!-- Script Inteligente do Efeito Térmico (Sol vira Gelo) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('thermalContainer');
+            const particleCount = 15; // Densidade ideal para suavidade completa
+
+            const suns = ['☀️', '🔆'];
+            const ice = ['❄️', '❆', '❅'];
+
+            for (let i = 0; i < particleCount; i++) {
+                createParticle(true); // Inicializa as partículas
+            }
+
+            function createParticle(initial = false) {
+                const particle = document.createElement('div');
+                particle.className = 'thermal-particle';
+                
+                // Começa como sol (laranja quente)
+                particle.innerHTML = suns[Math.floor(Math.random() * suns.length)];
+                particle.style.color = '#ff9f1c'; 
+                
+                // Variabilidade de tamanho
+                const size = Math.random() * 8 + 12; // 12px a 20px
+                particle.style.fontSize = `${size}px`;
+                
+                // Posição horizontal
+                const startLeft = Math.random() * 100;
+                particle.style.left = `${startLeft}%`;
+                
+                // Define a queda usando propriedades dinâmicas no script para rastrear a metade da tela
+                let yPos = -50;
+                let xOffset = 0;
+                const speed = Math.random() * 2 + 1.5; // Velocidade de descida
+                const wobbleSpeed = Math.random() * 0.02 + 0.01;
+                const wobbleDistance = Math.random() * 1.5 + 0.5;
+                const rotateSpeed = Math.random() * 2 - 1;
+                let rotation = 0;
+                let morphed = false;
+
+                particle.style.top = `${yPos}px`;
+                particle.style.opacity = '0';
+                container.appendChild(particle);
+
+                // Delay inicial randômico para espalhar
+                const delay = initial ? Math.random() * 10000 : 0;
+
+                setTimeout(() => {
+                    function update() {
+                        yPos += speed;
+                        xOffset += wobbleSpeed;
+                        rotation += rotateSpeed;
+                        
+                        const currentX = startLeft + Math.sin(xOffset) * wobbleDistance;
+                        
+                        particle.style.top = `${yPos}px`;
+                        particle.style.left = `${currentX}%`;
+                        particle.style.transform = `rotate(${rotation}deg)`;
+
+                        // Fade in inicial
+                        if (yPos > 0 && yPos < 100) {
+                            particle.style.opacity = '0.7';
+                        }
+
+                        // REGRA DO MEIO DA TELA (SOL VIRANDO GELO)
+                        const windowHeight = window.innerHeight;
+                        if (yPos > (windowHeight / 2) && !morphic) {
+                            morphed = true;
+                            // Transição suave para floco de neve azul glacial
+                            particle.innerHTML = ice[Math.floor(Math.random() * ice.length)];
+                            particle.style.color = '#00bcff';
+                            particle.style.filter = 'drop-shadow(0 0 3px rgba(0, 188, 255, 0.4))';
+                        }
+
+                        // Fade out perto do fim da tela
+                        if (yPos > (windowHeight - 80)) {
+                            particle.style.opacity = '0';
+                        }
+
+                        // Recomeça no topo se passar da tela
+                        if (yPos < windowHeight) {
+                            requestAnimationFrame(update);
+                        } else {
+                            particle.remove();
+                            createParticle(false);
+                        }
+                    }
+                    requestAnimationFrame(update);
+                }, delay);
+            }
+
+            // Efeito magnético elegante nos botões principais
+            const buttons = document.querySelectorAll('.btn-link');
+            buttons.forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - (rect.width / 2);
+                    const y = e.clientY - rect.top - (rect.height / 2);
+                    btn.style.transform = `translate(${x * 0.08}px, ${y * 0.08}px)`;
+                });
+
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = 'translate(0px, 0px)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
