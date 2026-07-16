@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DH Refrigerações</title>
+    <title>DH Refrigerações | Vxlink Premium</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        /* Importando a Montserrat para o título em estilo agressivo e a Plus Jakarta Sans para os textos */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
         
         * {
             margin: 0;
@@ -28,7 +29,7 @@
             position: relative;
         }
 
-        /* Efeito de Neve Realista caindo suavemente sobre o fundo claro */
+        /* Efeito de Neve Realista com flocos reais caindo suavemente */
         .snow-container {
             position: absolute;
             top: 0;
@@ -42,27 +43,28 @@
 
         .snowflake {
             position: absolute;
-            background: rgba(14, 165, 233, 0.25); /* Neve azulada sutil para aparecer no fundo claro */
-            border-radius: 50%;
-            filter: blur(0.5px);
+            color: rgba(14, 165, 233, 0.35); /* Tom azul gelo para contraste no fundo claro */
+            user-select: none;
+            pointer-events: none;
+            font-family: Arial, sans-serif;
             animation: fall linear infinite;
         }
 
         /* Flocos brancos misturados para dar profundidade real */
         .snowflake.white-flake {
-            background: rgba(255, 255, 255, 0.85);
-            filter: drop-shadow(0 0 2px rgba(14, 165, 233, 0.2));
+            color: rgba(255, 255, 255, 0.9);
+            filter: drop-shadow(0 0 2px rgba(14, 165, 233, 0.4));
         }
 
         @keyframes fall {
             0% {
-                transform: translateY(-20px) translateX(0) rotate(0deg);
+                transform: translateY(-30px) translateX(0) rotate(0deg);
                 opacity: 0;
             }
             10% { opacity: 0.8; }
             90% { opacity: 0.8; }
             100% {
-                transform: translateY(105vh) translateX(35px) rotate(360deg);
+                transform: translateY(105vh) translateX(45px) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -132,11 +134,18 @@
         }
 
         .profile-name {
-            font-size: 28px;
-            font-weight: 800;
-            color: #0d3b66; /* Azul profundo metálico */
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-style: italic; /* Inclinada exatamente como na logo */
+            text-transform: uppercase;
+            font-size: 26px;
             letter-spacing: -0.5px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            /* Efeito de degradê azul metálico igual ao "D" da logo */
+            background: linear-gradient(135deg, #0d3b66 0%, #0056b3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
         }
 
         .profile-tagline {
@@ -192,17 +201,17 @@
             cursor: pointer;
         }
 
-        /* Botão do WhatsApp Ativo (Azul Principal da Logo com borda de Destaque) */
+        /* Botão do WhatsApp Ativo (Azul Principal da Logo) */
         .btn-link.active-whatsapp {
             background: #ffffff;
             border: 2px solid #0056b3; 
             box-shadow: 0 8px 20px rgba(0, 86, 179, 0.06);
         }
 
-        /* Hover dinâmico puxando o degradê do Fogo/Chama da logo nas pontas */
+        /* Hover dinâmico simulando a chama laranja da logo */
         .btn-link.active-whatsapp:hover {
             box-shadow: 0 12px 28px rgba(255, 102, 0, 0.12);
-            border-color: #ff6600; /* Transição para o Laranja da logo */
+            border-color: #ff6600; 
             transform: translateY(-2px);
         }
 
@@ -268,7 +277,7 @@
         }
 
         .btn-link.active-whatsapp:hover .btn-title {
-            color: #ff6600; /* Texto do título muda para laranja no hover */
+            color: #ff6600; 
         }
 
         .btn-subtitle {
@@ -297,7 +306,7 @@
             stroke: #ff6600;
         }
 
-        /* Características / Badges em Grid (Flyer) */
+        /* Características em Grid (Flyer) */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -332,7 +341,7 @@
             flex-shrink: 0;
         }
 
-        /* Specialties Card - Fundo Branco Limpo */
+        /* Specialties Card */
         .specialties-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
@@ -403,7 +412,7 @@
         }
 
         .specialty-item:hover .specialty-icon-container {
-            background: #ff6600; /* Puxando o Laranja/Chama no hover para aquecer o elemento */
+            background: #ff6600; 
             color: #ffffff;
             box-shadow: 0 6px 15px rgba(255, 102, 0, 0.25);
             border-color: #ff6600;
@@ -455,7 +464,6 @@
         <!-- Profile Area -->
         <div class="profile-wrapper">
             <div class="logo-bg">
-                <!-- Alterado diretamente para logo.png -->
                 <img src="logo.png" alt="DH Refrigerações Logo" class="logo-img">
             </div>
             
@@ -574,7 +582,7 @@
                 <div class="specialty-item">
                     <div class="specialty-icon-container">
                         <svg viewBox="0 0 24 24">
-                            <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138z"></path>
+                            <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 00-1.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138z"></path>
                         </svg>
                     </div>
                     <span>Serviços com Garantia de Qualidade</span>
@@ -590,38 +598,43 @@
 
     </div>
 
-    <!-- Script de Neve Realista de Alto Desempenho -->
+    <!-- Script de Neve Realista com Flocos Reais -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('snowContainer');
-            const totalSnowflakes = 18; // Densidade perfeita para preencher sem poluir visualmente o fundo claro
+            const totalSnowflakes = 18; 
+            
+            // Definição dos caracteres geométricos de flocos de neve reais
+            const snowShapes = ['❄', '❅', '❆'];
 
             for (let i = 0; i < totalSnowflakes; i++) {
                 const flake = document.createElement('div');
                 flake.className = 'snowflake';
+                
+                // Escolhendo um floco de neve real aleatoriamente
+                flake.innerHTML = snowShapes[Math.floor(Math.random() * snowShapes.length)];
                 
                 // Variabilidade de cor entre azul suave e branco absoluto
                 if (Math.random() > 0.5) {
                     flake.classList.add('white-flake');
                 }
                 
-                // Variabilidade de tamanho para profundidade 3D real
-                const size = Math.random() * 5 + 2; // 2px a 7px
-                flake.style.width = `${size}px`;
-                flake.style.height = `${size}px`;
+                // Variabilidade de tamanho para profundidade 3D real das fontes
+                const size = Math.random() * 12 + 10; // Tamanho ideal de 10px a 22px para visualização perfeita
+                flake.style.fontSize = `${size}px`;
                 
                 // Posicionamento horizontal randômico
                 flake.style.left = `${Math.random() * 100}%`;
                 
                 // Delay e velocidade para simular vento e peso real
                 flake.style.animationDelay = `${Math.random() * 10}s`;
-                const duration = Math.random() * 8 + 6; // 6s a 14s
+                const duration = Math.random() * 8 + 7; // 7s a 15s para queda suave e luxuosa
                 flake.style.animationDuration = `${duration}s`;
                 
                 container.appendChild(flake);
             }
 
-            // Efeito de Parallax suave nos cards ao mover o mouse
+            // Efeito de Parallax suave no botão do WhatsApp
             const activeBtn = document.querySelector('.btn-link.active-whatsapp');
             if (activeBtn) {
                 activeBtn.addEventListener('mousemove', (e) => {
