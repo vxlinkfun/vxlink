@@ -16,7 +16,6 @@
         }
 
         body {
-            /* Fundo branco/cinza premium e limpo */
             background-color: #f8fafc; 
             color: #0f172a; 
             min-height: 100vh;
@@ -28,7 +27,7 @@
             position: relative;
         }
 
-        /* Container do efeito térmico (Sol virando Gelo) */
+        /* Container do efeito térmico */
         .thermal-container {
             position: absolute;
             top: 0;
@@ -46,7 +45,7 @@
             font-size: 16px;
             pointer-events: none;
             user-select: none;
-            transition: color 0.8s ease, transform 0.1s linear;
+            transition: color 0.4s ease, filter 0.4s ease;
             opacity: 0;
         }
 
@@ -127,7 +126,7 @@
             padding: 12px;
         }
 
-        /* Status online dinâmico representativo */
+        /* Status online dinâmico */
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -163,7 +162,7 @@
             font-family: 'Outfit', sans-serif;
             font-size: 28px;
             font-weight: 900;
-            color: #032040; /* Azul escuro corporativo */
+            color: #032040;
             letter-spacing: -0.5px;
             margin-bottom: 8px;
         }
@@ -182,7 +181,7 @@
             font-weight: 700;
         }
 
-        /* Seção de Contatos Rápidos Inteligentes (Duplo WhatsApp) */
+        /* Seção de Contatos Rápidos */
         .links-wrapper {
             margin-bottom: 24px;
             display: flex;
@@ -219,7 +218,7 @@
             box-shadow: 0 12px 24px rgba(0, 112, 243, 0.12);
         }
 
-        /* Destaque para o WhatsApp Secundário (Atendimento Alternativo) */
+        /* Destaque para o WhatsApp Secundário */
         .btn-link.highlight-orange {
             border-color: #ff6b00;
             box-shadow: 0 8px 20px rgba(255, 107, 0, 0.05);
@@ -315,7 +314,7 @@
             transform: translateX(4px);
         }
 
-        /* Seção de Credibilidade / Diferenciais (Flyer) */
+        /* Seção de Credibilidade */
         .credibility-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
@@ -377,6 +376,22 @@
             flex-shrink: 0;
         }
 
+        /* Location badge */
+        .location-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0, 112, 243, 0.07);
+            border: 1px solid rgba(0, 112, 243, 0.18);
+            color: #0070f3; 
+            padding: 7px 16px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
         /* Footer */
         .footer-stamp {
             margin-top: 40px;
@@ -403,7 +418,7 @@
 </head>
 <body>
 
-    <!-- Canvas Térmico (Efeito Sol virando Gelo) -->
+    <!-- Canvas Térmico (Efeito Sol virando Gelo real) -->
     <div class="thermal-container" id="thermalContainer"></div>
 
     <div class="container">
@@ -422,12 +437,12 @@
             <h1 class="profile-name">MR Climatização</h1>
             <p class="profile-tagline">Mais de <span>5 anos no campo</span> entregando projetos de infraestrutura, limpeza e instalação impecável de ar condicionado.</p>
             
-            <span class="location-badge">
+            <div class="location-badge">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px; display: inline-block; vertical-align: middle;">
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                 </svg>
                 Rondônia – RO
-            </span>
+            </div>
         </div>
 
         <!-- Links Section -->
@@ -500,7 +515,7 @@
 
         </div>
 
-        <!-- Seção de Credibilidade / Diferenciais Garantidos -->
+        <!-- Seção de Credibilidade -->
         <div class="credibility-card">
             <h3 class="credibility-title">Por que escolher a MR?</h3>
             <div class="credibility-list">
@@ -543,41 +558,38 @@
 
     </div>
 
-    <!-- Script Inteligente do Efeito Térmico (Sol vira Gelo) -->
+    <!-- Script Corrigido e Contínuo: Sol Vira Gelo de Verdade -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('thermalContainer');
-            const particleCount = 15; // Densidade ideal para suavidade completa
+            const particleCount = 14; 
 
             const suns = ['☀️', '🔆'];
             const ice = ['❄️', '❆', '❅'];
 
             for (let i = 0; i < particleCount; i++) {
-                createParticle(true); // Inicializa as partículas
+                createParticle(true); 
             }
 
             function createParticle(initial = false) {
                 const particle = document.createElement('div');
                 particle.className = 'thermal-particle';
                 
-                // Começa como sol (laranja quente)
+                // Inicializa como Sol (Laranja)
                 particle.innerHTML = suns[Math.floor(Math.random() * suns.length)];
-                particle.style.color = '#ff9f1c'; 
+                particle.style.color = '#ff6b00'; 
                 
-                // Variabilidade de tamanho
-                const size = Math.random() * 8 + 12; // 12px a 20px
+                const size = Math.random() * 8 + 14; 
                 particle.style.fontSize = `${size}px`;
                 
-                // Posição horizontal
-                const startLeft = Math.random() * 100;
+                const startLeft = Math.random() * 90 + 5;
                 particle.style.left = `${startLeft}%`;
                 
-                // Define a queda usando propriedades dinâmicas no script para rastrear a metade da tela
                 let yPos = -50;
-                let xOffset = 0;
-                const speed = Math.random() * 2 + 1.5; // Velocidade de descida
-                const wobbleSpeed = Math.random() * 0.02 + 0.01;
-                const wobbleDistance = Math.random() * 1.5 + 0.5;
+                let xOffset = Math.random() * 100;
+                const speed = Math.random() * 2 + 1.2; 
+                const wobbleSpeed = Math.random() * 0.01 + 0.01;
+                const wobbleDistance = Math.random() * 25 + 10;
                 const rotateSpeed = Math.random() * 2 - 1;
                 let rotation = 0;
                 let morphed = false;
@@ -586,7 +598,6 @@
                 particle.style.opacity = '0';
                 container.appendChild(particle);
 
-                // Delay inicial randômico para espalhar
                 const delay = initial ? Math.random() * 10000 : 0;
 
                 setTimeout(() => {
@@ -595,45 +606,46 @@
                         xOffset += wobbleSpeed;
                         rotation += rotateSpeed;
                         
-                        const currentX = startLeft + Math.sin(xOffset) * wobbleDistance;
+                        // Movimento sutil lateral para simular queda realista
+                        const currentX = startLeft + (Math.sin(xOffset) * (wobbleDistance / window.innerWidth) * 100);
                         
                         particle.style.top = `${yPos}px`;
                         particle.style.left = `${currentX}%`;
                         particle.style.transform = `rotate(${rotation}deg)`;
 
-                        // Fade in inicial
+                        // Fade in suave ao entrar na tela
                         if (yPos > 0 && yPos < 100) {
-                            particle.style.opacity = '0.7';
+                            particle.style.opacity = '0.75';
                         }
 
-                        // REGRA DO MEIO DA TELA (SOL VIRANDO GELO)
+                        // REGRA DA TRANSFORMAÇÃO NO MEIO DA TELA
                         const windowHeight = window.innerHeight;
-                        if (yPos > (windowHeight / 2) && !morphic) {
+                        if (yPos > (windowHeight * 0.45) && !morphed) {
                             morphed = true;
-                            // Transição suave para floco de neve azul glacial
+                            // Vira floco de neve e muda para azul glacial
                             particle.innerHTML = ice[Math.floor(Math.random() * ice.length)];
                             particle.style.color = '#00bcff';
-                            particle.style.filter = 'drop-shadow(0 0 3px rgba(0, 188, 255, 0.4))';
+                            particle.style.filter = 'drop-shadow(0 0 4px rgba(0, 188, 255, 0.5))';
                         }
 
-                        // Fade out perto do fim da tela
-                        if (yPos > (windowHeight - 80)) {
+                        // Fade out sutil antes de tocar no rodapé para não quebrar o visual
+                        if (yPos > (windowHeight - 60)) {
                             particle.style.opacity = '0';
                         }
 
-                        // Recomeça no topo se passar da tela
+                        // Mantém a queda contínua até o limite inferior da tela
                         if (yPos < windowHeight) {
                             requestAnimationFrame(update);
                         } else {
                             particle.remove();
-                            createParticle(false);
+                            createParticle(false); // Recria outra no topo infinitamente
                         }
                     }
                     requestAnimationFrame(update);
                 }, delay);
             }
 
-            // Efeito magnético elegante nos botões principais
+            // Efeito magnético nos botões principais
             const buttons = document.querySelectorAll('.btn-link');
             buttons.forEach(btn => {
                 btn.addEventListener('mousemove', (e) => {
