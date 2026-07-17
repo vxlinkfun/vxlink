@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TiagoCell | Assistência Técnica Premium</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            background-color: #ffffff;
+            color: #0f172a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 16px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+        }
+
+        /* ---------------- LOGOTIPO E TITULO ---------------- */
+        .profile-area {
+            margin-bottom: 25px;
+        }
+
+        .logo-box {
+            width: 140px;
+            height: 140px;
+            border-radius: 36px;
+            margin: 0 auto 20px;
+            padding: 5px;
+            background: linear-gradient(135deg, #1d3596 0%, #ff9100 100%);
+            box-shadow: 0 20px 40px rgba(29, 53, 150, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 31px;
+            object-fit: contain;
+            background: #ffffff;
+            padding: 8px;
+        }
+
+        .brand-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1d3596;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+
+        .brand-name span {
+            color: #ff9100;
+        }
+
+        /* ---------------- GRADE DE ESPECIALIZAÇÕES ---------------- */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+            padding: 0 4px;
+        }
+
+        .spec-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .spec-item:hover {
+            border-color: rgba(29, 53, 150, 0.3);
+            background: rgba(29, 53, 150, 0.01);
+            transform: translateY(-2px);
+        }
+
+        .spec-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1d3596;
+        }
+
+        .spec-icon.orange-icon {
+            color: #ff9100;
+        }
+
+        .spec-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .spec-title {
+            font-size: 12px;
+            font-weight: 800;
+            color: #1e293b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ---------------- BOTÕES PREMIUM ---------------- */
+        .links-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 40px;
+        }
+
+        .btn-premium {
+            display: block;
+            width: 100%;
+            text-decoration: none;
+            border-radius: 24px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+        }
+
+        .btn-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-align: left;
+        }
+
+        .btn-icon-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            flex-shrink: 0;
+        }
+
+        .btn-icon-box svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .btn-text-box {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .btn-title {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .btn-subtitle {
+            font-size: 12px;
+        }
+
+        .btn-arrow {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-orcamento {
+            background: linear-gradient(135deg, #ff9100 0%, #e07b00 100%);
+            color: #ffffff;
+            box-shadow: 0 10px 25px rgba(255, 145, 0, 0.25);
+        }
+        .btn-orcamento .btn-icon-box { background: rgba(255, 255, 255, 0.15); color: #ffffff; }
+        .btn-orcamento .btn-subtitle { color: rgba(255, 255, 255, 0.85); }
+        .btn-orcamento:hover { transform: translateY(-3px); box-shadow: 0 16px 32px rgba(255, 145, 0, 0.35); }
+        .btn-orcamento:hover .btn-arrow { transform: translateX(4px); }
+
+        .btn-instagram {
+            background: #ffffff;
+            color: #1d3596;
+            border: 2px solid #1d3596;
+            box-shadow: 0 8px 20px rgba(29, 53, 150, 0.05);
+        }
+        .btn-instagram .btn-icon-box { background: rgba(29, 53, 150, 0.06); color: #1d3596; }
+        .btn-instagram .btn-subtitle { color: #64748b; }
+        .btn-instagram:hover { transform: translateY(-3px); background: rgba(29, 53, 150, 0.02); box-shadow: 0 14px 28px rgba(29, 53, 150, 0.1); }
+        .btn-instagram:hover .btn-arrow { transform: translateX(4px); }
+
+        /* ---------------- CARROSSEL TEXTUAL DE MARCAS ---------------- */
+        .brands-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-title svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .slider-wrapper {
+            width: 100%;
+            overflow: hidden;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 24px 0;
+            position: relative;
+        }
+
+        .slider-wrapper::before, .slider-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 70px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .slider-wrapper::before { left: 0; background: linear-gradient(90deg, #f8fafc, transparent); }
+        .slider-wrapper::after { right: 0; background: linear-gradient(-90deg, #f8fafc, transparent); }
+
+        .track-infinite {
+            display: flex;
+            width: 1200px;
+            align-items: center;
+            animation: scrollInfinite 14s linear infinite;
+        }
+
+        .brand-text-item {
+            width: 150px;
+            flex-shrink: 0;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1d3596;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .brand-text-item.orange-brand {
+            color: #ff9100;
+        }
+
+        @keyframes scrollInfinite {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-600px); }
+        }
+
+        /* ---------------- SEÇÃO DE AVALIAÇÕES ALINHADAS ---------------- */
+        .reviews-container {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 40px;
+        }
+
+        .review-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.02);
+            transition: transform 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: scale(1.01);
+            border-color: rgba(29, 53, 150, 0.2);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .stars {
+            display: flex;
+            gap: 3px;
+            color: #ff9100;
+        }
+
+        .stars svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        .review-text {
+            font-size: 14px;
+            color: #334155;
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 14px;
+            text-align: left;
+        }
+
+        .author-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            background: rgba(29, 53, 150, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1d3596;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .author-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .author-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .verified {
+            font-size: 11px;
+            color: #16a34a;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 500;
+        }
+
+        /* ---------------- PAINEL COMPLEMENTAR ---------------- */
+        .info-panel {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            text-align: left;
+        }
+
+        .info-line {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 13.5px;
+            color: #475569;
+        }
+
+        .info-line svg {
+            width: 20px;
+            height: 20px;
+            color: #1d3596;
+            flex-shrink: 0;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        /* ---------------- RODAPÉ PERSONALIZADO (ATUALIZADO) ---------------- */
+        .footer-credits {
+            margin-top: 40px;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #94a3b8; /* Cor cinza da imagem */
+        }
+
+        .footer-credits a {
+            text-decoration: none;
+            color: #1d3596; /* Azul oficial em destaque */
+            font-weight: 700;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-credits a:hover {
+            opacity: 0.8;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 60px 24px;
+                background-color: #f1f5f9;
+            }
+            .container {
+                max-width: 540px;
+                background: #ffffff;
+                padding: 40px;
+                border-radius: 40px;
+                box-shadow: 0 40px 80px rgba(15, 23, 42, 0.06);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Cabeçalho Principal -->
+        <div class="profile-area">
+            <div class="logo-box">
+                <img src="logo.png" class="logo-img" alt="Logo TiagoCell">
+            </div>
+            <h1 class="brand-name">Tiago<span>CELL</span></h1>
+        </div>
+
+        <!-- Grade de Especializações Premium -->
+        <div class="specs-grid">
+            <div class="spec-item">
+                <div class="spec-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><path d="M12 18h.01"></path><path d="M8 6h8M8 10h8M8 14h6"></path></svg></div>
+                <span class="spec-title">Troca de Tela</span>
+            </div>
+            <div class="spec-item">
+                <div class="spec-icon orange-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="16" height="12" rx="2" ry="2"></rect><line x1="22" y1="11" x2="22" y2="13"></line><line x1="6" y1="11" x2="10" y2="15"></line><line x1="14" y1="9" x2="10" y2="15"></line></svg></div>
+                <span class="spec-title">Troca de Bateria</span>
+            </div>
+            <div class="spec-item">
+                <div class="spec-icon"><svg viewBox="0 0 24 24"><path d="M18 3v4c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2V3"></path><path d="M12 9v4"></path><path d="M10 13h4v6a2 2 0 0 1-2 2h0a2 2 0 0 1-2-2v-6z"></path></svg></div>
+                <span class="spec-title">Conector de Carga</span>
+            </div>
+            <div class="spec-item">
+                <div class="spec-icon orange-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></div>
+                <span class="spec-title">Manutenção Geral</span>
+            </div>
+        </div>
+
+        <!-- Links Principais -->
+        <div class="links-wrapper">
+            
+            <!-- WhatsApp -->
+            <a href="https://wa.me/5596981151648" class="btn-premium btn-orcamento" target="_blank">
+                <div class="btn-content">
+                    <div class="btn-left">
+                        <div class="btn-icon-box">
+                            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div class="btn-content-text">
+                            <span class="btn-title">Solicitar Orçamento</span>
+                            <span class="btn-subtitle">Fale no WhatsApp Comercial</span>
+                        </div>
+                    </div>
+                    <svg class="btn-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://instagram.com/tiagocell_reparos_assistencia" class="btn-premium btn-instagram" target="_blank">
+                <div class="btn-content">
+                    <div class="btn-left">
+                        <div class="btn-icon-box">
+                            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </div>
+                        <div class="btn-text-box">
+                            <span class="btn-title">Siga-nos no Instagram</span>
+                            <span class="btn-subtitle">Acompanhe nossos reparos e novidades</span>
+                        </div>
+                    </div>
+                    <svg class="btn-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Carrossel Rotatório Infinito -->
+        <div class="brands-section">
+            <div class="section-title">
+                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M21 12H3M12 3v18"/></svg>
+                Especialistas em Grandes Marcas
+            </div>
+            <div class="slider-wrapper">
+                <div class="track-infinite">
+                    <div class="brand-text-item">Apple</div>
+                    <div class="brand-text-item orange-brand">Samsung</div>
+                    <div class="brand-text-item">Motorola</div>
+                    <div class="brand-text-item orange-brand">Xiaomi</div>
+                    
+                    <div class="brand-text-item">Apple</div>
+                    <div class="brand-text-item orange-brand">Samsung</div>
+                    <div class="brand-text-item">Motorola</div>
+                    <div class="brand-text-item orange-brand">Xiaomi</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção de Avaliações Alinhadas -->
+        <div class="reviews-container">
+            <div class="section-title">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                Depoimentos dos Clientes
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="stars">
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    </div>
+                </div>
+                <p class="review-text">"Excelente atendimento, serviço ágil e com bom preço!"</p>
+                <div class="author-box">
+                    <div class="avatar">DB</div>
+                    <div class="author-info">
+                        <span class="author-name">Daniel Balieiro</span>
+                        <span class="verified">✓ Cliente Recomendado</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="stars"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
+                </div>
+                <p class="review-text">"Bom atendimento e confiabilidade no serviço."</p>
+                <div class="author-box">
+                    <div class="avatar">MB</div>
+                    <div class="author-info">
+                        <span class="author-name">Marcello Battanoli</span>
+                        <span class="verified">✓ Cliente Recomendado</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="stars"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
+                </div>
+                <p class="review-text">"A assistência Técnica Tiagocell tem o melhor atendimento e serviços. Eu recomendo!"</p>
+                <div class="author-box">
+                    <div class="avatar">DL</div>
+                    <div class="author-info">
+                        <span class="author-name">Darcelino Lopes</span>
+                        <span class="verified">✓ Cliente Recomendado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Painel Técnico Inferior -->
+        <div class="info-panel">
+            <div class="info-line">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Av. General Gurjão, 300 – Centro</span>
+            </div>
+            <div class="info-line">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                <span>Peças de Altíssima Qualidade e Garantia Exclusiva</span>
+            </div>
+        </div>
+
+        <!-- Rodapé Atualizado com Link -->
+        <div class="footer-credits">
+            Desenvolvido por <a href="http://vxlink.fun" target="_blank">vxlink.fun</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
