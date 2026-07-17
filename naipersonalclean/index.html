@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nai Personal Clean | Limpeza Residencial</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            background: radial-gradient(circle at top, #fbf8ff 0%, #f5eefd 100%);
+            color: #3a225d;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 30px 16px;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        /* ---------------- TOPO LUXO ---------------- */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .avatar-circle {
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, #7b2cbf 0%, #ffc837 100%);
+            box-shadow: 0 15px 35px rgba(123, 44, 191, 0.15);
+        }
+
+        .avatar-circle img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #ffffff;
+        }
+
+        .main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            color: #4a1275;
+            font-weight: 700;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .sparkle-badge {
+            display: inline-block;
+            background: rgba(255, 200, 55, 0.15);
+            color: #b58d05;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 50px;
+            margin-top: 8px;
+            border: 1px solid rgba(255, 200, 55, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        /* ---------------- LISTA DE SERVIÇOS FLUIDA ---------------- */
+        .services-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .service-row {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-left: 4px solid #7b2cbf;
+            box-shadow: 0 4px 15px rgba(123, 44, 191, 0.02);
+        }
+
+        .service-row.gold-border {
+            border-left-color: #ffc837;
+        }
+
+        .service-icon-box {
+            color: #7b2cbf;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-row.gold-border .service-icon-box {
+            color: #cca010;
+        }
+
+        .service-row svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .service-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #4a1275;
+            letter-spacing: 0.3px;
+        }
+
+        /* ---------------- BOTÕES EM FORMATO DE PÍLULA ---------------- */
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .pill-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 18px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .pill-whatsapp {
+            background: #7b2cbf;
+            color: #ffffff;
+            box-shadow: 0 10px 25px rgba(123, 44, 191, 0.25), inset 0 -3px 0 rgba(0,0,0,0.15);
+            border: 1px solid #621b9e;
+        }
+
+        .pill-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(123, 44, 191, 0.35);
+        }
+
+        .pill-instagram {
+            background: transparent;
+            color: #7b2cbf;
+            border: 2px solid #7b2cbf;
+        }
+
+        .pill-instagram:hover {
+            background: rgba(123, 44, 191, 0.03);
+            transform: translateY(-2px);
+        }
+
+        .pill-button svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        /* ---------------- CARROSSEL DE DIFERENCIAIS ---------------- */
+        .marquee-container {
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        .marquee-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8c76ac;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .marquee-box {
+            overflow: hidden;
+            background: #ffffff;
+            padding: 14px 0;
+            border-radius: 14px;
+            border: 1px solid #ebdffd;
+        }
+
+        .marquee-track {
+            display: flex;
+            width: 1400px;
+            animation: scrollText 18s linear infinite;
+        }
+
+        .marquee-item {
+            width: 175px;
+            flex-shrink: 0;
+            font-size: 13px;
+            font-weight: 700;
+            color: #7b2cbf;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .marquee-item.gold-text {
+            color: #cca010;
+        }
+
+        @keyframes scrollText {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-700px); }
+        }
+
+        /* ---------------- SEÇÃO FEEDBACKS ESTILO CHAT ---------------- */
+        .feedbacks-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 35px;
+        }
+
+        .feedback-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8c76ac;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .chat-bubble-card {
+            background: #ffffff;
+            border-radius: 24px;
+            border-bottom-left-radius: 4px;
+            padding: 18px;
+            box-shadow: 0 10px 25px rgba(123, 44, 191, 0.02);
+            border: 1px solid #f2ebfc;
+            text-align: left;
+            position: relative;
+        }
+
+        .chat-bubble-card.alt-bubble {
+            border-radius: 24px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-text {
+            font-size: 13.5px;
+            color: #443160;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .chat-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #fcfaff;
+            padding-top: 10px;
+        }
+
+        .chat-author {
+            font-size: 12px;
+            font-weight: 700;
+            color: #7b2cbf;
+        }
+
+        .chat-stars {
+            color: #ffc837;
+            display: flex;
+            gap: 2px;
+        }
+
+        .chat-stars svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+        }
+
+        /* ---------------- RODAPÉ INTEGRADO ---------------- */
+        .footer-box {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            padding: 16px;
+            border: 1px solid #ebdffd;
+            font-size: 13px;
+            color: #8c76ac;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .footer-box a {
+            color: #7b2cbf;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                background: #f3ecf9;
+                padding: 50px 24px;
+            }
+            .wrapper {
+                background: #ffffff;
+                padding: 40px;
+                border-radius: 32px;
+                box-shadow: 0 30px 60px rgba(74, 18, 117, 0.04);
+                border: 1px solid #f2ebfc;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        
+        <!-- Topo Totalmente Reformulado -->
+        <div class="brand-header">
+            <div class="avatar-circle">
+                <img src="logo.png" alt="Nai Personal Clean">
+            </div>
+            <h1 class="main-title">Nai Personal Clean</h1>
+            <span class="sparkle-badge">✨ Limpeza Residencial Personalizada</span>
+        </div>
+
+        <!-- Lista de Serviços Stacked (Em Linhas de Alto Padrão) -->
+        <div class="services-list">
+            <div class="service-row">
+                <div class="service-icon-box"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+                <span class="service-name">Limpeza Residencial Completa</span>
+            </div>
+            <div class="service-row gold-border">
+                <div class="service-icon-box"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                <span class="service-name">Cuidado, Capricho e Organização</span>
+            </div>
+            <div class="service-row">
+                <div class="service-icon-box"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <span class="service-name">Produtos Profissionais Inclusos</span>
+            </div>
+            <div class="service-row gold-border">
+                <div class="service-icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                <span class="spec-title">Atendimento Padrão Premium</span>
+            </div>
+        </div>
+
+        <!-- Botões Redesenhados em Formato Pílula -->
+        <div class="cta-container">
+            <a href="https://wa.me/5518998241363" class="pill-button pill-whatsapp" target="_blank">
+                <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                Agendar Horário via WhatsApp
+            </a>
+
+            <a href="https://instagram.com/naipersonalclean018" class="pill-button pill-instagram" target="_blank">
+                <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                Ver Portfólio no Instagram
+            </a>
+        </div>
+
+        <!-- Carrossel de Diferenciais Textuais Modificado -->
+        <div class="marquee-container">
+            <p class="marquee-label">Diferenciais Exclusivos</p>
+            <div class="marquee-box">
+                <div class="marquee-track">
+                    <div class="marquee-item">✨ Organização</div>
+                    <div class="marquee-item gold-text">✨ Nova Energia</div>
+                    <div class="marquee-item">✨ Alta Simpatia</div>
+                    <div class="marquee-item gold-text">✨ Preço Acessível</div>
+                    
+                    <div class="marquee-item">✨ Organização</div>
+                    <div class="marquee-item gold-text">✨ Nova Energia</div>
+                    <div class="marquee-item">✨ Alta Simpatia</div>
+                    <div class="marquee-item gold-text">✨ Preço Acessível</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feedbacks em Formato Chat Dinâmico -->
+        <p class="feedback-title" style="margin-bottom: 12px;">O que dizem as clientes</p>
+        <div class="feedbacks-section">
+            
+            <!-- Mensagem 1 -->
+            <div class="chat-bubble-card">
+                <p class="chat-text">"Muito obrigada por tudo. Você tem ajudado muito a minha vida ficar melhor viu. Deus abençoe sempre com boas clientes e pessoas honestas e do bem ao seu lado."</p>
+                <div class="chat-meta">
+                    <span class="chat-author">Michelle</span>
+                    <div class="chat-stars">
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mensagem 2 -->
+            <div class="chat-bubble-card alt-bubble">
+                <p class="chat-text">"Gente, essa menina é muito simpática e cobra um preço bem acessível para limpar a casa da gente. Vale super a pena contratar ela viu?"</p>
+                <div class="chat-meta">
+                    <span class="chat-author">Cliente Satisfeita</span>
+                    <div class="chat-stars"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
+                </div>
+            </div>
+
+            <!-- Mensagem 3 -->
+            <div class="chat-bubble-card">
+                <p class="chat-text">"Muito obrigada pelo cuidado e capricho de hoje. Minha casa ficou maravilhosa, deu até outra energia 🥰💗"</p>
+                <div class="chat-meta">
+                    <span class="chat-author">Simone</span>
+                    <div class="chat-stars"><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rodapé Personalizado Obrigatório -->
+        <div class="footer-box">
+            Desenvolvido por <a href="http://vxlink.fun" target="_blank">vxlink.fun</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
