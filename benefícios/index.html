@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VXLINK | Benefícios Premium</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            background: linear-gradient(180deg, #090314 0%, #04010a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 16px;
+            overflow-x: hidden;
+        }
+
+        .vx-wrapper {
+            width: 100%;
+            max-width: 440px;
+            text-align: center;
+        }
+
+        /* ---------------- TOPO DA PÁGINA ---------------- */
+        .page-header {
+            margin-bottom: 32px;
+        }
+
+        .icon-badge {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 16px;
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.25);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c084fc;
+            box-shadow: 0 10px 25px rgba(168, 85, 247, 0.15);
+        }
+
+        .icon-badge svg {
+            width: 28px;
+            height: 28px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .page-subtitle {
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        /* ---------------- LISTA DE BENEFÍCIOS DETALHADOS ---------------- */
+        .benefits-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 35px;
+            text-align: left;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            border-radius: 22px;
+            padding: 20px;
+            display: flex;
+            gap: 16px;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(168, 85, 247, 0.25);
+            background: rgba(168, 85, 247, 0.01);
+        }
+
+        .benefit-icon-box {
+            width: 44px;
+            height: 44px;
+            background: rgba(168, 85, 247, 0.08);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c084fc;
+            flex-shrink: 0;
+        }
+
+        .benefit-icon-box svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .benefit-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .benefit-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.2px;
+        }
+
+        .benefit-text {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.5;
+        }
+
+        /* ---------------- BOTÃO VOLTAR AO INÍCIO MASTER ---------------- */
+        .btn-back-master {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 18px 22px;
+            border-radius: 18px;
+            text-decoration: none;
+            background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 35px;
+        }
+
+        .btn-back-master::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -150%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: skewX(-20deg);
+            animation: lightSweep 4.5s infinite;
+        }
+
+        @keyframes lightSweep {
+            0% { left: -150%; }
+            25% { left: 150%; }
+            100% { left: 150%; }
+        }
+
+        .btn-back-master:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(168, 85, 247, 0.4);
+        }
+
+        .btn-back-master svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            transition: transform 0.25s ease;
+        }
+
+        .btn-back-master:hover svg {
+            transform: translateX(-3px);
+        }
+
+        /* ---------------- RODAPÉ INSTITUCIONAL ---------------- */
+        .premium-footer {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            padding: 20px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            line-height: 1.6;
+        }
+
+        .footer-logo-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .footer-logo-row svg {
+            width: 16px;
+            height: 16px;
+            color: #a855f7;
+            stroke-width: 2.5;
+        }
+
+        .cnpj-text {
+            margin-top: 8px;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        @media (min-width: 768px) {
+            body {
+                background: #05020a;
+                padding: 60px 24px;
+            }
+            .vx-wrapper {
+                background: linear-gradient(180deg, #0e061f 0%, #05020a 100%);
+                padding: 40px;
+                border-radius: 32px;
+                border: 1px solid rgba(168, 85, 247, 0.08);
+                box-shadow: 0 40px 90px rgba(0,0,0,0.6);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="vx-wrapper">
+        
+        <!-- Topo da Página -->
+        <div class="page-header">
+            <div class="icon-badge">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <h1 class="page-title">Nossos Benefícios</h1>
+            <p class="page-subtitle">Descubra por que a VXLINK é a escolha de elite para a presença digital do seu negócio local.</p>
+        </div>
+
+        <!-- Lista Estratégica de Benefícios -->
+        <div class="benefits-stack">
+            
+            <!-- Benefício 1 -->
+            <div class="benefit-card">
+                <div class="benefit-icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div class="benefit-info">
+                    <h2 class="benefit-title">Valorização de Preço e Autoridade</h2>
+                    <p class="benefit-text">Substitua links genéricos por uma página de boutique que faz o seu cliente perceber o valor do seu serviço antes mesmo do atendimento.</p>
+                </div>
+            </div>
+
+            <!-- Benefício 2 -->
+            <div class="benefit-card">
+                <div class="benefit-icon-box">
+                    <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <div class="benefit-info">
+                    <h2 class="benefit-title">Velocidade Ultra Rápida (0.6s)</h2>
+                    <p class="benefit-text">Páginas totalmente otimizadas para redes móveis que carregam instantaneamente no celular, evitando que você perca clientes por lentidão.</p>
+                </div>
+            </div>
+
+            <!-- Benefício 3 -->
+            <div class="benefit-card">
+                <div class="benefit-icon-box">
+                    <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <div class="benefit-info">
+                    <h2 class="benefit-title">Foco Total em Conversão Comercial</h2>
+                    <p class="benefit-text">Design estratégico estruturado com botões interativos e gatilhos de prova social para direcionar o cliente direto para o seu WhatsApp.</p>
+                </div>
+            </div>
+
+            <!-- Benefício 4 -->
+            <div class="benefit-card">
+                <div class="benefit-icon-box">
+                    <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                </div>
+                <div class="benefit-info">
+                    <h2 class="benefit-title">Integração Perfeita com Instagram</h2>
+                    <p class="benefit-text">Alinhamento harmônico com as cores da sua marca e ícones dedicados para reter os seguidores e transformá-los em compradores recorrentes.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Botão Master de Retorno -->
+        <a href="index.html" class="btn-back-master">
+            <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            <span>Voltar ao Início</span>
+        </a>
+
+        <!-- Rodapé Institucional -->
+        <div class="premium-footer">
+            <div class="footer-logo-row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                VXLINK PREMIUM
+            </div>
+            <p>Presença digital impecável com acabamento premium.</p>
+            <p class="cnpj-text">CNPJ: 68.024.114/0001-05 — &copy; 2026 VXLINK — Todos os direitos reservados.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
