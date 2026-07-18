@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felina Make | Beleza com Atitude</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            background: linear-gradient(180deg, #231133 0%, #12061c 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 30px 16px;
+            overflow-x: hidden;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        /* ---------------- TOPO BOUTIQUE DE LUXO ---------------- */
+        .store-header {
+            margin-bottom: 30px;
+        }
+
+        .avatar-frame {
+            width: 135px;
+            height: 135px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(135deg, #a862ea 0%, #e5a93c 100%);
+            box-shadow: 0 15px 35px rgba(168, 98, 234, 0.25);
+        }
+
+        .avatar-frame img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #844fa1; /* Roxo idêntico à logo */
+        }
+
+        .store-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .store-tagline {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 15px;
+            color: #e5a93c; /* Dourado da logo */
+            margin-top: 2px;
+            letter-spacing: 1px;
+        }
+
+        /* ---------------- BANNER DE DESTAQUE: PREÇO ÚNICO ---------------- */
+        .promo-banner {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(168, 98, 234, 0.25);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 16px;
+            margin-bottom: 28px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .promo-badge {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #a862ea;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .promo-price {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .promo-price span {
+            color: #e5a93c;
+            text-shadow: 0 0 10px rgba(229, 169, 60, 0.2);
+        }
+
+        /* ---------------- SEÇÃO DE CATEGORIAS EM CARROSSEL DE BOLHAS ---------------- */
+        .categories-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 12px;
+            text-align: left;
+            padding-left: 6px;
+            font-weight: 600;
+        }
+
+        .categories-slider {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            padding: 4px 6px 24px;
+            margin-bottom: 15px;
+            scrollbar-width: none; /* Esconde scroll no Firefox */
+        }
+
+        .categories-slider::-webkit-scrollbar {
+            display: none; /* Esconde scroll no Chrome/Safari */
+        }
+
+        .cat-bubble {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cat-image-box {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            background: rgba(168, 98, 234, 0.1);
+            border: 2px solid rgba(168, 98, 234, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a862ea;
+        }
+
+        .cat-bubble:hover .cat-image-box {
+            border-color: #e5a93c;
+            color: #e5a93c;
+        }
+
+        .cat-image-box svg {
+            width: 32px;
+            height: 32px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+        }
+
+        .cat-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ---------------- BOTÕES GLOW ASSEMITRICOS ---------------- */
+        .actions-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 35px;
+        }
+
+        .btn-luxury {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 20px 26px;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-main-glow {
+            background: linear-gradient(135deg, #a862ea 0%, #722cb3 100%);
+            color: #ffffff;
+            box-shadow: 0 10px 25px rgba(114, 44, 179, 0.3);
+        }
+
+        .btn-main-glow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(114, 44, 179, 0.5);
+        }
+
+        .btn-outline-gold {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(229, 169, 60, 0.4);
+            color: #e5a93c;
+        }
+
+        .btn-outline-gold:hover {
+            background: rgba(229, 169, 60, 0.05);
+            border-color: #e5a93c;
+            transform: translateY(-2px);
+        }
+
+        .btn-info-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-align: left;
+        }
+
+        .btn-icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+        }
+
+        .btn-outline-gold .btn-icon-wrapper {
+            background: rgba(229, 169, 60, 0.1);
+        }
+
+        .btn-icon-wrapper svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .btn-text-title {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-text-sub {
+            font-size: 11px;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+
+        .btn-chevron {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+        }
+
+        /* ---------------- LETREIRO INFINITO DE PRODUTOS ---------------- */
+        .marquee-section {
+            margin-bottom: 40px;
+        }
+
+        .marquee-track-box {
+            overflow: hidden;
+            background: rgba(168, 98, 234, 0.05);
+            border-top: 1px solid rgba(168, 98, 234, 0.15);
+            border-bottom: 1px solid rgba(168, 98, 234, 0.15);
+            padding: 14px 0;
+        }
+
+        .marquee-elements {
+            display: flex;
+            width: 1400px;
+            animation: continuousScroll 15s linear infinite;
+        }
+
+        .marquee-item-text {
+            width: 175px;
+            flex-shrink: 0;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .marquee-item-text span {
+            color: #e5a93c;
+        }
+
+        @keyframes continuousScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-700px); }
+        }
+
+        /* ---------------- MÓDULO DE AVALIAÇÕES GOOGLE (DO PRINT) ---------------- */
+        .google-reviews-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .review-luxury-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 22px;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .review-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .reviewer-avatar-stub {
+            width: 32px;
+            height: 32px;
+            background: rgba(168, 98, 234, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: #a862ea;
+        }
+
+        .reviewer-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .stars-gold-row {
+            display: flex;
+            gap: 2px;
+            color: #e5a93c;
+        }
+
+        .stars-gold-row svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+        }
+
+        .review-content-text {
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.5;
+        }
+
+        /* ---------------- FOOTER COM CRÉDITOS ---------------- */
+        .store-footer {
+            background: rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .store-footer a {
+            color: #a862ea;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                background: #0f0717;
+                padding: 50px 24px;
+            }
+            .main-container {
+                background: linear-gradient(180deg, #1d0e2b 0%, #110519 100%);
+                padding: 40px;
+                border-radius: 36px;
+                border: 1px solid rgba(168, 98, 234, 0.1);
+                box-shadow: 0 40px 90px rgba(0,0,0,0.4);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <!-- Topo Boutique -->
+        <div class="store-header">
+            <div class="avatar-frame">
+                <img src="logo.png" alt="Felina Make">
+            </div>
+            <h1 class="store-title">Felina Make</h1>
+            <p class="store-tagline">Beleza com atitude</p>
+        </div>
+
+        <!-- Banner Exclusivo: Preço Único -->
+        <div class="promo-banner">
+            <p class="promo-badge">🎉 Oferta Irresistível</p>
+            <p class="promo-price">Preço Único <span>R$ 10,00</span></p>
+            <p class="btn-text-sub" style="margin-top: 4px; color: rgba(255,255,255,0.6);">Dispomos também de uma Seção Premium exclusiva 💜</p>
+        </div>
+
+        <!-- Módulo de Categorias em Carrossel Horizontal -->
+        <p class="categories-label">Explorar Coleções</p>
+        <div class="categories-slider">
+            <div class="cat-bubble">
+                <div class="cat-image-box"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <span class="cat-title">Cuidados</span>
+            </div>
+            <div class="cat-bubble">
+                <div class="cat-image-box"><svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/></svg></div>
+                <span class="cat-title">Makes</span>
+            </div>
+            <div class="cat-bubble">
+                <div class="cat-image-box"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                <span class="cat-title">Acessórios</span>
+            </div>
+            <div class="cat-bubble">
+                <div class="cat-image-box"><svg viewBox="0 0 24 24"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/><path d="M6 3a3 3 0 0 0-3 3v12a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z"/></svg></div>
+                <span class="cat-title">Pincéis</span>
+            </div>
+        </div>
+
+        <!-- Botões de Ação Convertidos -->
+        <div class="actions-wrapper">
+            
+            <!-- Link do WhatsApp -->
+            <a href="https://wa.me/5583993415248" class="btn-luxury btn-main-glow" target="_blank">
+                <div class="btn-info-box">
+                    <div class="btn-icon-wrapper">
+                        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                    </div>
+                    <div class="btn-text-wrapper">
+                        <p class="btn-text-title">Fazer Pedido via WhatsApp</p>
+                        <p class="btn-text-sub">Atendimento de Seg. à Sab. das 9h às 18h</p>
+                    </div>
+                </div>
+                <svg class="btn-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+
+            <!-- Link do Google Maps / Localização -->
+            <a href="https://maps.google.com/?q=R.+Bancário+Antônio+Jacinto+de+Souza,+277.+Bancários,+João+Pessoa" class="btn-luxury btn-outline-gold" target="_blank">
+                <div class="btn-info-box">
+                    <div class="btn-icon-wrapper">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div class="btn-text-wrapper">
+                        <p class="btn-text-title">Visite Nossa Loja Física</p>
+                        <p class="btn-text-sub">Bancários - João Pessoa / PB</p>
+                    </div>
+                </div>
+                <svg class="btn-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+
+        </div>
+
+        <!-- Letreiro Contínuo de Vantagens da Loja -->
+        <div class="marquee-section">
+            <div class="marquee-track-box">
+                <div class="marquee-elements">
+                    <div class="marquee-item-text">💄 Maquiagens</div>
+                    <div class="marquee-item-text">🧴 Cosméticos</div>
+                    <div class="marquee-item-text"><span>🛵</span> Fazemos Entregas</div>
+                    <div class="marquee-item-text">🎁 Presentes</div>
+                    
+                    <div class="marquee-item-text">💄 Maquiagens</div>
+                    <div class="marquee-item-text">🧴 Cosméticos</div>
+                    <div class="marquee-item-text"><span>🛵</span> Fazemos Entregas</div>
+                    <div class="marquee-item-text">🎁 Presentes</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Avaliações Reais extraídas do Google Maps -->
+        <p class="categories-label">Avaliações no Google</p>
+        <div class="google-reviews-section">
+            
+            <!-- Comentário 1 -->
+            <div class="review-luxury-card">
+                <div class="review-top-bar">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar-stub">FA</div>
+                        <span class="reviewer-name">Fernando Antonio</span>
+                    </div>
+                    <div class="stars-gold-row">
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    </div>
+                </div>
+                <p class="review-content-text">"Excelente atendimento!"</p>
+            </div>
+
+            <!-- Comentário 2 -->
+            <div class="review-luxury-card">
+                <div class="review-top-bar">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar-stub">LB</div>
+                        <span class="reviewer-name">Liz Brito</span>
+                    </div>
+                    <div class="stars-gold-row">
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    </div>
+                </div>
+                <p class="review-content-text">"Espaço maravilhoso, produtos de muita qualidade com preço excelente!"</p>
+            </div>
+
+        </div>
+
+        <!-- Rodapé do Desenvolvedor Padrão -->
+        <div class="store-footer">
+            Desenvolvido por <a href="http://vxlink.fun" target="_blank">vxlink.fun</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
