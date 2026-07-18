@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VXLINK | Presença Digital Premium</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2 family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         
         * {
             margin: 0;
@@ -107,7 +107,7 @@
             stroke-width: 2;
         }
 
-        /* ---------------- LISTA DE LINKS ATUALIZADA ---------------- */
+        /* ---------------- LISTA DE LINKS DIRECIONADA ---------------- */
         .links-stack {
             display: flex;
             flex-direction: column;
@@ -257,15 +257,15 @@
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            color: #c084fc; /* Mais destacado */
+            color: #c084fc;
             margin-bottom: 14px;
             font-weight: 800;
         }
 
         .marquee-container {
             overflow: hidden;
-            background: rgba(168, 85, 247, 0.06); /* Mais preenchido */
-            border-top: 1.5px solid #a855f7; /* Linha de neon viva */
+            background: rgba(168, 85, 247, 0.06);
+            border-top: 1.5px solid #a855f7;
             border-bottom: 1.5px solid #a855f7;
             padding: 14px 0;
             box-shadow: 0 0 15px rgba(168, 85, 247, 0.1);
@@ -284,7 +284,7 @@
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #ffffff; /* Texto branco puro para destacar */
+            color: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -436,10 +436,11 @@
             </a>
         </div>
 
-        <!-- Grade Ajustada (Botão Contato Removido) -->
+        <!-- Grade de Links com Redirecionamentos Absolutos Configurados -->
         <div class="links-stack">
             
-            <a href="#beneficios" class="btn-premium btn-glass-border">
+            <!-- Botão Benefícios Atualizado -->
+            <a href="https://vxlink.fun/beneficios" class="btn-premium btn-glass-border">
                 <div class="btn-inner-left">
                     <div class="btn-icon-bg"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
                     <span class="lbl-main">Benefícios</span>
@@ -447,6 +448,7 @@
                 <svg class="btn-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
             </a>
 
+            <!-- Botão Parceiros com Âncora Interna -->
             <a href="#parceiros" class="btn-premium btn-glass-border">
                 <div class="btn-inner-left">
                     <div class="btn-icon-bg"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
@@ -455,7 +457,8 @@
                 <svg class="btn-chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
             </a>
 
-            <a href="#planos" class="btn-premium btn-glass-border">
+            <!-- Botão Plano Atualizado -->
+            <a href="https://vxlink.fun/plano" class="btn-premium btn-glass-border">
                 <div class="btn-inner-left">
                     <div class="btn-icon-bg"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
                     <span class="lbl-main">Plano</span>
@@ -509,11 +512,10 @@
             </div>
         </div>
 
-        <!-- Seção Redesenhada com 3 Comentários Curtos de Seus Parceiros -->
+        <!-- Seção de Comentários -->
         <div class="feedback-container">
             <p class="feedback-headline">Feedbacks de quem aprovou</p>
             
-            <!-- Comentário 1 -->
             <div class="feedback-card">
                 <div class="fb-top-row">
                     <span class="fb-user">Sandelicia</span>
@@ -528,7 +530,6 @@
                 <p class="fb-text">"Layout maravilhoso e muito leve. Passa um profissionalismo gigante!"</p>
             </div>
 
-            <!-- Comentário 2 -->
             <div class="feedback-card">
                 <div class="fb-top-row">
                     <span class="fb-user">Personalize Moment</span>
@@ -543,7 +544,6 @@
                 <p class="fb-text">"Minhas vendas no Instagram aumentaram muito depois que ativei meu link premium."</p>
             </div>
 
-            <!-- Comentário 3 -->
             <div class="feedback-card">
                 <div class="fb-top-row">
                     <span class="fb-user">Isisnet</span>
@@ -560,7 +560,7 @@
 
         </div>
 
-        <!-- Rodapé Premium com CNPJ Incorporado -->
+        <!-- Rodapé Premium -->
         <div class="premium-footer">
             <div class="footer-logo-row">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
@@ -572,7 +572,7 @@
 
     </div>
 
-    <!-- Script de Animação Lenta e Fluida para os Dados das Estatísticas -->
+    <!-- Script de Animação Lenta e Fluida para as Estatísticas -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const animateValue = (id, start, end, duration, isDecimal, suffix) => {
@@ -593,7 +593,6 @@
                 }, 16);
             };
 
-            // Animação calculada para subir de forma elegante e visível no celular (2.5 segundos)
             animateValue("clicks-val", 0, 150, 2500, false, "k");
             animateValue("speed-val", 0.0, 0.6, 2500, true, "s");
             animateValue("uptime-val", 0.0, 99.9, 2500, true, "%");
